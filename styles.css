@@ -5,3 +5,51 @@
 li {
     padding: 5px;
 } */
+
+
+/* body {
+    
+} */
+
+/* #divName {
+
+    display: grid;
+    grid-template-columns: 10% 20% 50% 10% 10%;
+    
+} */
+
+/* #name {
+    grid-column-start: 2;
+    grid-column-end: 5;
+} */
+
+/* #name {
+    display: grid;
+    grid-template-columns: 10% 40% 30% 10% 10%;
+} */
+
+#divSets {
+    display: grid;
+    /* grid-template-columns: 5% 20% 50% 20% 5%; */
+    grid-template-columns: .5fr 1fr 1fr 2fr 1fr .5fr;
+    max-width: 100vw;
+    align-items: center;
+    padding: 5px;
+}
+
+#divWishlist {
+    height: 50px;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    /* margin-top: 25px;
+    margin-bottom: 25px; */
+    background-color: aquamarine;
+    padding-bottom: 25px;
+    
+}
+
+#divWishlistTitle h1 {
+    text-align: center; 
+}

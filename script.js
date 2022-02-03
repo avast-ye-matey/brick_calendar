@@ -118,31 +118,128 @@ function json() {
         .then(data => console.log(data.sets))
 }
 
+// var sheet = document.createElement('style')
+const brickheadz = document.getElementById("brickheadz");
+const disney = document.getElementById("disney");
+const ideas = document.getElementById("ideas");
+
+// const divWrapperName = document.getElementById("divName");
+// const divWrapperChildName = document.createElement("div");
+// const divWrapperChildPrice = document.createElement("div");
+// const divWrapperSetChildImage = document.createElement("img")
+
 function submitFilter() {
-    document.getElementById("name").innerHTML = "";
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
+    document.getElementById("divSets").innerHTML = "";
+    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
         .then(response => response.json())                            
         .then(data => {
             for (const i of data.sets) {
-                const brickheadz = document.getElementById("brickheadz");
-                const disney = document.getElementById("disney");
-                const ideas = document.getElementById("ideas");
-                var ul = document.getElementById("name")
-                var li = document.createElement("li");
-                if (brickheadz.checked === true && i.theme === "BrickHeadz" ) {
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(i.name));
-                    ul.appendChild(li);
-                }
-                console.log(i.theme)
+                const divWrapperSets = document.getElementById("divSets");
+                
+                if (brickheadz.checked === true && i.theme === "BrickHeadz") {
+                    
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")    
+                    const divWishlistButton = document.createElement("button")   
+                                                           
+                    divSetChildImage.src = i.img
+                    divSetChildImage.style.gridColumn = "2 / span 1";
+                    divSetChildImage.style.objectFit = "cover";
+                    divSetChildImage.style.width = "100%";
+                    divSetChildImage.style.maxHeight = "100%";
+                    divSetChildImage.style.marginBottom = "20px";
+                    divWrapperSets.appendChild(divSetChildImage);
+
+                    divSetNumber.appendChild(document.createTextNode(i.number));
+                    divSetNumber.style.gridColumn = "3 / span 1";                    
+                    divWrapperSets.appendChild(divSetNumber);
+
+                    divSetChildName.appendChild(document.createTextNode(i.name));
+                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.paddingLeft = "10%";
+                    divWrapperSets.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    divWrapperSets.appendChild(divWrapperChildPrice);
+
+                    divWishlistButton.appendChild(document.createTextNode("+"));
+                    divWishlistButton.style.gridColumn = "6 / span 1";
+                    divWrapperSets.appendChild(divWishlistButton);
+
+
+                };                
+                // console.log(i.theme)
+
                 if (disney.checked === true && i.theme === "Disney" ) {
-                    var li = document.createElement("li");
-                    li.appendChild(document.createTextNode(i.name));
-                    ul.appendChild(li);
-                }
-            }
-        })  
-}
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divWrapperSetChildImage = document.createElement("img")       
+                                                           
+                    divWrapperSetChildImage.src = i.img
+                    divWrapperSetChildImage.style.gridColumn = "2 / span 1";
+                    divWrapperSetChildImage.style.objectFit = "cover";
+                    divWrapperSetChildImage.style.width = "100%";
+                    divWrapperSetChildImage.style.maxHeight = "100%";
+                    divWrapperSetChildImage.style.marginBottom = "20px";
+                    divWrapperSets.appendChild(divWrapperSetChildImage);
+
+                    divSetChildName.appendChild(document.createTextNode(i.name));
+                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.paddingLeft = "10%";
+                    divWrapperSets.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    divWrapperSets.appendChild(divWrapperChildPrice);
+                };
+
+                if (ideas.checked === true && i.theme === "Ideas" ) {
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divWrapperSetChildImage = document.createElement("img")       
+                                                           
+                    divWrapperSetChildImage.src = i.img
+                    divWrapperSetChildImage.style.gridColumn = "2 / span 1";
+                    divWrapperSetChildImage.style.objectFit = "cover";
+                    divWrapperSetChildImage.style.width = "100%";
+                    divWrapperSetChildImage.style.maxHeight = "100%";
+                    divWrapperSetChildImage.style.marginBottom = "20px";
+                    divWrapperSets.appendChild(divWrapperSetChildImage);
+
+                    divSetChildName.appendChild(document.createTextNode(i.name));
+                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.paddingLeft = "10%";
+                    divWrapperSets.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    divWrapperSets.appendChild(divWrapperChildPrice);
+                };
+            };
+        }); 
+};
+
+// ******************
+// if (disney.checked === true && i.theme === "Disney" ) {
+//     var li = document.createElement("li");
+//     li.appendChild(document.createTextNode(i.name));
+//     li.style.gridColumn = "3 / span 1";
+//     ul.appendChild(li);
+// };
+
+// if (ideas.checked === true && i.theme === "Ideas" ) {
+//     var li = document.createElement("li");
+//     li.appendChild(document.createTextNode(i.name));
+//     li.style.gridColumn = "3 / span 1";
+//     ul.appendChild(li);
+// };
+// *************************
+
+
+
 
 // let obj = data.sets;
 //             obj.map(getNames);
