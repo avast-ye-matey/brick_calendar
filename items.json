@@ -1,0 +1,83 @@
+{
+    "sets": [
+        {
+            "number": 40495,
+            "theme": "BrickHeadz",
+            "price": 24.99,
+            "name": "Harry, Hermione, Ron & Hagrid",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false, 
+            "url": "https://www.lego.com/en-us/product/harry-hermione-ron-hagrid-40495" 
+        },
+
+        {
+            "number": 40466,
+            "theme": "BrickHeadz",
+            "price": 19.99,
+            "name": "Chinese New Year Pandas",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/chinese-new-year-pandas-40466"
+        },
+
+        {
+            "number": 21328,
+            "theme": "Ideas",
+            "price": 79.99,
+            "name": "Seinfeld",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/seinfeld-21328"
+        },
+
+        {
+            "number": 21330,
+            "theme": "Ideas",
+            "price": 249.99,
+            "name": "LEGO Ideas Home Alone",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/lego-ideas-home-alone-21330"    
+        },
+
+        {
+            "number": 21328,
+            "theme": "Ideas",
+            "price": 99.99,
+            "name": "LEGO Ideas Fender Stratocaster",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/lego-ideas-fender-stratocaster-21329"
+        },
+
+        {
+            "number": 40456,
+            "theme": "Disney",
+            "price": 16.99,
+            "name": "Mickey Mouse",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/mickey-mouse-40456"
+        },
+
+        {
+            "number": 43202,
+            "theme": "Disney",
+            "price": 49.99,
+            "name": "The Madrigal House",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/the-madrigal-house-43202"
+        },
+
+        {
+            "number": 43197,
+            "theme": "Disney",
+            "price": 199.99,
+            "name": "The Ice Castle",
+            "releaseDate": "June 1st, 2021",
+            "isOnWishList": false,
+            "url": "https://www.lego.com/en-us/product/the-ice-castle-43197"
+        }
+    ]
+}
