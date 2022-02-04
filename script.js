@@ -128,6 +128,7 @@ const ideas = document.getElementById("ideas");
 // const divWrapperChildPrice = document.createElement("div");
 // const divWrapperSetChildImage = document.createElement("img")
 
+const revealForm = document.getElementById("buttonFilterForm")
 function submitFilter() {
     document.getElementById("divSets").innerHTML = "";
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
@@ -166,7 +167,10 @@ function submitFilter() {
                     divWrapperSets.appendChild(divWrapperChildPrice);
 
                     divWishlistButton.appendChild(document.createTextNode("+"));
+                    // divWishlistButton.dataset.id = `${i.number}`;    
+                    divWishlistButton.setAttribute("id", `${i.number}`)                
                     divWishlistButton.style.gridColumn = "6 / span 1";
+                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
                     divWrapperSets.appendChild(divWishlistButton);
 
 
@@ -218,9 +222,134 @@ function submitFilter() {
                     divWrapperChildPrice.style.gridColumn = "5 / span 1";
                     divWrapperSets.appendChild(divWrapperChildPrice);
                 };
+
+            revealForm.style.display = "none";
             };
         }); 
 };
+// const revealForm = document.getElementById("buttonFilterForm")
+const reveal = document.getElementById("buttonFilter");
+reveal.addEventListener("click", function() {
+    if (revealForm.style.display === "grid") {
+        revealForm.style.display = "none";
+    } else {
+        revealForm.style.display = "grid";
+    }  
+});
+
+
+
+const divWishlist = document.getElementById("divWishlist")
+divWishlist.addEventListener("click", function() {
+    // divWishlist.style.backgroundColor = "blue"
+    if (divWishlist.style.bottom === "0px") {
+        // divWishList.style.left = "0";
+        divWishlist.style.removeProperty("bottom");
+        divWishlist.style.top = "0px";
+        // divWishlist.style.backgroundColor = "blue";
+    } else {
+        divWishlist.style.removeProperty("top");
+        divWishlist.style.bottom = "0px";
+    }
+    
+})
+
+const themeAdd = document.getElementById("theme")
+
+let arrayWishList = []
+function addToWishlist(clicked_id) {
+    
+    // alert(clicked_id)
+
+    arrayWishList.push(clicked_id)
+    // console.log(arrayWishList)
+    z = clicked_id
+    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        .then(response => response.json())                            
+        .then(data => {
+            for (const i of data.sets) {
+                console.log("2")
+                console.log("=" + i.number)
+                console.log(z)
+                if (i.number == z) {
+                    console.log(i + "iii")
+                    console.log(z + "zzz")
+                    // divSetWhishlist.appendChild(document.createTextNode(i.number));
+                    // divSetWhishlist.style.gridColumn = "3 / span 1";                    
+                    // themeAdd.appendChild(divSetWhishlist);
+
+
+
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")    
+                    const divWishlistButton = document.createElement("button")   
+                                                           
+                    divSetChildImage.src = i.img
+                    divSetChildImage.style.gridColumn = "2 / span 1";
+                    divSetChildImage.style.objectFit = "cover";
+                    divSetChildImage.style.width = "100%";
+                    divSetChildImage.style.maxHeight = "100%";
+                    divSetChildImage.style.marginBottom = "20px";
+                    themeAdd.appendChild(divSetChildImage);
+                    console.log("1")
+
+                    divSetNumber.appendChild(document.createTextNode(i.number));
+                    divSetNumber.style.gridColumn = "3 / span 1";                    
+                    themeAdd.appendChild(divSetNumber);
+
+                    divSetChildName.appendChild(document.createTextNode(i.name));
+                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.paddingLeft = "10%";
+                    themeAdd.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    themeAdd.appendChild(divWrapperChildPrice);
+                }
+            }
+        })
+
+    console.log(arrayWishList)
+
+    // document.getElementById("divSets").innerHTML = "";
+    // fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+    //     .then(response => response.json())                            
+    //     .then(data => {
+
+// divWishlistButton.appendChild(document.createTextNode("+"));
+// divWishlistButton.style.gridColumn = "6 / span 1";
+// divWrapperSets.appendChild(divWishlistButton);
+
+}
+
+// console.log
+
+
+
+
+// height: 50px;
+//     width: 100vw;
+//     position: fixed;
+//     left: 0;
+//     bottom: 0;
+//     /* margin-top: 25px;
+//     margin-bottom: 25px; */
+//     background-color: aquamarine;
+//     padding-bottom: 25px;
+
+
+
+
+// reveal.
+// function revealFilterList() {
+//     if (reveal.style.visibility === "hidden") {
+//         reveal.style.removeProperty("visibility")
+//     } else {
+//         reveal.style.visibilty = "hidden";
+//     }  
+// }
 
 // ******************
 // if (disney.checked === true && i.theme === "Disney" ) {

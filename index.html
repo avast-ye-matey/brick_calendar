@@ -5,24 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <!-- <script src="script.js" defer></script> -->
-    <script src="practice.js" defer></script>
+    <script src="script.js" defer></script>
+    <!-- <script src="practice.js" defer></script> -->
     <title>Document</title>
 </head>
 <body>
 
-    <h1>
-        Hello World!
-    </h1>
+    <h2>Set Search</h2>
+    <form id="formSearch">
+        <input type="text" placeholder="Search.." id="inputSearch">
+        <button type="submit" id="buttonSearch"><img src="SVG/search.svg"></button>
+    </form>
+    
+    
 
-    <button onclick="getName()">name</button>
-    <button onclick="getTheme()">theme</button>
-    <button onclick="getUser1data()">User 1</button>
-    <button onclick="test1()">Test 1</button>
-    <button onclick="test2()">Test 2</button>
-    <button onclick="json()">JSON</button>
+    <div id="divButtonFilter">
+        <!-- <div id="buttonFilter"> -->
+        <button id="buttonFilter">filter<img src="SVG/plus.svg"></button>
+    </div>
+        
 
-    <form>
+    <form id="buttonFilterForm" style="display: none;">
         <input type="checkbox" id="brickheadz" name="brickheadz">
         <label for="brickheadz">BrickHeadz</label>
 
@@ -32,15 +35,50 @@
         <input type="checkbox" id="disney" name="disney">
         <label for="disney">Disney</label>
 
-        <input type="button" onclick="submitFilter()" value="Submit">
+        <input type="checkbox" id="test" name="test">
+        <label for="test">test</label>
+        <input type="checkbox" id="test" name="test">
+        <label for="test">test</label>
+        <input type="checkbox" id="test" name="test">
+        <label for="test">test</label>
+        <input type="checkbox" id="test" name="test">
+        <label for="test">test</label>
+        <input type="checkbox" id="test" name="test">
+        <label for="test">test</label>         
 
+
+        <input type="button" onclick="submitFilter()" value="Submit">    
     </form>
+    <!-- </div> -->
+
+    <!-- <button onclick="getName()">name</button>
+    <button onclick="getTheme()">theme</button>
+    <button onclick="getUser1data()">User 1</button>
+    <button onclick="test1()">Test 1</button>
+    <button onclick="test2()">Test 2</button>
+    <button onclick="json()">JSON</button> -->
+
+    
     
     <h3>Name</h3>
     <hr>
     <!-- <div id="divName">       -->
-    <ul id="name"></ul>      
+    <ul id="name"></ul>     
+    
+    
+
+    <div id="divExampleSet">
+        <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com.svg">
+        <div id="divExampleSetNumber">Set #</div>
+        <div id="divExampleSetName">Set Name</div>
+        <div id="divExamplePrice">Price</div>
+        <div id="divExampleAddToWishlist">Add To Wishlist</div>
+    </div>
+
+
+
     <div id="divSets"></div>   
+    
     <!-- </div> -->
     <hr>
 
@@ -52,10 +90,11 @@
     <hr>
     
 
-    <div id="divWishlist">
+    <div id="divWishlist" style="bottom: 0px;">
         <div id="divWishlistTitle">
             <h1>Wishlist</h1>
         </div>
+        
     </div>
 
 
