@@ -27,6 +27,10 @@
 //     }
 // }
 
+function buttonSearchS() {
+    alert("Sorry, the search function does not currently work. Thank you for your understanding.");
+}
+
 function getName() {
     
     fetch("./items.json")
@@ -255,7 +259,7 @@ reveal.addEventListener("click", function() {
 });
 
 
-
+// ***************** wishlist tab top/bottom *********************
 const divWishlist = document.getElementById("divWishlist")
 divWishlist.addEventListener("click", function() {
     // divWishlist.style.backgroundColor = "blue"
@@ -264,12 +268,22 @@ divWishlist.addEventListener("click", function() {
         divWishlist.style.removeProperty("bottom");
         divWishlist.style.top = "0px";
         // divWishlist.style.backgroundColor = "blue";
+        divWishlist.style.height = "100vh";
+        
+        // divWishlist.style.removeProperty("position")
     } else {
         divWishlist.style.removeProperty("top");
         divWishlist.style.bottom = "0px";
+        divWishlist.style.removeProperty("height");
+        // divWishlist.style.position = "fixed";
+        divWishlist.style.position = "fixed";
     }
     
 })
+
+
+
+// ***************** img expand/minimize *********************
 
 const divImgExpand = document.getElementById("divImgExpand")
 
@@ -310,9 +324,10 @@ function expandImage(clicked_image) {
 }
 
 
-
+// ***************** add to wishlist *********************
 
 const themeAdd = document.getElementById("theme")
+const wishlistAdd = document.getElementById("divWishlistSets")
 
 let arrayWishList = []
 function addToWishlist(clicked_id) {
@@ -345,26 +360,27 @@ function addToWishlist(clicked_id) {
                     const divWishlistButton = document.createElement("button")   
                                                            
                     divSetChildImage.src = i.img
-                    divSetChildImage.style.gridColumn = "2 / span 1";
+                    divSetChildImage.style.gridColumn = "1 / 2";
                     divSetChildImage.style.objectFit = "cover";
                     divSetChildImage.style.width = "100%";
                     divSetChildImage.style.maxHeight = "100%";
                     divSetChildImage.style.marginBottom = "20px";
-                    themeAdd.appendChild(divSetChildImage);
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
+                    wishlistAdd.appendChild(divSetChildImage);
                     console.log("1")
 
                     divSetNumber.appendChild(document.createTextNode(i.number));
-                    divSetNumber.style.gridColumn = "3 / span 1";                    
-                    themeAdd.appendChild(divSetNumber);
+                    divSetNumber.style.gridColumn = "2 / 3";                    
+                    wishlistAdd.appendChild(divSetNumber);
 
                     divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.gridColumn = "3 / 4";
                     divSetChildName.style.paddingLeft = "10%";
-                    themeAdd.appendChild(divSetChildName);
+                    wishlistAdd.appendChild(divSetChildName);
                     
                     divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
-                    themeAdd.appendChild(divWrapperChildPrice);
+                    divWrapperChildPrice.style.gridColumn = "4 / 5";
+                    wishlistAdd.appendChild(divWrapperChildPrice);
                 }
             }
         })

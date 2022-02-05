@@ -11,11 +11,32 @@
 </head>
 <body>
 
+    <div id="divWishlist" style="position: fixed; bottom: 0px;">
+
+        <div id="divWishlistTitle">
+            <h1>Wishlist</h1>
+        </div>
+
+        <div id="divWishlistSets">            
+        </div>
+
+        <div id="divWishlistFooterOuter">
+            <div id="divWishlistFooter">
+                <h1>Howdy</h1>
+                <div id="stop">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <h2>Build Your Bricklist</h2>
     <form id="formSearch">
         <input type="text" placeholder="Search Sets..." id="inputSearch">
-        <button type="submit" id="buttonSearch"><img src="SVG/search.svg"></button>
+        <button type="submit" id="buttonSearch" onclick="buttonSearchS()"><img src="SVG/search.svg"></button>
     </form>
+
+    <!-- <button onclick="buttonSearch()">test</button> -->
     
     
 
@@ -100,12 +121,7 @@
     </div>
     
 
-    <div id="divWishlist" style="bottom: 0px;">
-        <div id="divWishlistTitle">
-            <h1>Wishlist</h1>
-        </div>
-
-    </div>
+    
 
 
 </body>
