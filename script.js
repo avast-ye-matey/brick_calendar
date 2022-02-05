@@ -137,6 +137,8 @@ const ideas = document.getElementById("ideas");
 // const divWrapperChildPrice = document.createElement("div");
 // const divWrapperSetChildImage = document.createElement("img")
 
+
+
 const revealForm = document.getElementById("buttonFilterForm")
 function submitFilter() {
     document.getElementById("divSets").innerHTML = "";
@@ -155,11 +157,16 @@ function submitFilter() {
                     const divSetNumber = document.createElement("div")    
                     const divWishlistButton = document.createElement("button")   
                                                            
-                    divSetChildImage.src = i.img
+                    divSetChildImage.setAttribute("src", `${i.img}`);
                     divSetChildImage.style.gridColumn = "1 / 2";
                     divSetChildImage.style.objectFit = "cover";
                     divSetChildImage.style.width = "75%";
                     divSetChildImage.style.maxHeight = "100%";
+                    // savedImgUrl = i.img
+                    // console.log(savedImgUrl)
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
+                    // console.log(z);
+                    // console.log(i.img);
                     // divSetChildImage.style.marginBottom = "20px";
                     divWrapperSets.appendChild(divSetChildImage);
 
@@ -264,6 +271,47 @@ divWishlist.addEventListener("click", function() {
     
 })
 
+const divImgExpand = document.getElementById("divImgExpand")
+
+function minImage() {
+    divImgExpand.style.display = "none";
+}
+
+
+function expandImage(clicked_image) {
+    divImgExpand.style.removeProperty("display")
+    divImgExpand.innerHTML = "";
+    // alert("hello")
+    v = clicked_image
+    console.log(v)
+    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        .then(response => response.json())                            
+        .then(data => {
+            for (const i of data.sets) {
+                // console.log("2")
+                // console.log("=" + i.number)
+                // console.log(i.img)
+                // console.log(v)
+                if (i.img === v) {
+                    
+                    // console.log("howdy" + i.img)
+                    // console.log(v)
+
+                    // console.log(i + "iii")
+                    // console.log(z + "zzz")
+                    const divSetChildImage = document.createElement("img")
+                    // divSetChildImage.setAttribute.src = v
+                    divSetChildImage.src = i.img
+                    divSetChildImage.setAttribute("onclick", "minImage();")
+                    divImgExpand.appendChild(divSetChildImage);
+                }
+            }
+        })       
+}
+
+
+
+
 const themeAdd = document.getElementById("theme")
 
 let arrayWishList = []
@@ -278,12 +326,12 @@ function addToWishlist(clicked_id) {
         .then(response => response.json())                            
         .then(data => {
             for (const i of data.sets) {
-                console.log("2")
-                console.log("=" + i.number)
-                console.log(z)
+                // console.log("2")
+                // console.log("=" + i.number)
+                // console.log(z)
                 if (i.number == z) {
-                    console.log(i + "iii")
-                    console.log(z + "zzz")
+                    // console.log(i + "iii")
+                    // console.log(z + "zzz")
                     // divSetWhishlist.appendChild(document.createTextNode(i.number));
                     // divSetWhishlist.style.gridColumn = "3 / span 1";                    
                     // themeAdd.appendChild(divSetWhishlist);
