@@ -16,7 +16,16 @@
 //   li.appendChild(document.createTextNode("Four"));
 //   ul.appendChild(li);
 
-
+// window.onscroll = function() {myFunction()};
+// var header = document.getElementById("divMainExampleSet");
+// var sticky = header.offsetTop;
+// function myFunction() {
+//     if (window.pageYOffset > sticky) {
+//         header.classList.add("sticky");
+//     } else {
+//         header.classList.remove("sticky");
+//     }
+// }
 
 function getName() {
     
@@ -136,6 +145,7 @@ function submitFilter() {
         .then(data => {
             for (const i of data.sets) {
                 const divWrapperSets = document.getElementById("divSets");
+                divWrapperSets.style.visibility = "";
                 
                 if (brickheadz.checked === true && i.theme === "BrickHeadz") {
                     
@@ -146,30 +156,30 @@ function submitFilter() {
                     const divWishlistButton = document.createElement("button")   
                                                            
                     divSetChildImage.src = i.img
-                    divSetChildImage.style.gridColumn = "2 / span 1";
+                    divSetChildImage.style.gridColumn = "1 / 2";
                     divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "100%";
+                    divSetChildImage.style.width = "75%";
                     divSetChildImage.style.maxHeight = "100%";
-                    divSetChildImage.style.marginBottom = "20px";
+                    // divSetChildImage.style.marginBottom = "20px";
                     divWrapperSets.appendChild(divSetChildImage);
 
                     divSetNumber.appendChild(document.createTextNode(i.number));
-                    divSetNumber.style.gridColumn = "3 / span 1";                    
+                    divSetNumber.style.gridColumn = "2 / 3";                    
                     divWrapperSets.appendChild(divSetNumber);
 
                     divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildName.style.gridColumn = "3 / 4";
                     divSetChildName.style.paddingLeft = "10%";
                     divWrapperSets.appendChild(divSetChildName);
                     
                     divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    divWrapperChildPrice.style.gridColumn = "4 / 5";
                     divWrapperSets.appendChild(divWrapperChildPrice);
 
                     divWishlistButton.appendChild(document.createTextNode("+"));
                     // divWishlistButton.dataset.id = `${i.number}`;    
                     divWishlistButton.setAttribute("id", `${i.number}`)                
-                    divWishlistButton.style.gridColumn = "6 / span 1";
+                    divWishlistButton.style.gridColumn = "5 / 6";
                     divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
                     divWrapperSets.appendChild(divWishlistButton);
 

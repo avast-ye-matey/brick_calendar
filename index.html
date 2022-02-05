@@ -11,9 +11,9 @@
 </head>
 <body>
 
-    <h2>Set Search</h2>
+    <h2>Build Your Bricklist</h2>
     <form id="formSearch">
-        <input type="text" placeholder="Search.." id="inputSearch">
+        <input type="text" placeholder="Search Sets..." id="inputSearch">
         <button type="submit" id="buttonSearch"><img src="SVG/search.svg"></button>
     </form>
     
@@ -59,28 +59,34 @@
     <button onclick="json()">JSON</button> -->
 
     
-    
-    <h3>Name</h3>
-    <hr>
-    <!-- <div id="divName">       -->
-    <ul id="name"></ul>     
-    
-    
+    <div id="divMainExampleSet">
+        <!-- <h3>Results</h3> -->
+        <!-- <hr id="hrMainTop"> -->
+        <!-- <div id="divName">       -->
+        <ul id="name"></ul>     
+        
+        
 
-    <div id="divExampleSet">
-        <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com.svg">
+        <div id="divExampleSet">
+            <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com2.svg">
+            <div id="divExampleSetNumber">Set #</div>
+            <div id="divExampleSetName">Set Name</div>
+            <div id="divExamplePrice">Price</div>
+            <div id="divExampleAddToWishlist">Add To Wishlist</div>
+        </div> 
+
+        <!-- <hr id="hrMainBottom"> -->
+    </div>
+
+    <div id="divSets" style="visibility: hidden;">
+        <!-- <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com.svg">
         <div id="divExampleSetNumber">Set #</div>
         <div id="divExampleSetName">Set Name</div>
         <div id="divExamplePrice">Price</div>
-        <div id="divExampleAddToWishlist">Add To Wishlist</div>
-    </div>
-
-
-
-    <div id="divSets"></div>   
-    
+        <div id="divExampleAddToWishlist">Add To Wishlist</div>  -->
+    </div>  
     <!-- </div> -->
-    <hr>
+    
 
    
 
@@ -94,7 +100,7 @@
         <div id="divWishlistTitle">
             <h1>Wishlist</h1>
         </div>
-        
+
     </div>
 
 

@@ -1,39 +1,58 @@
-/* #name {
-    padding-bottom: 10px;
+/* ******** font ******** */
+
+@font-face {
+    font-family: Open Sans, sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 }
 
-li {
-    padding: 5px;
-} */
 
 
-/* body {
-    
-} */
+/* .sticky {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%
+} 
 
-/* #divName {
-
-    display: grid;
-    grid-template-columns: 10% 20% 50% 10% 10%;
-    
-} */
-
-/* #name {
-    grid-column-start: 2;
-    grid-column-end: 5;
-} */
-
-/* #name {
-    display: grid;
-    grid-template-columns: 10% 40% 30% 10% 10%;
-} */
+*/
 
 
+/* ******** body, headers ******** */
+
+body {
+    /* background: rgb(165,165,141);
+    background: linear-gradient(315deg, rgba(165,165,141,1) 0%, rgba(183,183,164,1) 35%, rgba(255,255,255,1) 72%);   */
+    font-family: Open Sans, sans-serif;
+    /* font-weight: lighter; */
+    /* background: rgb(34,102,195);
+    background: linear-gradient(315deg, rgba(34,102,195,1) 17%, rgba(34,180,195,1) 100%); */
+
+    /* background: rgb(160,186,221); */
+    background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);
+    height: 100%;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+    /* color: #000000; */
+    color: whitesmoke;
+}
+
+h2 {
+    margin: 20px  0px;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+/* ******** search ******** */
 
 #formSearch {
     display: grid;
     grid-template-columns: 1fr 2.5fr 1fr 1fr;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     /* grid-template-rows: 1fr; */
     /* width: 100vw; */
 }
@@ -43,97 +62,237 @@ li {
     grid-column: 2 / 3;
     /* grid-row: 1 / 2; */
     /* width: 100vw; */
+    padding-left: 10px;
+    border-radius: 90px 0px 0px 90px;
+    border: 0px;
 }
 
 #formSearch img {
     width: 50%;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0px 5px 0px;    
 }
-
-h2 {
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-
-
-
-
 
 #buttonSearch {
     /* width: auto; */
     grid-column: 3 / 4;
     /* grid-row: 1 / 2; */
     padding: 0;
-
+    border-radius: 0px 90px 90px 0px;
+    border: 0px;
     /* border: none; */
-
 }
 
 
+
+/* ******** filter ******** */
+
 #divButtonFilter {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
     grid-template-rows: 1fr;
+    margin-bottom: 30px;
+
+    
        
 }
 
 #buttonFilter {
-    grid-column: 1 / 3;
+    grid-column: 2 / 4;
     height: 50px;
     font-size: 30px;
+    color: rgb(135, 135, 135);
     text-align: left;
     padding-left: 10%;  
     border: none;  
+    border-radius: 45px;
+
+    background: whitesmoke;
+
+    /* background: rgba(255, 255, 255, 0.62);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.9px);
+    -webkit-backdrop-filter: blur(7.9px); */
 }
 
 #buttonFilter img {
-    padding-left: 50%;
+    grid-column: 3 / 4;
+    padding-left: 25%;
     max-height: fit-content;
     width: 20px;
     /* justify-self: center; */
 }
 
-
-#buttonFilterForm {
-    
-    /* display: grid; */
-    
+#buttonFilterForm {    
+    /* display: grid; */    
     grid-template-columns: .5fr 30fr .5fr 30fr .5fr 30fr;
     align-items: center;
-    /* flex-direction: column; */
-    
-     
+    /* flex-direction: column; */         
     /* grid-row-start: 2; */
     /* grid-auto-rows: auto;     */
+
+    background: rgba(255, 255, 255, 0.62);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.9px);
+    -webkit-backdrop-filter: blur(7.9px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 10px;
+    margin: 0px 20px;
 }
-
-
 
 #buttonFilterForm input[type='checkbox'] {
     height: 30px;
     /* grid-column- */
 }
+
 #buttonFilterForm input[type='button'] {
     height: 30px;
     width: inherit;
     grid-column-start: 6;
+    /* grid-row: -2; */
+    /* grid-row: 1; */
+    margin: 0px 20px;
     /* grid-column- */
 }
 
-#buttonFilterForm label {
-    
-    /* grid-column- */
+
+
+
+/* #buttonFilterForm label {    
+    grid-column-
+} */
+
+
+
+/* ******** hr ******** */
+
+
+
+/* #hrMainBottom, #hrMainTop {
+    height: 12px;
+    border: 0;
 }
+
+#hrMainTop {
+    box-shadow: inset 0 -12px 12px -12px rgba(0, 0, 0, 0.5);
+
+}
+
+#hrMainBottom {
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+
+} */
+
+
+
+
+
+
+/* ******** example set ******** */
+
+
+#divMainExampleSet {
+    position: sticky;
+    top: 0;
+    z-index: 998;
+    background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);
+    box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+#divExampleSet {
+    
+    display: grid;
+    /* grid-template-columns: 5% 20% 50% 20% 5%; */
+    grid-template-columns: 1.5fr .75fr 2fr 1fr .75fr;
+    max-width: 100vw;
+    /* align-items: center; */
+    /* padding: 5px; */
+    margin: 0px 20px 20px 20px;
+    align-items: center;
+    justify-items: center;
+    
+}
+
+#divExampleImg {
+    grid-column: 1 / 2;
+    object-fit: cover;
+    width: 75%;
+    max-height: 100%;
+    /* margin-bottom: 20px; */
+}
+
+#divExampleSetNumber {
+    grid-column: 2 / 3;
+}
+
+#divExampleSetName {
+    grid-column: 3 / 4;
+}
+
+#divExamplePrice {
+    grid-column: 4 / 5;
+}
+
+#divExampleAddToWishlist {
+    grid-column: 5 / 6;
+}
+
+
+
+/* ******** sets ******** */
 
 #divSets {
     display: grid;
     /* grid-template-columns: 5% 20% 50% 20% 5%; */
-    grid-template-columns: .5fr 1fr 1fr 2fr 1fr .5fr;
+    /* grid-template-columns: .5fr 1fr 1fr 2fr 1fr .5fr; */
+    grid-template-columns: 1.5fr .75fr 2fr 1fr .75fr;
     max-width: 100vw;
     align-items: center;
-    padding: 5px;
+    /* align-items: center; */
+    justify-items: center;
+    padding: 20px 0px;
+    margin: 20px;
+    align-content: space-evenly;
+    row-gap: 20px;
+
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.11); */
+
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.62);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.9px);
+    -webkit-backdrop-filter: blur(7.9px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
+
+#divSets img {
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
+    /* margin-bottom: 20px; */
+}
+
+
+
+
+
+/* ******** theme ******** */
+
+#theme {
+    display: grid;
+}
+
+
+
+/* ******** wishlist ******** */
 
 #divWishlist {
     height: 50px;
@@ -144,8 +303,10 @@ h2 {
     /* margin-top: 25px;
     margin-bottom: 25px; */
     background-color: aquamarine;
-    padding-bottom: 25px;
-    
+    padding-bottom: 25px;  
+    border-radius: 40px 40px 0px 0px;  
+    box-shadow: 0px -1px 13px 0px #4a6060;
+    z-index: 999; 
 }
 
 #divWishlistTitle h1 {
@@ -153,46 +314,3 @@ h2 {
 }
 
 
-#divExampleSet {
-    display: grid;
-    /* grid-template-columns: 5% 20% 50% 20% 5%; */
-    grid-template-columns: .5fr 1fr 1fr 2fr 1fr .5fr;
-    max-width: 100vw;
-    align-items: center;
-    padding: 5px;
-}
-
-#divSets img {
-    object-fit: cover;
-    width: 100%;
-    max-height: 100%;
-    margin-bottom: 20px;
-}
-
-#divExampleImg {
-    grid-column: 2 / 3;
-    object-fit: cover;
-    width: 100%;
-    max-height: 100%;
-    margin-bottom: 20px;
-}
-
-#divExampleSetNumber {
-    grid-column: 3 / 4;
-}
-
-#divExampleSetName {
-    grid-column: 4 / 5;
-}
-
-#divExamplePrice {
-    grid-column: 5 / 6;
-}
-
-#divExampleAddToWishlist {
-    grid-column: 6 / 7;
-}
-
-#theme {
-    display: grid;
-}
