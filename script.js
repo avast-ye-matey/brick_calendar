@@ -163,23 +163,23 @@ function submitFilter() {
                     // divSetChildImage.style.marginBottom = "20px";
                     divWrapperSets.appendChild(divSetChildImage);
 
-                    divSetNumber.appendChild(document.createTextNode(i.number));
-                    divSetNumber.style.gridColumn = "2 / 3";                    
-                    divWrapperSets.appendChild(divSetNumber);
+                    // divSetNumber.appendChild(document.createTextNode(i.number));
+                    // divSetNumber.style.gridColumn = "2 / 3";                    
+                    // divWrapperSets.appendChild(divSetNumber);
 
-                    divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "3 / 4";
+                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
+                    divSetChildName.style.gridColumn = "2 / 3";
                     divSetChildName.style.paddingLeft = "10%";
                     divWrapperSets.appendChild(divSetChildName);
                     
                     divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "4 / 5";
+                    divWrapperChildPrice.style.gridColumn = "3 / 4";
                     divWrapperSets.appendChild(divWrapperChildPrice);
 
                     divWishlistButton.appendChild(document.createTextNode("+"));
                     // divWishlistButton.dataset.id = `${i.number}`;    
                     divWishlistButton.setAttribute("id", `${i.number}`)                
-                    divWishlistButton.style.gridColumn = "5 / 6";
+                    divWishlistButton.style.gridColumn = "4 / 5";
                     divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
                     divWrapperSets.appendChild(divWishlistButton);
 
