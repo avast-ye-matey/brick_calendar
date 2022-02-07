@@ -165,19 +165,47 @@ function submitFilter() {
                     divSetChildImage.style.gridColumn = "1 / 2";
                     divSetChildImage.style.objectFit = "cover";
                     divSetChildImage.style.width = "75%";
-                    divSetChildImage.style.maxHeight = "100%";
-                    // savedImgUrl = i.img
-                    // console.log(savedImgUrl)
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
-                    // console.log(z);
-                    // console.log(i.img);
-                    // divSetChildImage.style.marginBottom = "20px";
+                    divSetChildImage.style.maxHeight = "100%";                    
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
                     divWrapperSets.appendChild(divSetChildImage);
+                    
+                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
+                    divSetChildName.style.gridColumn = "2 / 3";
+                    divSetChildName.style.paddingLeft = "10%";
+                    divWrapperSets.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "3 / 4";
+                    divWrapperSets.appendChild(divWrapperChildPrice);
 
-                    // divSetNumber.appendChild(document.createTextNode(i.number));
-                    // divSetNumber.style.gridColumn = "2 / 3";                    
-                    // divWrapperSets.appendChild(divSetNumber);
+                    // divWishlistButton.appendChild(document.createTextNode("+"));
+                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
+                    divWishlistButton.style.border = "none";
+                    divWishlistButton.style.background = "none";
+                    
+                    // divWishlistButton.dataset.id = `${i.number}`;    
+                    divWishlistButton.setAttribute("id", `${i.number}`)                
+                    divWishlistButton.style.gridColumn = "4 / 5";
+                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
+                    divWrapperSets.appendChild(divWishlistButton);
+                };                
+                // console.log(i.theme)
 
+                if (disney.checked === true && i.theme === "Disney" ) {
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")    
+                    const divWishlistButton = document.createElement("button")   
+                                                           
+                    divSetChildImage.setAttribute("src", `${i.img}`);
+                    divSetChildImage.style.gridColumn = "1 / 2";
+                    divSetChildImage.style.objectFit = "cover";
+                    divSetChildImage.style.width = "75%";
+                    divSetChildImage.style.maxHeight = "100%";                    
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
+                    divWrapperSets.appendChild(divSetChildImage);
+                    
                     divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
                     divSetChildName.style.gridColumn = "2 / 3";
                     divSetChildName.style.paddingLeft = "10%";
@@ -189,59 +217,92 @@ function submitFilter() {
 
                     divWishlistButton.appendChild(document.createTextNode("+"));
                     // divWishlistButton.dataset.id = `${i.number}`;    
+                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
+                    divWishlistButton.style.border = "none";
+                    divWishlistButton.style.background = "none";
+
                     divWishlistButton.setAttribute("id", `${i.number}`)                
                     divWishlistButton.style.gridColumn = "4 / 5";
                     divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
                     divWrapperSets.appendChild(divWishlistButton);
 
-
-                };                
-                // console.log(i.theme)
-
-                if (disney.checked === true && i.theme === "Disney" ) {
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divWrapperSetChildImage = document.createElement("img")       
+                    // const divSetChildName = document.createElement("div");
+                    // const divWrapperChildPrice = document.createElement("div");
+                    // const divWrapperSetChildImage = document.createElement("img")       
                                                            
-                    divWrapperSetChildImage.src = i.img
-                    divWrapperSetChildImage.style.gridColumn = "2 / span 1";
-                    divWrapperSetChildImage.style.objectFit = "cover";
-                    divWrapperSetChildImage.style.width = "100%";
-                    divWrapperSetChildImage.style.maxHeight = "100%";
-                    divWrapperSetChildImage.style.marginBottom = "20px";
-                    divWrapperSets.appendChild(divWrapperSetChildImage);
+                    // divWrapperSetChildImage.src = i.img
+                    // divWrapperSetChildImage.style.gridColumn = "2 / span 1";
+                    // divWrapperSetChildImage.style.objectFit = "cover";
+                    // divWrapperSetChildImage.style.width = "100%";
+                    // divWrapperSetChildImage.style.maxHeight = "100%";
+                    // divWrapperSetChildImage.style.marginBottom = "20px";
+                    // divWrapperSets.appendChild(divWrapperSetChildImage);
 
-                    divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "4 / span 1";
-                    divSetChildName.style.paddingLeft = "10%";
-                    divWrapperSets.appendChild(divSetChildName);
+                    // divSetChildName.appendChild(document.createTextNode(i.name));
+                    // divSetChildName.style.gridColumn = "4 / span 1";
+                    // divSetChildName.style.paddingLeft = "10%";
+                    // divWrapperSets.appendChild(divSetChildName);
                     
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
-                    divWrapperSets.appendChild(divWrapperChildPrice);
+                    // divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    // divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    // divWrapperSets.appendChild(divWrapperChildPrice);
                 };
 
                 if (ideas.checked === true && i.theme === "Ideas" ) {
                     const divSetChildName = document.createElement("div");
                     const divWrapperChildPrice = document.createElement("div");
-                    const divWrapperSetChildImage = document.createElement("img")       
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")    
+                    const divWishlistButton = document.createElement("button")   
                                                            
-                    divWrapperSetChildImage.src = i.img
-                    divWrapperSetChildImage.style.gridColumn = "2 / span 1";
-                    divWrapperSetChildImage.style.objectFit = "cover";
-                    divWrapperSetChildImage.style.width = "100%";
-                    divWrapperSetChildImage.style.maxHeight = "100%";
-                    divWrapperSetChildImage.style.marginBottom = "20px";
-                    divWrapperSets.appendChild(divWrapperSetChildImage);
-
-                    divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "4 / span 1";
+                    divSetChildImage.setAttribute("src", `${i.img}`);
+                    divSetChildImage.style.gridColumn = "1 / 2";
+                    divSetChildImage.style.objectFit = "cover";
+                    divSetChildImage.style.width = "75%";
+                    divSetChildImage.style.maxHeight = "100%";                    
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
+                    divWrapperSets.appendChild(divSetChildImage);
+                    
+                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
+                    divSetChildName.style.gridColumn = "2 / 3";
                     divSetChildName.style.paddingLeft = "10%";
                     divWrapperSets.appendChild(divSetChildName);
                     
                     divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    divWrapperChildPrice.style.gridColumn = "3 / 4";
                     divWrapperSets.appendChild(divWrapperChildPrice);
+
+                    divWishlistButton.appendChild(document.createTextNode("+"));
+                    // divWishlistButton.dataset.id = `${i.number}`;    
+                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
+                    divWishlistButton.style.border = "none";
+                    divWishlistButton.style.background = "none";
+
+                    divWishlistButton.setAttribute("id", `${i.number}`)                
+                    divWishlistButton.style.gridColumn = "4 / 5";
+                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
+                    divWrapperSets.appendChild(divWishlistButton);
+
+                    // const divSetChildName = document.createElement("div");
+                    // const divWrapperChildPrice = document.createElement("div");
+                    // const divWrapperSetChildImage = document.createElement("img")       
+                                                           
+                    // divWrapperSetChildImage.src = i.img
+                    // divWrapperSetChildImage.style.gridColumn = "2 / span 1";
+                    // divWrapperSetChildImage.style.objectFit = "cover";
+                    // divWrapperSetChildImage.style.width = "100%";
+                    // divWrapperSetChildImage.style.maxHeight = "100%";
+                    // divWrapperSetChildImage.style.marginBottom = "20px";
+                    // divWrapperSets.appendChild(divWrapperSetChildImage);
+
+                    // divSetChildName.appendChild(document.createTextNode(i.name));
+                    // divSetChildName.style.gridColumn = "4 / span 1";
+                    // divSetChildName.style.paddingLeft = "10%";
+                    // divWrapperSets.appendChild(divSetChildName);
+                    
+                    // divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    // divWrapperChildPrice.style.gridColumn = "5 / span 1";
+                    // divWrapperSets.appendChild(divWrapperChildPrice);
                 };
 
             revealForm.style.display = "none";
@@ -345,6 +406,17 @@ function addToWishlist(clicked_id) {
                 // console.log("=" + i.number)
                 // console.log(z)
                 if (i.number == z) {
+
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")    
+                    // const divWishlistButton = document.createElement("button")  
+
+                    const divWishlistButton = document.getElementById(z)  
+                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com-red.svg"/>';
+                    divWishlistButton.style.border = "none";
+                    divWishlistButton.style.background = "none";
                     // console.log(i + "iii")
                     // console.log(z + "zzz")
                     // divSetWhishlist.appendChild(document.createTextNode(i.number));
@@ -353,11 +425,7 @@ function addToWishlist(clicked_id) {
 
 
 
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")    
-                    const divWishlistButton = document.createElement("button")   
+                     
                                                            
                     divSetChildImage.src = i.img
                     divSetChildImage.style.gridColumn = "1 / 2";
@@ -381,7 +449,7 @@ function addToWishlist(clicked_id) {
                     divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
                     divWrapperChildPrice.style.gridColumn = "4 / 5";
                     wishlistAdd.appendChild(divWrapperChildPrice);
-                }
+                } 
             }
         })
 
