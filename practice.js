@@ -1,7 +1,17 @@
 
+// ***************************** reveal filter form  *****************************
 
+const revealForm = document.getElementById("buttonFilterForm")
+const reveal = document.getElementById("buttonFilter");
+reveal.addEventListener("click", function() {
+    if (revealForm.style.display === "grid") {
+        revealForm.style.display = "none";
+    } else {
+        revealForm.style.display = "grid";
+    }  
+});
 
-
+// ***************************** class  *****************************
 const divWrapperSets = document.getElementById("divSets");
 
 // const divSetChildName = document.createElement("div");
@@ -12,8 +22,8 @@ const divWrapperSets = document.getElementById("divSets");
 
 
 class divSetCreate {
-    // constructor(s) {
-    //     this.s = s
+    // constructor(i) {
+    //     this.i =   i;      
     // }
 
       
@@ -38,7 +48,7 @@ class divSetCreate {
         
     }
 
-    name(i) {
+    nam3(i) {
         const divSetChildName = document.createElement("div");
         divSetChildName.appendChild(document.createTextNode(i.name));
         divSetChildName.style.gridColumn = "4 / span 1";
@@ -87,10 +97,10 @@ function submitFilter() {
         .then(data => {
             for (const i of data.sets) {                                     
                 if (brickheadz.checked === true && i.theme === "BrickHeadz") {
-                    obj = new divSetCreate()
+                    obj = new divSetCreate()                    
                     obj.img(i)
                     obj.number(i)
-                    obj.name(i)
+                    obj.nam3(i)
                     obj.price(i)
                     obj.button(i)                       
                 };                             
@@ -99,7 +109,7 @@ function submitFilter() {
                     obj = new divSetCreate()
                     obj.img(i)
                     obj.number(i)
-                    obj.name(i)
+                    obj.nam3(i)
                     obj.price(i)
                     obj.button(i)  
                 };
@@ -108,7 +118,7 @@ function submitFilter() {
                     obj = new divSetCreate()
                     obj.img(i)
                     obj.number(i)
-                    obj.name(i)
+                    obj.nam3(i)
                     obj.price(i)
                     obj.button(i)  
                 };
