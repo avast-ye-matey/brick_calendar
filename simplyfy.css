@@ -200,7 +200,7 @@ body {
 
 /* *********************** sets **************************** */
 
-#divSets {
+.sets {
     display: grid;    
     grid-template-columns: 3fr 3fr 1.5fr 1.5fr;
     max-width: 100vw;
@@ -229,7 +229,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-#divSets img {
+.sets img {
     object-fit: cover;
     width: 100%;
     max-height: 100%;   
@@ -337,7 +337,7 @@ body {
 
 .name {
     grid-column: 2 / 3;
-    padding-left: 100%;
+    padding-left: 10%;
 }
 
 .price {
