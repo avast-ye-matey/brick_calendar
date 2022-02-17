@@ -40,7 +40,13 @@ function testFilter() {
 
 
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-            .then(response => response.json())                            
+            .then(function(response) {
+                if (!response.ok) {
+                    // throw Error(response.statusText);
+                    throw alert("Error with API. Please refresh page and try again.");
+                }
+                return response.json()
+                })                         
             .then(data => {
                 for (const i of data.sets) {                    
                     y.push(i.theme)
@@ -143,66 +149,57 @@ function setTest(i) {
 const revealForm = document.getElementById("buttonFilterForm")
 function submitFilter() {
     document.getElementById("divSets").innerHTML = "";
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
-        .then(data => {
-            for (const i of data.sets) {
-                var listSelect = document.getElementsByTagName("input");
-                console.log(listSelect);
-                for (const z of listSelect) {
-                    // console.log(z.id);
-                    if (z.id === i.theme) {
-                        setTest(i)
+    var listSelect = document.getElementsByTagName("input");
+    console.log(listSelect);
+    for (const z of listSelect) {
+        // console.log(z.id);
+        console.log(z.checked);
+        if (z.checked === true) {
+            console.log(z.id)
+            // console.log(i.theme)
+            // let a = z.id
+            fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+                .then(function(response) {
+                    if (!response.ok) {
+                        // throw Error(response.statusText);
+                        throw alert("Error with API. Please refresh page and try again.");
                     }
-                }
+                    return response.json()
+                    })                        
+                .then(data => {
+                    for (const i of data.sets) {
+                        if (i.theme === z.id) {                                    
+                            setTest(i)
+                        }
+                    }
+                })
+        }    
+    }
                 // const divWrapperSets = document.getElementById("divSets"); !!!
                 // divWrapperSets.style.visibility = ""; !!!    
                 
-                let brickheadz = document.getElementById("BrickHeadz");
-                let bh = document.querySelector(".btn");   
-                console.log(bh)      
-                const zzz = document.getElementById("buttonFilterForm");
-                const yyy = document.getElementById(zzz.children[0]);
-                const deck = zzz.querySelector('[name="Brickheadz"]');
-                console.log(brickheadz.hasOwnProperty("id"));
-                console.log(typeof(brickheadz));
-                console.log(brickheadz);
-                console.log(data.sets);
-                console.log(zzz);
-                console.log(typeof(zzz));
-                console.log(zzz.children[0]);
-                console.log(yyy);
-                console.log(deck);
+                // let brickheadz = document.getElementById("BrickHeadz");
+                // let bh = document.querySelector(".btn");   
+                // console.log(bh)      
+                // const zzz = document.getElementById("buttonFilterForm");
+                // const yyy = document.getElementById(zzz.children[0]);
+                // const deck = zzz.querySelector('[name="Brickheadz"]');
+                // console.log(brickheadz.hasOwnProperty("id"));
+                // console.log(typeof(brickheadz));
+                // console.log(brickheadz);
+                // console.log(data.sets);
+                // console.log(zzz);
+                // console.log(typeof(zzz));
+                // console.log(zzz.children[0]);
+                // console.log(yyy);
+                // console.log(deck);
                 // console.log(fragment);
                 // console.log(htmlForm);
                 
-                if (brickheadz.checked === true && i.theme === "BrickHeadz") {
-                    // setTest(i)
-                    console.log(z) 
-
-                    console.log(i)                    
-                    // const divSet = document.createElement("div"); !!!
-                    // divSet.setAttribute("class", "sets") !!!                  
-
-                    // !!! let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" class="img"></img>
-                    //                     <div class="name">${i.number} - ${i.name}</div>
-                    //                     <div class="price">$${i.price}</div>
-                    //                     <button id="${i.number}" onclick="addToWishlist(this.id);"><img src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;
-                                                      
-                    // divSet.innerHTML = htmlSegment;  !!!                          
-                    // divWrapperSets.appendChild(divSet);    !!!                         
-                };                
-                
-                if (disney.checked === true && i.theme === "Disney")  {
-                    // setTest(i)
-                };  
-
-                if (ideas.checked === true && i.theme === "Ideas")  {
-                    // setTest(i)
-                };                        
-            revealForm.style.display = "none";
-            };
-        }); 
+                                     
+    revealForm.style.display = "none";
+            
+        
 };
 
 
@@ -249,7 +246,14 @@ function expandImage(clicked_image) {
     v = clicked_image
     console.log(v)
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
+        // .then(response => response.json())   
+        .then(function(response) {
+            if (!response.ok) {
+                // throw Error(response.statusText);
+                throw alert("Error with API. Please refresh page and try again.");
+            }
+            return response.json()
+            })                           
         .then(data => {
             for (const i of data.sets) {
                 // console.log("2")
@@ -288,7 +292,14 @@ function addToWishlist(clicked_id) {
     // console.log(arrayWishList)
     z = clicked_id
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
+        // .then(response => response.json())    
+        .then(function(response) {
+            if (!response.ok) {
+                // throw Error(response.statusText);
+                throw alert("Error with API. Please refresh page and try again.");
+            }
+            return response.json()
+            })                          
         .then(data => {
             for (const i of data.sets) {
                 // console.log("2")
