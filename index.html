@@ -43,9 +43,12 @@
 
     <h2>Build Your Bricklist</h2>
     <form id="formSearch">
-        <input type="text" placeholder="Search Sets..." id="inputSearch">
-        <button type="submit" id="buttonSearch" onclick="buttonSearchS()"><img src="SVG/search.svg"></button>
+        <!-- <input type="text" placeholder="Search Sets..." id="inputSearch" onkeyup="search_animal()"> -->
+        <input type="text" placeholder="Search Sets..." id="inputSearch">   
+        <!-- <button type="submit" id="buttonSearch" onclick="buttonSearchS()"><img src="SVG/search.svg"></button> -->
+        <button id="buttonSearch" onclick="search_animal()"><img src="SVG/search.svg"></button>
     </form>
+    <button onclick="search_animal()">animal</button>
 
     <!-- <button onclick="buttonSearch()">test</button> -->
 
@@ -97,6 +100,26 @@
     <button onclick="json()">JSON</button> -->
 
     
+    <!------------------ countdown timer example ---------------------->
+
+
+    <p id="demo"></p>
+    <p id="demoSearch"></p>
+
+    <label for="filterTheme">Theme:</label>
+    <select name="filterTheme" id="filterTheme">
+        <option id="filterDefaultId" value="">Please choose a theme</option>        
+    </select>
+    <br>
+    <label for="filterPrice">Filter Price:</label>
+    <select name="filterPrice" id="filterPrice">
+        <option value="">View Price in ...</option>
+        <option value="descending">descending order</option>
+        <option value="ascending">ascending order</option>        
+    </select>
+
+   
+
     <!------------------ example set ---------------------->
     <div id="divMainExampleSet">
         <!-- <h3>Results</h3> -->
@@ -116,6 +139,8 @@
 
         <!-- <hr id="hrMainBottom"> -->
     </div>
+
+    <button id="dateTest" onclick="dateTest()">date</button>
 
     <!------------------------ sets ---------------------->
 

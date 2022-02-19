@@ -5,7 +5,7 @@
             "theme": "BrickHeadz",
             "price": 24.99,
             "name": "Harry, Hermione, Ron & Hagrid",
-            "releaseDate": "June 1st, 2021",
+            "releaseDate": "2021, 5, 1",
             "isOnWishList": false, 
             "url": "https://www.lego.com/en-us/product/harry-hermione-ron-hagrid-40495" 
         },
@@ -15,7 +15,7 @@
             "theme": "BrickHeadz",
             "price": 19.99,
             "name": "Chinese New Year Pandas",
-            "releaseDate": "June 1st, 2021",
+            "releaseDate": "2021, 5, 1",
             "isOnWishList": false,
             "url": "https://www.lego.com/en-us/product/chinese-new-year-pandas-40466"
         },

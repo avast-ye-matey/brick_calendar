@@ -4,18 +4,234 @@ function buttonSearchS() {
     alert("Sorry, the search function does not currently work. Thank you for your understanding.");
 }
 
+
+// ***************************** searchbar*****************************
+
+
+function search_animal9() {
+    console.log("hi")
+    let input = document.getElementById('inputSearch').value.toLowerCase();
+    console.log(input)
+    // input = input.toLowerCase();
+    // return input
+    let y = document.getElementById("demoSearch")
+    // let x = document.getElementsByClassName('animals');
+    let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        .then(function(response) {
+            if (!response.ok) {
+                // throw Error(response.statusText);
+                throw alert("Error with API. Please refresh page and try again.");
+            }
+            return response.json()
+        })                         
+        .then(data => {
+            for (const i of data.sets) {                    
+                if (i.name.toLowerCase().includes(input))
+                console.log(i.name)
+                // return i                                                
+            }
+        })
+
+    
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+
+// ***************************** searchbar test 2 *****************************
+
+let filterTheme = document.getElementById("filterTheme")
+let filterPrice = document.getElementById("filterPrice")
+
+let filterDefaultId = document.getElementById("filterDefaultId")
+
+
+
+// ***************************** searchbar test 2 *****************************
+
+// let titleSet = new Set()
+
+// let titleArray = []
+// let themeArray = []
+
+function search_animal() {
+    let titleArray = []
+    let themeArray = []
+    // console.log("hi")
+    let input = document.getElementById('inputSearch').value.toLowerCase();
+    // console.log(input.value)
+    console.log(input)
+    console.log(input.length)
+    // input = input.toLowerCase();
+    // return input
+    let y = document.getElementById("demoSearch")
+    y.innerHTML = ""
+
+    let r = document.getElementById("filterTheme").children.length
+    if (r > 1) {
+        filterTheme.innerHTML = "";
+        let option = document.createElement("option")
+        option.innerHTML = "Please choose a theme"
+        filterTheme.appendChild(option)
+
+    }
+    
+    console.log(r)
+    // let x = document.getElementsByClassName('animals');
+
+    // let inputLength = input.length  
+    // console.log(inputLength)       
+
+    // let titleSet = new Set()
+
+    let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        .then(function(response) {
+            if (!response.ok) {
+                // throw Error(response.statusText);
+                throw alert("Error with API. Please refresh page and try again.");
+            }
+            return response.json()
+        })                         
+        .then(data => {
+            for (const i of data.sets) {  
+                let inputLength = input.length   
+                // let inputLength = input.length  
+                // console.log(inputLength)               
+                if (i.name.toLowerCase().includes(input)) {
+                    console.log(i.name)
+                    // let t = i.name
+                    // y.innerHTML = i.name
+                    // let t = document.createElement("p")
+                    // let t = document.createTextNode(i.name)
+                    // t.innerHTML = i.name
+                    // y.appendChild(t)
+                    titleArray.push(i.name)
+                    // console.log(titleArray)
+
+                    // return i     
+                    themeArray.push(i.theme)
+
+                    // let theme = document.createElement("option")
+                    // theme.innerHTML = i.theme
+                    // filterTheme.appendChild(theme)
+                } else {
+                    
+                    
+                    
+                    while (inputLength > 3) {
+                        // let titleSet = new Set()
+                        // let inputLength = input.length  
+                        --inputLength
+                        if (!i.name.toLowerCase().includes(input.slice(0, inputLength))) {
+                            
+                            // console.log(i.name)
+                            console.log(input.slice(0, inputLength))
+                        } else {
+                            console.log(i.name + "howdy")
+                            
+                            // titleSet.add(i.name)
+                            titleArray.push(i.name)
+                            themeArray.push(i.theme)
+
+                            
+                            // y.innerHTML = i.name
+                            // console.log(titleSet)
+                        }     
+                        // let t = document.createElement("p")
+                        // titleSet.forEach(t.innerhtml)
+                        // t.innerHTML = titleSet
+                        // y.appendChild(t)
+                        // console.log(titleSet)
+                        // console.log(t.innerhtml)
+                    }
+                }
+                    // // console.log(inputLength)
+                    // console.log(input.slice(0, inputLength))
+                    // console.log("done")
+                    // // console.log(titleSet)
+                    // console.log("!!!" + titleArray)
+                    // titleSet.forEach((value) => {
+                    //     // y.innerText(value)
+                    //     console.log(value)
+                    //     text = document.createTextNode(value)
+                    //     y.appendChild(text)
+                    // })
+                   
+
+
+                    // while (!i.name.toLowerCase().includes(input)) {
+                    //     console.log(inputLength)
+                    //     if (i.name.toLowerCase().includes(input)) {
+                    //         break;
+                    //     }
+                    //     --inputLength
+                    //     console.log(inputLength)
+
+                    // }
+                
+                                                         
+            }
+            console.log("***" + titleArray)
+            let titleSet = new Set(titleArray)
+            console.log("&&&" + titleSet)
+            console.log(titleSet)
+            // let t = document.createElement("p")
+            // let t = document.createTextNode(i.name)
+            // t.innerHTML = i.name
+            // y.appendChild(t)
+            // titleArray.push(i.name)
+            // console.log(titleArray)
+            let themeSet = new Set(themeArray)
+            themeSet.forEach((value) => {
+                // y.innerText(value)
+                console.log(value)
+                let theme = document.createElement("option")
+                theme.innerHTML = value
+                filterTheme.appendChild(theme)
+            })
+
+            
+
+            titleSet.forEach((value) => {
+                // y.innerText(value)
+                console.log(value)
+                let text = document.createElement("p")
+                text.innerHTML = value
+                // text = document.createTextNode(value)
+                y.appendChild(text)
+            })
+
+        })
+    // console.log(titleSet)
+    // callback();
+    
+      
+    // for (i = 0; i < x.length; i++) { 
+    //     if (!x[i].innerHTML.toLowerCase().includes(input)) {
+    //         x[i].style.display="none";
+    //     }
+    //     else {
+    //         x[i].style.display="list-item";                 
+    //     }
+    // }
+}
+
+async function search_animal2() {
+    // callback(titleSet)
+    await search_animal2();
+    console.log(titleSet);
+}
+
+
+
 // ***************************** variables *****************************
 
-// var sheet = document.createElement('style')
-
-// const brickheadz = document.getElementById("Brickheadz");
-const disney = document.getElementById("disney");
-const ideas = document.getElementById("ideas");
-
-// const divWrapperName = document.getElementById("divName");
-// const divWrapperChildName = document.createElement("div");
-// const divWrapperChildPrice = document.createElement("div");
-// const divWrapperSetChildImage = document.createElement("img")
 
 
 // ***************************** reveal filter form  *****************************
@@ -37,8 +253,6 @@ let htmlFormMain = []
 function testFilter() {
     // const filterTest = document.getElementById("buttonFilterForm");
     let y = []
-
-
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
             .then(function(response) {
                 if (!response.ok) {
@@ -49,34 +263,7 @@ function testFilter() {
                 })                         
             .then(data => {
                 for (const i of data.sets) {                    
-                    y.push(i.theme)
-                    
-                    console.log(y)
-                    // console.log(iterable)
-                    // var fragment = new DocumentFragment();
-                    // for (const element of y) {
-                    //     if ()
-                    // }
-                    
-
-
-
-                    // var fragment = new DocumentFragment();
-                    
-                    // let htmlForm = `<input type="checkbox" id="${i.theme}" name="${i.theme}">
-                    //                 <label for="${i.theme}">${i.theme}</label>
-                    //                 <input type="button" onclick="submitFilter()" value="Submit">`
-
-                    // filterTest.innerHTML = htmlForm;    
-                    // fragment.appendChild()
-
-                    // z =  filterTest.appendChild(divSet);   
-                    // divWrapperSets.appendChild(divSet); 
-
-                    // console.log(htmlForm.id)
-                    // htmlFormMain.push(htmlForm);
-                    // console.log(htmlFormMain);
-                    // return iterable
+                    y.push(i.theme)                                                       
                 };
                 const iterable = new Set(y)
                 console.log(y)
@@ -101,9 +288,7 @@ function testFilter() {
                 button.value = "Submit";
                 fragment.appendChild(button);
                 filterTest.appendChild(fragment)
-            });
-    // const iterable = new Set(y);
-    // return fragment
+            });    
 };
 
                 
@@ -114,15 +299,7 @@ function testFilter() {
 
 // ***************************** class test  *****************************
 
-// class divSetCreate {
-//     htmlSegment(i) {
-//         let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" class="img"></img>
-//                             <div class="name">${i.number} - ${i.name}</div>
-//                             <div class="price">$${i.price}</div>
-//                             <button id="${i.number}" onclick="addToWishlist(this.id);"><img src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;
-//         return htmlSegment;
-//     }
-// }
+
 
 // ***************************** function test  *****************************
 
@@ -132,13 +309,25 @@ function setTest(i) {
     divWrapperSets.style.visibility = "";
     const divSet = document.createElement("div");
     divSet.setAttribute("class", "sets")
+
+    
+    
+    // console.log(getT)
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" class="img"></img>
                     <div class="name">${i.number} - ${i.name}</div>
-                    <div class="price">$${i.price}</div>
-                    <button id="${i.number}" onclick="addToWishlist(this.id);"><img src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;
-
+                    <div class="price">$${i.price}</div>                    
+                    <button id="${i.number}" onclick="addToWishlist(this.id);"><img src="SVG/heart-shapes-svgrepo-com.svg"/></button>                  
+                    <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    <p id="${i.releaseDate}2"></p>`;    
     divSet.innerHTML = htmlSegment;    
+    let iRd = `${i.releaseDate}`
+    // let iRd2 = 
+    
     z =  divWrapperSets.appendChild(divSet);   
+
+    const release = document.getElementById(`${i.releaseDate}2`);
+    console.log(release)
+    release.innerHTML = dateTest(iRd, release);
     // divWrapperSets.appendChild(divSet); 
     console.log(z)
     return z
@@ -174,32 +363,8 @@ function submitFilter() {
                     }
                 })
         }    
-    }
-                // const divWrapperSets = document.getElementById("divSets"); !!!
-                // divWrapperSets.style.visibility = ""; !!!    
-                
-                // let brickheadz = document.getElementById("BrickHeadz");
-                // let bh = document.querySelector(".btn");   
-                // console.log(bh)      
-                // const zzz = document.getElementById("buttonFilterForm");
-                // const yyy = document.getElementById(zzz.children[0]);
-                // const deck = zzz.querySelector('[name="Brickheadz"]');
-                // console.log(brickheadz.hasOwnProperty("id"));
-                // console.log(typeof(brickheadz));
-                // console.log(brickheadz);
-                // console.log(data.sets);
-                // console.log(zzz);
-                // console.log(typeof(zzz));
-                // console.log(zzz.children[0]);
-                // console.log(yyy);
-                // console.log(deck);
-                // console.log(fragment);
-                // console.log(htmlForm);
-                
-                                     
-    revealForm.style.display = "none";
-            
-        
+    }                                                                  
+    revealForm.style.display = "none";                    
 };
 
 
@@ -368,105 +533,42 @@ function addToWishlist(clicked_id) {
 
 
 
+// ***************************** countdown timer *****************************
+
+
 
 // ***************************** test area *****************************
 
-function getName() {
-    
-    fetch("./items.json")
-        .then(response => response.json())
-        .then(data => {                       
-            let obj = data.sets;
-            obj.map(getNames);
-            function getNames(item) { 
-                var ul = document.getElementById("name");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.name));
-                ul.appendChild(li);             
-                return [item.name]                
-            };   
-            // console.log(obj.name)         
-        });   
-        // console.log(2); 
-    // console.log(3);    
-}
+// const dateTest = document.getElementsById("dateTest");
+function dateTest(iRd, release) {
+    // Set the date we're counting down to
+    var countDownDate = new Date(iRd).getTime();
 
-function getTheme() {
-    fetch("./items.json")
-        .then(response => response.json())
-        .then(data => {
-            let obj = data.sets;
-            obj.map(getTheme);
+    // Update the count down every 1 second
+    var x = setInterval(function() {
 
-            function getTheme(item) {
-                var ul = document.getElementById("theme");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.theme));
-                ul.appendChild(li);   
-                // console.log(item.theme)
-                return [item.theme]
-            };            
-        });    
-}
+        // Get today's date and time
+        var now = new Date().getTime();
 
-function getUser1data() {
-    fetch("./user1.json")
-        .then(response => response.json())
-        .then(data => {
-            let obj = data;
-            obj.map(getName);
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
-            function getNameAndTheme(item) {
-                var ulName = document.getElementById("name");
-                var ulTheme = document.getElementById("theme");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.name));
-                console.log(1);
-                ulName.appendChild(li);  
-                li.appendChild(document.createTextNode(item.theme));
-                ulTheme.appendChild(li);   
-                // console.log(item.theme)
-                // return [item.theme]
-            };
-            obj.map(getTheme);
-            function getNameAndTheme(item) {
-                // var ulName = document.getElementById("name");
-                var ulTheme = document.getElementById("theme");
-                var li = document.createElement("li");
-                // li.appendChild(document.createTextNode(item.name));
-                // console.log(1);
-                // ulName.appendChild(li);  
-                li.appendChild(document.createTextNode(item.theme));
-                ulTheme.appendChild(li);   
-                // console.log(item.theme)
-                // return [item.theme]
-            };            
-        });   
-}
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
+        // Display the result in the element with id="demo"
+        
+        
+        release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
 
-function test1() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())                            
-        .then(data => {
-            for (const i of data.sets) {
-                console.log(i.theme)
-            }
-        })        
-}
-
-function test2() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())
-        .then(data => {
-            for (const i of data.sets) {
-                console.log(i.name)
-            }
-        })
-}
-
-function json() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())
-        .then(data => console.log(data.sets))
+        // If the count down is finished, write some text
+        if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+        } 
+    }, 1000);
+    // console.log(p)
 }
