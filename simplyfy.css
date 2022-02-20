@@ -43,7 +43,7 @@ body {
 
 #formSearch {
     display: flex;   
-    margin-bottom: 10px;       
+    margin-bottom: 30px;       
     margin-left: 35px;
     margin-right: 35px;
 }
@@ -54,11 +54,27 @@ body {
     border-radius: 90px 0px 0px 90px;
     border: 0px;   
     width: 100%;    
+    color: #838383;
 }
 
 ::placeholder {
     color: silver;
 }
+
+#inputSearch:focus  { 
+    outline: 5px solid silver;   
+    /* outline: none;    */
+}  
+
+#buttonSearch:focus {
+    outline: none;
+}
+
+/* #inputSearch:active {  */
+    /* outline: 5px solid  silver;    */
+    /* outline: none;    */
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+/* }   */
 
 #formSearch img {
     width: 50%;
@@ -75,7 +91,8 @@ body {
 
 
 
-/* ************** filter button and form ******************** */
+/* ************** filter sort by dropdown ******************** */
+/* ************** (button and form not currently used) ******************** */
 
 #divButtonFilter {
     display: flex;    
@@ -128,6 +145,32 @@ body {
     margin: 0px 20px;    
 }
 
+#divFilterDropdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#divFilterDropdown h3 {
+    margin: 0;
+}
+
+#filterTheme, #filterPrice {
+    color: #7e7e7e;
+    background-color: whitesmoke; 
+    border-radius: 90px;
+    width: 100px;
+    padding: 5px;
+    border: none;
+}
+
+#filterTheme {
+    margin: 0px 10px;    
+}
+
+#filterTheme:focus, #filterPrice:focus {
+    outline: 5px solid silver; 
+}
 
 
 /* ************************** hr *************************** */
@@ -159,7 +202,7 @@ body {
     box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.5);
     color: whitesmoke;
     font-size: .75rem;
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #divExampleSet {    

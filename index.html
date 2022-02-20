@@ -40,64 +40,26 @@
     </div>
 
     <!----------------- title & search bar ----------------->
+            
 
     <h2>Build Your Bricklist</h2>
-    <form id="formSearch">
-        <!-- <input type="text" placeholder="Search Sets..." id="inputSearch" onkeyup="search_animal()"> -->
-        <input type="text" placeholder="Search Sets..." id="inputSearch">   
-        <!-- <button type="submit" id="buttonSearch" onclick="buttonSearchS()"><img src="SVG/search.svg"></button> -->
-        <button id="buttonSearch" onclick="search_animal()"><img src="SVG/search.svg"></button>
-    </form>
-    <button onclick="search_animal()">animal</button>
-
-    <!-- <button onclick="buttonSearch()">test</button> -->
-
+    <div id="formSearch">        
+        <input type="text" placeholder="Search Sets..." id="inputSearch">          
+        <button id="buttonSearch" onclick="searchSets()"><img src="SVG/search.svg"></button>
+    </div>  
+    
+            <!-- notes: onkeyup="" -->
 
     
     <!--------------- filter button and form ---------------->
 
-    <div id="divButtonFilter">
-        <!-- <div id="buttonFilter"> -->
-        <button id="buttonFilter">filter<img src="SVG/plus.svg"></button>
-        
+    <!-- <div id="divButtonFilter">        
+        <button id="buttonFilter">filter<img src="SVG/plus.svg"></button>        
     </div>
         
 
-    <form id="buttonFilterForm" style="display: none;">
-        <!-- <input type="checkbox" id="brickheadz" name="brickheadz">
-        <label for="brickheadz">BrickHeadz</label>
-
-        <input type="checkbox" id="ideas" name="ideas">
-        <label for="ideas">Ideas</label>
-
-        <input type="checkbox" id="disney" name="disney">
-        <label for="disney">Disney</label>
-
-        <input type="checkbox" id="test" name="test">
-        <label for="test">test</label>
-        <input type="checkbox" id="test" name="test">
-        <label for="test">test</label>
-        <input type="checkbox" id="test" name="test">
-        <label for="test">test</label>
-        <input type="checkbox" id="test" name="test">
-        <label for="test">test</label>
-        <input type="checkbox" id="test" name="test">
-        <label for="test">test</label>          -->
-
-
-        <!-- <input type="button" onclick="submitFilter()" value="Submit">     -->
-    </form>
-    <!-- </div> -->
-
-
-    <!---------------- test buttons ---------------------->
-
-    <!-- <button onclick="getName()">name</button>
-    <button onclick="getTheme()">theme</button>
-    <button onclick="getUser1data()">User 1</button>
-    <button onclick="test1()">Test 1</button>
-    <button onclick="test2()">Test 2</button>
-    <button onclick="json()">JSON</button> -->
+    <form id="buttonFilterForm" style="display: none;"></form> -->
+       
 
     
     <!------------------ countdown timer example ---------------------->
@@ -106,17 +68,27 @@
     <p id="demo"></p>
     <p id="demoSearch"></p>
 
-    <label for="filterTheme">Theme:</label>
-    <select name="filterTheme" id="filterTheme">
-        <option id="filterDefaultId" value="">Please choose a theme</option>        
-    </select>
-    <br>
-    <label for="filterPrice">Filter Price:</label>
-    <select name="filterPrice" id="filterPrice">
-        <option value="">View Price in ...</option>
-        <option value="descending">descending order</option>
-        <option value="ascending">ascending order</option>        
-    </select>
+    <!-- <button id="dateTest" onclick="dateTest()">date</button> -->
+
+
+    <!------------------ filter dropdowns ---------------------->
+
+    <div id="divFilterDropdown">    
+        <h3>Sort by:</h3>
+        <!-- <label for="filterTheme">Theme:</label> -->
+        <select name="filterTheme" id="filterTheme" onchange="filterThemeOrder(this)">
+            <option id="filterDefaultId" value="">Theme</option>        
+        </select>
+
+        <br>
+
+        <!-- <label for="filterPrice">Filter Price:</label> -->
+        <select name="filterPrice" id="filterPrice" onchange="filterPriceOrder()">
+            <option value="">Price</option>
+            <option value="descending">low - high</option>
+            <option value="ascending">high - low</option>        
+        </select>
+    </div>
 
    
 
@@ -140,7 +112,7 @@
         <!-- <hr id="hrMainBottom"> -->
     </div>
 
-    <button id="dateTest" onclick="dateTest()">date</button>
+    
 
     <!------------------------ sets ---------------------->
 
