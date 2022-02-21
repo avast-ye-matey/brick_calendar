@@ -169,6 +169,7 @@ function setTest(i) {
     divSet.setAttribute("class", "sets") 
     // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
     divSet.dataset.theme = `${i.theme}`      
+    divSet.dataset.price = `${i.price}`    
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" class="img"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                    
@@ -190,7 +191,7 @@ function setTest(i) {
 
 function filterThemeOrder(selection) {
     const themeClass = document.getElementsByClassName("sets");
-    console.log(selection.options[selection.selectedIndex].text)
+    // console.log(selection.options[selection.selectedIndex].text)
     for (const i of themeClass) {
         // console.log(i.dataset.theme)
         console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
@@ -205,11 +206,34 @@ function filterThemeOrder(selection) {
             i.style.display = "";
         }
     }
-
 }
 
-function filterPriceOrder() {
-    
+function filterPriceOrder(selection) {
+    let arrayPrice = []
+    const priceClass = document.getElementsByClassName("sets");
+
+    // priceClass.dataset.price.sort(function(a,b){return a - b});
+    // console.log(priceClass.dataset.price)
+    // const result = priceClass.filter(price => price)
+    // console.log(selection.options[selection.selectedIndex].text)
+    for (const i of priceClass) {
+        console.log(i.dataset.price)
+        if (i >= arrayPrice[0]) {
+            arrayPrice.unshift(i)
+        } else {
+            arrayPrice.push(i)
+        } 
+        // arrayPrice.push
+        // (i < arrayPrice[0])
+    }
+    console.log(arrayPrice)
+    const wipeSets = document.getElementById("divSets")
+    wipeSets.innerHTML = ""
+    for (const i of arrayPrice) {
+        console.log(i)
+        wipeSets.appendChild(i)
+        // setTest(i)
+    }
 }
 
 
