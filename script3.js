@@ -48,7 +48,7 @@ function searchSets() {
             })                         
             .then(data => {
                 for (const i of data.sets) {  
-                    let inputLength = input.length                               
+                    let inputLength = input.length                                             
                     if (i.name.toLowerCase().includes(input)) {                                      
                         titleArray.push(i.name)                   
                         themeArray.push(i.theme)                    
@@ -61,103 +61,54 @@ function searchSets() {
                                 themeArray.push(i.theme)
                             }                          
                         }
-                    }                                                                                          
-                }            
-                let titleSet = new Set(titleArray)           
-                let themeSet = new Set(themeArray)
-                themeSet.forEach((value) => {                               
-                    let theme = document.createElement("option")
-                    theme.innerHTML = value
-                    filterTheme.appendChild(theme)
-                })           
-                // titleSet.forEach((value) => {                              
-                    // let text = document.createElement("p")
-                    // text.innerHTML = value               
-                    // y.appendChild(text)
-                // console.log(titleSet)
-                titleSet = Array.from(titleSet);              
-                fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-                        .then(function(response) {
-                            if (!response.ok) {                        
-                                throw alert("Error with API. Please refresh page and try again.");
-                            }
-                            return response.json()
-                            })                        
-                        .then(data => {
-                            for (const i of data.sets) {                                
-                                for (const z of titleSet) {                                    
-                                    if (i.name === z) {                                                                                                                  
-                                        setTest(i)
-                                    }  
-                                }                                                                
-                            }
-                        })
+                    }   
+                    if (i.theme.toLowerCase().includes(input)) {
+                        titleArray.push(i.name)
+                        themeArray.push(i.theme)
+                    }                                                                                      
+                }     
+                console.log(Array.isArray(titleArray))
+                console.log(themeArray)
+                if (titleArray - themeArray === 0) {                    
+                    alert("Couldn't find a set mathing your search. Please try again.")
+                } else {
+                    let titleSet = new Set(titleArray)           
+                    let themeSet = new Set(themeArray)
+                    themeSet.forEach((value) => {                               
+                        let theme = document.createElement("option")
+                        theme.innerHTML = value
+                        filterTheme.appendChild(theme)
+                    })           
+                    // titleSet.forEach((value) => {                              
+                        // let text = document.createElement("p")
+                        // text.innerHTML = value               
+                        // y.appendChild(text)
+                    // console.log(titleSet)
+                    titleSet = Array.from(titleSet);              
+                    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+                            .then(function(response) {
+                                if (!response.ok) {                        
+                                    throw alert("Error with API. Please refresh page and try again.");
+                                }
+                                return response.json()
+                                })                        
+                            .then(data => {
+                                for (const i of data.sets) {                                
+                                    for (const z of titleSet) {                                    
+                                        if (i.name === z) {                                                                                                                  
+                                            setTest(i)
+                                        }  
+                                    }                                                                
+                                }
+                            })
+                }    
+                
             })  
     } 
 }
+      
 
-
-
-// ***************************** reveal filter form  *****************************
-
-
-// const reveal = document.getElementById("buttonFilter");
-// reveal.addEventListener("click", function() {
-//     if (revealForm.style.display === "grid") {
-//         revealForm.style.display = "none";
-//     } else {
-//         revealForm.style.display = "grid";
-//         testFilter(); //!!
-//     }  
-// });
-
-
-// ***************************** filter test  *****************************
-const filterTest = document.getElementById("buttonFilterForm");
-let htmlFormMain = []
-function testFilter() {
-    // const filterTest = document.getElementById("buttonFilterForm");
-    let y = []
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-            .then(function(response) {
-                if (!response.ok) {
-                    // throw Error(response.statusText);
-                    throw alert("Error with API. Please refresh page and try again.");
-                }
-                return response.json()
-                })                         
-            .then(data => {
-                for (const i of data.sets) {                    
-                    y.push(i.theme)                                                       
-                };
-                const iterable = new Set(y)
-                console.log(y)
-                console.log(iterable)
-                var fragment = new DocumentFragment();
-                iterable.forEach((tag) => {
-                    var input = document.createElement("input")
-                    input.type = "checkbox";
-                    // input.id = tag;
-                    input.setAttribute("id", tag)
-                    input.classList.add('btn')
-                    fragment.appendChild(input);
-                    var label = document.createElement("label")
-                    label.for = tag;
-                    label.textContent = tag;
-                    fragment.appendChild(label);
-                    
-                })
-                var button = document.createElement("input")
-                button.type = "button";
-                button.setAttribute("onclick", "submitFilter();")
-                button.value = "Submit";
-                fragment.appendChild(button);
-                filterTest.appendChild(fragment)
-            });    
-};                                            
-                
-
-// ***************************** set shell  *****************************
+// ***************************** set creation shell  *****************************
 
 
 function setTest(i) {
@@ -170,18 +121,18 @@ function setTest(i) {
     // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}`    
-    let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" class="img"></img>
+    let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                    
-                    <button id="${i.number}" onclick="addToWishlist(this.id);"><img src="SVG/heart-shapes-svgrepo-com.svg"/></button>                  
-                    <p id="${i.releaseDate}">${i.releaseDate}</p>
-                    <p id="${i.releaseDate}2"></p>`;    
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
+                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
     divSet.innerHTML = htmlSegment;    
     let iRd = `${i.releaseDate}`       
     z =  divWrapperSets.appendChild(divSet);   
     const release = document.getElementById(`${i.releaseDate}2`);
     console.log(release)
-    release.innerHTML = dateTest(iRd, release);    
+    // release.innerHTML = dateTest(iRd, release);    
     console.log(z)
     return z
 }
@@ -238,36 +189,7 @@ function filterPriceOrder(selection) {
 
 
 
-// ***************** submit filter form button / create sets ********************************
 
-
-const revealForm = document.getElementById("buttonFilterForm")
-function submitFilter() {
-    document.getElementById("divSets").innerHTML = "";
-    var listSelect = document.getElementsByTagName("input");
-    console.log(listSelect);
-    for (const z of listSelect) {        
-        console.log(z.checked);
-        if (z.checked === true) {
-            console.log(z.id)            
-            fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-                .then(function(response) {
-                    if (!response.ok) {                        
-                        throw alert("Error with API. Please refresh page and try again.");
-                    }
-                    return response.json()
-                    })                        
-                .then(data => {
-                    for (const i of data.sets) {
-                        if (i.theme === z.id) {                                    
-                            setTest(i)
-                        }
-                    }
-                })
-        }    
-    }                                                                  
-    revealForm.style.display = "none";                    
-};
 
 
 // ***************** wishlist tab top/bottom *********************
@@ -292,7 +214,6 @@ divWishlist.addEventListener("click", function() {
     }
     
 })
-
 
 
 // ***************** img expand/minimize *********************

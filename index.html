@@ -48,22 +48,11 @@
         <button id="buttonSearch" onclick="searchSets()"><img src="SVG/search.svg"></button>
     </div>  
     
-            <!-- notes: onkeyup="" -->
-
-    
-    <!--------------- filter button and form ---------------->
-
-    <!-- <div id="divButtonFilter">        
-        <button id="buttonFilter">filter<img src="SVG/plus.svg"></button>        
-    </div>
-        
-
-    <form id="buttonFilterForm" style="display: none;"></form> -->
+            <!-- notes: onkeyup="" -->     
        
 
     
     <!------------------ countdown timer example ---------------------->
-
 
     <p id="demo"></p>
     <p id="demoSearch"></p>
@@ -71,18 +60,17 @@
     <!-- <button id="dateTest" onclick="dateTest()">date</button> -->
 
 
+
     <!------------------ filter dropdowns ---------------------->
 
     <div id="divFilterDropdown">    
-        <h3>Sort by:</h3>
-        <!-- <label for="filterTheme">Theme:</label> -->
+        <h3>Sort by:</h3>        
         <select name="filterTheme" id="filterTheme" onchange="filterThemeOrder(this)">
             <option id="filterDefaultId" value="">Theme</option>        
         </select>
 
         <br>
-
-        <!-- <label for="filterPrice">Filter Price:</label> -->
+        
         <select name="filterPrice" id="filterPrice" onchange="filterPriceOrder()">
             <option value="">Price</option>
             <option value="descending">low - high</option>
@@ -93,51 +81,29 @@
    
 
     <!------------------ example set ---------------------->
-    <div id="divMainExampleSet">
-        <!-- <h3>Results</h3> -->
-        <!-- <hr id="hrMainTop"> -->
-        <!-- <div id="divName">       -->
-        <ul id="name"></ul>     
-        
-        
 
+    <div id="divMainExampleSet">       
+        <ul id="name"></ul>                   
         <div id="divExampleSet">
-            <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com2.svg">
-            <!-- <div id="divExampleSetNumber">Set #</div> -->
+            <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com2.svg">            
             <div id="divExampleSetName">Set # - Name</div>
             <div id="divExamplePrice">Price</div>
             <div id="divExampleAddToWishlist">Wishlist</div>
-        </div> 
-
-        <!-- <hr id="hrMainBottom"> -->
+        </div>         
     </div>
 
     
 
     <!------------------------ sets ---------------------->
 
-    <div id="divSets" style="visibility: hidden;">
-        <!-- <img id="divExampleImg" src="SVG/picture-photo-svgrepo-com.svg">
-        <div id="divExampleSetNumber">Set #</div>
-        <div id="divExampleSetName">Set Name</div>
-        <div id="divExamplePrice">Price</div>
-        <div id="divExampleAddToWishlist">Add To Wishlist</div>  -->
-    </div>  
-    <!-- </div> -->
-    
+    <div id="divSets" style="visibility: hidden;">       
+    </div>       
 
-   
-    <!------------------------ extra ---------------------->
-
-    <!-- <h3>Theme</h3>
-    <hr>
-    <ul id="theme"></ul>
-    <hr> -->
 
 
     <!------------------------ img expand ---------------------->
-    <div id="divImgExpand" style="display: none;" >
-       
+
+    <div id="divImgExpand" style="display: none;" >       
     </div>
     
 
