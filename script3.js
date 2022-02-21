@@ -24,7 +24,8 @@ inputSearch.addEventListener("keyup", function(event) {
 function searchSets() {    
     document.getElementById("divSets").innerHTML = "";
     let titleArray = []
-    let themeArray = []    
+    let themeArray = [] 
+    // let numberArray = []   
     let input = document.getElementById('inputSearch').value.toLowerCase();    
     let y = document.getElementById("demoSearch")
     y.innerHTML = ""
@@ -65,7 +66,14 @@ function searchSets() {
                     if (i.theme.toLowerCase().includes(input)) {
                         titleArray.push(i.name)
                         themeArray.push(i.theme)
-                    }                                                                                      
+                    }  
+                    // console.log(i.number)
+                    // console.log(input)
+                    // console.log(i.number === input)
+                    if (i.number.toString() === input) {
+                        titleArray.push(i.name)
+                        themeArray.push(i.theme)
+                    }                                                                                    
                 }     
                 console.log(Array.isArray(titleArray))
                 console.log(themeArray)
@@ -74,6 +82,7 @@ function searchSets() {
                 } else {
                     let titleSet = new Set(titleArray)           
                     let themeSet = new Set(themeArray)
+                    // let numberSet = new Set(numberArray)
                     themeSet.forEach((value) => {                               
                         let theme = document.createElement("option")
                         theme.innerHTML = value
