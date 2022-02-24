@@ -357,3 +357,64 @@ function dateTest(iRd, release) {
     }, 1000);
     // console.log(p)
 }
+
+
+
+
+// ************************************** test post ***************************************
+
+let postTest = document.getElementById("postTest")
+
+
+function buttonPostTest() {
+
+    let data = {element: "barium"};
+
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/YOUR_BASKET_NAME", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
+
+}
+
+
+let getTest = document.getElementById("getTest")
+
+function buttonGetTest() {
+
+    // let data = {element: "barium"};
+    
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            for (const i of result.baskets) {
+                console.log(i.name)
+            }
+        }) 
+       
+        // .then(basketsGet => console.log(basketsGet.json()))
+        // method: "GET",
+        // headers: {'Content-Type': 'application/json'}, 
+        // body: JSON.stringify(data)
+    // }).then(res => {
+        // console.log(res);
+    // });
+    
+    
+}
+
+
+
+
+
+// curl --location --request POST 'https://getpantry.cloud/apiv1/pantry/YOUR_PANTRY_ID/basket/YOUR_BASKET_NAME' \
+// --header 'Content-Type: application/json' \
+// --data-raw '{
+// 	"derp": "flerp123",
+// 	"testPayload": true,
+// 	"keysLength": 3
+// }'
