@@ -203,8 +203,9 @@ function filterPriceOrder(selection) {
 
 // ***************** wishlist tab top/bottom *********************
 
+const h1Wishlist = document.getElementById("h1Wishlist")
 const divWishlist = document.getElementById("divWishlist")
-divWishlist.addEventListener("click", function() {
+h1Wishlist.addEventListener("click", function() {
     // divWishlist.style.backgroundColor = "blue"
     if (divWishlist.style.bottom === "0px") {
         // divWishList.style.left = "0";
@@ -360,10 +361,79 @@ function dateTest(iRd, release) {
 
 
 
+// ************************************** Wishlist Buttons ***************************************
+let lookupWishlist = document.getElementById("buttonLookUpWishlist")
+let saveWishlist = document.getElementById("buttonSaveToWishlist")
+
+let inputWishlistSearch = document.getElementById("inputWishlistSearch")
+let inputWishlistSave = document.getElementById("inputWishlistSave")
+
+
+
+let getTest = document.getElementById("getTest")
+
+function searchWishlist() {
+    // let data = {element: "barium"};    
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            for (const i of result.baskets) {
+                // console.log(i.name)
+                // console.log(inputWishlistSearch.value)
+                if (inputWishlistSearch.value === i.name ) {
+                    console.log(i.name)
+                    alert("found")  
+                } else {
+                    // alert("not found")
+                }                
+            }
+        }) 
+}
+
+
+function addWishlist() {
+    let data = {element: "barium"};
+    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${inputWishlistSave.value}`
+    // console.log(String(url))
+    fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+    }).then(function(response) {
+        if (!response.ok) {               
+            throw alert("Error with API. Please try again.");
+        } else {
+            alert("Wishlist Saved");
+        }         
+    });
+}
+
+ 
+
+
+
+
+
+
+
+
 
 // ************************************** test post ***************************************
 
 let postTest = document.getElementById("postTest")
+
+function buttonGetTest() {
+    // let data = {element: "barium"};    
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            for (const i of result.baskets) {
+                console.log(i.name)
+            }
+        }) 
+}
 
 
 function buttonPostTest() {
@@ -381,20 +451,6 @@ function buttonPostTest() {
 }
 
 
-let getTest = document.getElementById("getTest")
-
-function buttonGetTest() {
-
-    // let data = {element: "barium"};
-    
-    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
-        .then(response => response.json())
-        .then(result => {
-            console.log(result)
-            for (const i of result.baskets) {
-                console.log(i.name)
-            }
-        }) 
        
         // .then(basketsGet => console.log(basketsGet.json()))
         // method: "GET",
@@ -405,7 +461,7 @@ function buttonGetTest() {
     // });
     
     
-}
+
 
 
 

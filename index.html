@@ -23,7 +23,19 @@
     <div id="divWishlist" style="position: fixed; bottom: 0px;">
 
         <div id="divWishlistTitle">
-            <h1>Wishlist</h1>
+            <h1 id="h1Wishlist">Wishlist</h1>
+        </div>
+
+        <div id="divWishlistButtons">
+            <button id="buttonLookUpWishlist"> Look up Wishlist</button>
+            <button id="buttonSaveToWishlist"> Save to Wishlist</button>
+        </div>
+
+        <div id="divWishlistInput">
+            <input type="text" placeholder="Search for Wishlist..." id="inputWishlistSearch">  
+            <button id="buttonLookUpWishlist2" onclick="searchWishlist()">search</button>
+            <input type="text" placeholder="Name of Wishlist..." id="inputWishlistSave">  
+            <button id="buttonLookUpWishlist2" onclick="addWishlist()">Save</button>
         </div>
 
         <div id="divWishlistSets">            
