@@ -105,3 +105,26 @@ function submitFilter() {
     }                                                                  
     revealForm.style.display = "none";                    
 };
+
+
+let h1Wishlist = document.getElementById("h1Wishlist")
+const divWishlist = document.getElementById("divWishlist")
+h1Wishlist.addEventListener("click", function() {
+    // divWishlist.style.backgroundColor = "blue"
+    if (divWishlist.style.bottom === "0px") {
+        // divWishList.style.left = "0";
+        divWishlist.style.removeProperty("bottom");
+        divWishlist.style.top = "0px";
+        // divWishlist.style.backgroundColor = "blue";
+        divWishlist.style.height = "100vh";
+        
+        // divWishlist.style.removeProperty("position")
+    } else {
+        divWishlist.style.removeProperty("top");
+        divWishlist.style.bottom = "0px";
+        divWishlist.style.removeProperty("height");
+        // divWishlist.style.position = "fixed";
+        divWishlist.style.position = "fixed";
+    }
+    
+})
