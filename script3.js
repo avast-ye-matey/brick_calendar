@@ -5,24 +5,22 @@ let filterTheme = document.getElementById("filterTheme")
 let filterPrice = document.getElementById("filterPrice")
 let filterDefaultId = document.getElementById("filterDefaultId")
 
+let arrayWishList = []
+
 // *******************  create new bricklist ***********************
+// input for naming new bricklist appear/disappear
 
 let create = document.getElementById("create")
 
-function createWishlist() {
-    let saveNewWishlist = document.getElementById("saveNewWishlist")
-    console.log("howdy")
-    if (saveNewWishlist.style.display === "none") {
-        console.log("howdy")
+function createWishlist() { 
+    let saveNewWishlist = document.getElementById("saveNewWishlist")    
+    if (saveNewWishlist.style.display === "none") {        
         saveNewWishlist.style.display = ""
     } 
 }
 
-
-
-
 // *******************  hit enter on input field ***********************
-
+//hitting enter during set search triggers button click for search
 
 var inputSearch = document.getElementById("inputSearch");
 
@@ -134,7 +132,7 @@ function searchSets() {
 
 // ***************************** set creation shell  *****************************
 
-
+// shell creation for searched sets
 function setTest(i) {
     // document.getElementById("divSets").innerHTML = "";
     console.log("howdy")
@@ -144,22 +142,44 @@ function setTest(i) {
     divSet.setAttribute("class", "sets") 
     // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
     divSet.dataset.theme = `${i.theme}`      
-    divSet.dataset.price = `${i.price}`    
+    divSet.dataset.price = `${i.price}` 
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                    
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
                     // <p id="${i.releaseDate}">${i.releaseDate}</p>
                     // <p id="${i.releaseDate}2"></p> 
-    divSet.innerHTML = htmlSegment;    
-    let iRd = `${i.releaseDate}`       
-    z =  divWrapperSets.appendChild(divSet);   
-    const release = document.getElementById(`${i.releaseDate}2`);
-    console.log(release)
-    // release.innerHTML = dateTest(iRd, release);    
-    console.log(z)
-    return z
-}
+    let htmlSegmentRed = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
+                    <div class="name">${i.number} - ${i.name}</div>
+                    <div class="price">$${i.price}</div>                    
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
+                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
+    console.log(arrayWishList)
+    if (arrayWishList.includes(i.number)) {
+        console.log("gotcha")
+        divSet.innerHTML = htmlSegmentRed;    
+        // let iRd = `${i.releaseDate}`       
+        let z =  divWrapperSets.appendChild(divSet);   
+        // const release = document.getElementById(`${i.releaseDate}2`);
+        // console.log(release)
+        // release.innerHTML = dateTest(iRd, release);    
+        console.log(z)
+        // return z
+    } else {
+        console.log("dont gotcha")
+        divSet.innerHTML = htmlSegment;    
+        // let iRd = `${i.releaseDate}`       
+        let z =  divWrapperSets.appendChild(divSet);   
+        // const release = document.getElementById(`${i.releaseDate}2`);
+        // console.log(release)
+        // release.innerHTML = dateTest(iRd, release);    
+        console.log(z)
+        // return z
+    }    
+}    
+
+
 
 
 // ************************* triggering filter order  ***************************************
@@ -233,9 +253,7 @@ function wishUpDown() {
         divWishlistFooterOuter.className = "divWishlistFooterOuter2"
         h1Wishlist2.innerHTML = ""
         buttonWishUpDown.style.background = "rgb(35 117 219)"
-        buttonWishUpDown.style.borderRadius = "90px"
-
-       
+        buttonWishUpDown.style.borderRadius = "90px"       
     } else {
         divWishlist.className = "divWishlist"
         mainSets.classList.remove("mainSets")
@@ -259,6 +277,7 @@ fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18
         }
     }) 
 
+//shell creation for saved/wishlist bricklist selection
 function setTest2(i) { 
     // const divWishlistSets = document.getElementById("divWishlistSets")
     // divWishlistSets.innerHTML = "";
@@ -273,7 +292,7 @@ function setTest2(i) {
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                    
-                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
                     // <p id="${i.releaseDate}">${i.releaseDate}</p>
                     // <p id="${i.releaseDate}2"></p> 
     divSet.innerHTML = htmlSegment;    
@@ -282,15 +301,23 @@ function setTest2(i) {
     // const release = document.getElementById(`${i.releaseDate}2`);
     // console.log(release)
     // release.innerHTML = dateTest(iRd, release);    
-    console.log(z)
+    // console.log(z)
     return z
 }
 
+
+let nameChosenBricklist = document.getElementById("nameChosenBricklist")
 function filterWishlist(selection) {
+    nameChosenBricklist.innerHTML = 
+    divWishlistFooterOuter.className = "divWishlistFooterOuter"
     const divWishlistSets = document.getElementById("divWishlistSets")
     divWishlistSets.innerHTML = "";
     console.log(selection.options[selection.selectedIndex].text)
     let z = selection.options[selection.selectedIndex].text
+    nameChosenBricklist.innerHTML = z
+    wishlistFilter.style.display = "none"
+    h1Wishlist.style.display = "none"
+    bricklistNameTitle.innerHTML = z
     let x = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${z}`
     fetch(x)
         .then(response => response.json())
@@ -299,20 +326,10 @@ function filterWishlist(selection) {
             // console.log(result.baskets)
             // console.log(result.sets)
             for (const i of result.sets) {
-                console.log(i)
-                setTest2(i)
-            }
-            // if (result.baskets)
-            // for (const i of result.baskets) {
-            //     if (i.name === z) {
-            //         console.log("found")
-            //         console.log(i)
-            //     }
-            //     let newOption = document.createElement("option")
-            //     newOption.innerHTML = i.name
-            //     filterChooseWishlist.appendChild(newOption)
-                            
-            // }
+                arrayWishList.push(i.number)
+                // console.log(i)
+                setTest2(i)                
+            }          
         }) 
 }
 
@@ -373,59 +390,134 @@ function expandImage(clicked_image) {
 
 const themeAdd = document.getElementById("theme")
 const wishlistAdd = document.getElementById("divWishlistSets")
+//added when click heart from set search
+let arrayWishList2 = []
+function addToWishlist2(clicked_id) {  
+    // console.log("gogogogogo")
+    let thisButton = document.getElementById(clicked_id)
+    let thisButtonImg = thisButton.children[0]
+    let thisButtonImgSrc = thisButtonImg.src
+    // console.log(thisButtonImg.src)
+    // console.log(typeof(thisButtonImg.src))
+    // console.log(thisButtonImgSrc.includes("red"))
 
-let arrayWishList = []
-function addToWishlist(clicked_id) {   
-    arrayWishList.push(clicked_id)  
-    z = clicked_id
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')         
-        .then(function(response) {
-            if (!response.ok) {               
-                throw alert("Error with API. Please refresh page and try again.");
-            }
-            return response.json()
-            })                          
-        .then(data => {
-            for (const i of data.sets) {              
-                if (i.number == z) {
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")                       
-
-                    const divWishlistButton = document.getElementById(z)  
-                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com-red.svg"/>';
-                    divWishlistButton.style.border = "none";
-                    divWishlistButton.style.background = "none";                 
-
-                    divSetChildImage.src = i.img
-                    divSetChildImage.style.gridColumn = "1 / 2";
-                    divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "100%";
-                    divSetChildImage.style.maxHeight = "100%";
-                    divSetChildImage.style.marginBottom = "20px";
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
-                    wishlistAdd.appendChild(divSetChildImage);
-                    console.log("1")
-
-                    divSetNumber.appendChild(document.createTextNode(i.number));
-                    divSetNumber.style.gridColumn = "2 / 3";                    
-                    wishlistAdd.appendChild(divSetNumber);
-
-                    divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "3 / 4";
-                    divSetChildName.style.paddingLeft = "10%";
-                    wishlistAdd.appendChild(divSetChildName);
-                    
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "4 / 5";
-                    wishlistAdd.appendChild(divWrapperChildPrice);
-                } 
-            }
-        })
-
-    console.log(arrayWishList) 
+    if (thisButtonImgSrc.includes("red")) {
+        thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com.svg"
+        let thisButtonParent = thisButton.parentElement
+        thisButtonParent.remove()
+    }
+    // } else {
+    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com-red.svg"
+    // }
 }
+
+function addToWishlist(clicked_id) {
+    let thisButton = document.getElementById(clicked_id)
+    let thisButtonImg = thisButton.children[0]
+    let thisButtonImgSrc = thisButtonImg.src
+    // console.log(thisButtonImg.src)
+    // console.log(typeof(thisButtonImg.src))
+    // console.log(thisButtonImgSrc.includes("red"))
+
+    // console.log(!thisButtonImgSrc.includes("red"))
+    // console.log(thisButtonImgSrc.includes("red"))
+
+    if (thisButtonImgSrc.includes("red")) {
+        // console.log(thisButtonImgSrc)
+        thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"
+        addToWishlist3(clicked_id)
+        // console.log(thisButtonImgSrc)
+        // console.log(thisButtonImg)
+        // let thisButtonParent = thisButton.parentElement
+        // thisButtonParent.remove()
+    } else {              
+        thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
+        addToWishlist4(clicked_id)
+        // setTest2(i)
+    }
+}
+
+function addToWishlist3(clicked_id) {
+    // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+    console.log(clicked_id)
+    const wishlistSets = document.getElementById("divWishlistSets")
+    wishlistSetsChildren = wishlistSets.children
+    
+    for (let i of wishlistSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            thisButtonParent.remove()
+            
+        }
+    }
+}
+
+
+function addToWishlist4(clicked_id) {
+    const wishlistSets = document.getElementById("divWishlistSets")
+    const searchedSets = document.getElementById("divSets")
+    searchSetsChildren = searchedSets.children
+    for (let i of searchSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            let ooo = thisButtonParent.cloneNode(true)
+            // console.log(thisButtonParent)
+            wishlistSets.appendChild(ooo)            
+        }
+    }
+}
+
+
+
+        
+        // arrayWishList2.push(clicked_id)  
+        // z = clicked_id
+        // console.log(z.src)
+        // console.log(clicked_id)
+
+        // fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')         
+        //     .then(function(response) {
+        //         if (!response.ok) {               
+        //             throw alert("Error with API. Please refresh page and try again.");
+        //         }
+        //         return response.json()
+        //         })                          
+        //     .then(data => {
+        //         for (const i of data.sets) {              
+        //             if (i.number == z) {
+        //                 setTest2(i)                    
+        //             } 
+        //         }
+        //     })
+
+        
+
+//         // console.log(clicked_id)
+//         // console.log(arrayWishList)
+//         for (const i of arrayWishList) {
+//             // console.log(clicked_id)
+//             // console.log(i)
+//             if (String(i) === String(clicked_id)) {
+//                 console.log("ghghghghghghgh")
+//                 console.log(typeof(clicked_id))
+//                 console.log(clicked_id)
+                
+//                 // let element = document.getel
+//                 console.log(thisButton.parentElement)
+//                 let thisButtonParent = thisButton.parentElement
+//                 thisButtonParent.remove()
+//             }
+//         }
+//         console.log(arrayWishList2) 
+//     }
+// }
 
 
 
@@ -509,9 +601,10 @@ inputWishlistSave.addEventListener("keyup", function(event) {
   });
 
 
+//creates new wishlist (maybe can be used to update wishlist like a save button)
 // needs to be attached to submit new wishlist
 function addWishlist() {
-    let data = {element: "barium"};
+    let data = {"sets": []}
     let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${inputWishlistSave.value}`
     // console.log(String(url))
     fetch(url, {
@@ -531,29 +624,60 @@ function addWishlist() {
 // ************************************** save new wishlist name ***************************************
 
 let wishlistFilter = document.getElementById("wishlistFilter")
-
+// let inputWishlistSave = document.getElementById("inputWishlistSave")
 let h1Wishlist = document.getElementById("h1Wishlist")
 let bricklistNameTitle = document.getElementById("bricklistNameTitle")
 let savedWishlistName = ""
 function saveNewWishlistName() {
-    console.log(inputWishlistSave.value)
-    savedWishlistName = inputWishlistSave.value
-    console.log(savedWishlistName)
-    wishUpDown()
-    bricklistNameTitle.innerHTML = savedWishlistName
-    h1Wishlist.innerHTML = savedWishlistName
-    wishlistFilter.style.display = "none"
-    // divWishlistFooterOuter.className = "divWishlistFooterOuter"
-
-}
+    let promise = new Promise(function (resolve, reject) {
+        z = false
+        if (inputWishlistSave.value === "" ) {
+            alert("Your response is blank. Please try again.")
+            z = true
+            console.log(z + 1)
+            resolve(z)
+        }
+        resolve(z)
+    })
+    let promise2 = new Promise(function (resolve, reject) {    
+        fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                z = false
+                for (const i of result.baskets) {
+                    console.log(i.name)
+                    if (inputWishlistSave.value === i.name) {
+                        z = true
+                        alert("Name already used. Please enter another name.")
+                        console.log(z + 2)
+                        resolve(z)                 
+                    } 
+                }
+                console.log(z)
+                resolve(z)
+            }) 
+    })
+    async function getY() {
+        let y = await promise
+        let x = await promise2
+        if (y === false && x === false) {
+            console.log(inputWishlistSave.value)
+            savedWishlistName = inputWishlistSave.value
+            console.log(savedWishlistName)
+            wishUpDown()
+            bricklistNameTitle.innerHTML = savedWishlistName
+            nameChosenBricklist.innerHTML = savedWishlistName
+            wishlistFilter.style.display = "none"
+            h1Wishlist.style.display = "none"
+            // divWishlistFooterOuter.className = "divWishlistFooterOuter"
+            console.log("truetrue")
+            addWishlist()  
+        }      
+    }
+   getY()                        
+}   
  
-
-
-
-
-
-
-
 
 
 // ************************************** test post ***************************************

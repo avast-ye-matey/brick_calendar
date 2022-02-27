@@ -271,6 +271,7 @@ body {
 }
 
 .divWishlist {
+    display: none;
     position: fixed; 
     bottom: 0px;
     height: 50px;
@@ -476,6 +477,14 @@ body {
     color: #7e7e7e;
     background-color: whitesmoke; 
     border-radius: 90px;
+}
+
+.notHere {
+    display: none;
+}
+
+#nameChosenBricklist {
+    text-align: center;
 }
 
 /* ************************ test!!!!!!!!! ************************ */

@@ -128,3 +128,64 @@ h1Wishlist.addEventListener("click", function() {
     }
     
 })
+
+
+
+
+// ***************** add to wishlist *********************
+
+const themeAdd = document.getElementById("theme")
+const wishlistAdd = document.getElementById("divWishlistSets")
+
+let arrayWishList = []
+function addToWishlist(clicked_id) {   
+    arrayWishList.push(clicked_id)  
+    z = clicked_id
+    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')         
+        .then(function(response) {
+            if (!response.ok) {               
+                throw alert("Error with API. Please refresh page and try again.");
+            }
+            return response.json()
+            })                          
+        .then(data => {
+            for (const i of data.sets) {              
+                if (i.number == z) {
+                    const divSetChildName = document.createElement("div");
+                    const divWrapperChildPrice = document.createElement("div");
+                    const divSetChildImage = document.createElement("img")  
+                    const divSetNumber = document.createElement("div")                       
+
+                    const divWishlistButton = document.getElementById(z)  
+                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com-red.svg"/>';
+                    divWishlistButton.style.border = "none";
+                    divWishlistButton.style.background = "none";                 
+
+                    divSetChildImage.src = i.img
+                    divSetChildImage.style.gridColumn = "1 / 2";
+                    divSetChildImage.style.objectFit = "cover";
+                    divSetChildImage.style.width = "100%";
+                    divSetChildImage.style.maxHeight = "100%";
+                    divSetChildImage.style.marginBottom = "20px";
+                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
+                    wishlistAdd.appendChild(divSetChildImage);
+                    console.log("1")
+
+                    divSetNumber.appendChild(document.createTextNode(i.number));
+                    divSetNumber.style.gridColumn = "2 / 3";                    
+                    wishlistAdd.appendChild(divSetNumber);
+
+                    divSetChildName.appendChild(document.createTextNode(i.name));
+                    divSetChildName.style.gridColumn = "3 / 4";
+                    divSetChildName.style.paddingLeft = "10%";
+                    wishlistAdd.appendChild(divSetChildName);
+                    
+                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
+                    divWrapperChildPrice.style.gridColumn = "4 / 5";
+                    wishlistAdd.appendChild(divWrapperChildPrice);
+                } 
+            }
+        })
+
+    console.log(arrayWishList) 
+}
