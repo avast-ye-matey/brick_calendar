@@ -11,7 +11,7 @@
 }
 
 html, body {
-    height: 100%;
+    /* height: 100%; */
     margin: 0;
 }
 
@@ -20,7 +20,7 @@ body {
     background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);        
     background-repeat: no-repeat;
     background-attachment: fixed;    
-    height: 100%;
+    /* height: 100%; */
 }
 
 h1, h2, h3 {
@@ -97,13 +97,13 @@ body {
 
 /* ************** filter sort by dropdown ******************** */
 
-#divFilterDropdown {
+#divFilterDropdown, #divFilterDropdownW{
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#divFilterDropdown h3 {
+#divFilterDropdown h3, #divFilterDropdown h3 {
     margin: 0;
 }
 
@@ -222,7 +222,7 @@ body {
     left:0;
     width:100%;
     height:100%;
-    z-index: 999;
+    z-index: 1009;
     background: rgba(0, 0, 0, 0.494);
     display: flex;
     align-items: center;
@@ -263,11 +263,12 @@ body {
     /* color: aquamarine; */    
     /* background-color: aquamarine; */       
     border-radius: 40px 40px 0px 0px;     
-    min-height: 100%;
+    min-height: 100vh;
     /* background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);     */
     background: linear-gradient(135deg, rgb(35 117 219) 37%, rgb(123 184 191) 100%);    
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: calc(100% + 100vh);
 }
 
 .divWishlist {
@@ -485,8 +486,65 @@ body {
 
 #nameChosenBricklist {
     text-align: center;
+    /* margin-right: 30px; */
 }
 
+#savedPopup {
+    position: fixed;
+    visibility: hidden;
+    top: 10px; 
+    right: 10px;
+    color: green;
+    background-color: rgb(203, 255, 124);
+    width: 80px;
+    height: 40px;
+    text-align: center;    
+    padding-top: 10px;
+    border-radius: 90px;
+}
+
+#savedPopup.appear {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 10px; opacity: 1;}
+  }
+
+  @keyframes fadeout {
+    from {top: 10px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }
+
+#buttonHome {
+    background: rgb(35, 117, 219);
+    border: none;
+    border-radius: 90px;
+    height: 45px;
+    width: 45px;  
+    /* margin-right: 30px; */
+    /* position: fixed; */
+    /* left: 30px; */
+    /* top: 20px; */
+}
+#buttonHome svg {
+    transform: rotate(270deg);   
+    height: 20px;
+    width: 20px;
+    fill: whitesmoke;
+}
+
+#wishlistHeadline {
+    /* max-width: 90%; */
+
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
 /* ************************ test!!!!!!!!! ************************ */
 
 

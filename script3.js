@@ -305,9 +305,10 @@ function setTest2(i) {
     return z
 }
 
-
+let divFilterDropdownW = document.getElementById("divFilterDropdownW")
 let nameChosenBricklist = document.getElementById("nameChosenBricklist")
 function filterWishlist(selection) {
+    savedPopup()
     nameChosenBricklist.innerHTML = 
     divWishlistFooterOuter.className = "divWishlistFooterOuter"
     const divWishlistSets = document.getElementById("divWishlistSets")
@@ -318,6 +319,7 @@ function filterWishlist(selection) {
     wishlistFilter.style.display = "none"
     h1Wishlist.style.display = "none"
     bricklistNameTitle.innerHTML = z
+    divFilterDropdownW.style.removeProperty("display")
     let x = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${z}`
     fetch(x)
         .then(response => response.json())
@@ -368,8 +370,10 @@ function expandImage(clicked_image) {
     console.log(v)
     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')      
         .then(function(response) {
-            if (!response.ok) {               
+            if (!response.ok) {    
+                minImage()           
                 throw alert("Error with API. Please refresh page and try again.");
+                
             }
             return response.json()
             })                           
@@ -387,9 +391,12 @@ function expandImage(clicked_image) {
 
 
 // ***************** add to wishlist *********************
+const wishlistSets = document.getElementById("divWishlistSets")
+const searchedSets = document.getElementById("divSets")
 
-const themeAdd = document.getElementById("theme")
-const wishlistAdd = document.getElementById("divWishlistSets")
+// wishlist page divwish
+// const themeAdd = document.getElementById("theme")
+// const wishlistAdd = document.getElementById("divWishlistSets")
 //added when click heart from set search
 let arrayWishList2 = []
 function addToWishlist2(clicked_id) {  
@@ -397,24 +404,69 @@ function addToWishlist2(clicked_id) {
     let thisButton = document.getElementById(clicked_id)
     let thisButtonImg = thisButton.children[0]
     let thisButtonImgSrc = thisButtonImg.src
+    wishlistSetsChildren = wishlistSets.children
     // console.log(thisButtonImg.src)
     // console.log(typeof(thisButtonImg.src))
     // console.log(thisButtonImgSrc.includes("red"))
-
-    if (thisButtonImgSrc.includes("red")) {
-        thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com.svg"
-        let thisButtonParent = thisButton.parentElement
-        thisButtonParent.remove()
+    for (let i of wishlistSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            thisButtonParent.remove()
+            
+        }
     }
+
+    // if (thisButtonImgSrc.includes("red")) {
+    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com.svg"
+    //     let thisButtonParent = thisButton.parentElement
+    //     thisButtonParent.remove()
+    // }
     // } else {
     //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com-red.svg"
     // }
 }
 
-function addToWishlist(clicked_id) {
-    let thisButton = document.getElementById(clicked_id)
-    let thisButtonImg = thisButton.children[0]
-    let thisButtonImgSrc = thisButtonImg.src
+// search page //addtowishlist 1 divsets
+function addToWishlist(clicked_id) { 
+    // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+    searchedSetsChildren = searchedSets.children
+    wishlistSetsChildren = wishlistSets.children
+    for (let i of searchedSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            console.log("ololol")
+            let thisButton = i.children[3]
+            let thisButtonImg = thisButton.children[0]
+            let thisButtonImgSrc = thisButtonImg.src
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            // thisButtonParent.remove()
+            console.log(thisButton)
+            console.log(thisButtonImgSrc)
+            if (thisButtonImgSrc.includes("red")) {
+                console.log(thisButtonImg)
+                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"
+                console.log(thisButtonImg.src)
+                addToWishlist3(clicked_id)
+                // addToWishlist3(clicked_id)
+                // console.log(thisButtonImgSrc)
+                // console.log(thisButtonImg)
+                // let thisButtonParent = thisButton.parentElement
+                // thisButtonParent.remove()
+            } else {              
+                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
+                addToWishlist4(clicked_id)
+                // setTest2(i)
+            }
+        }
+            
+    }
+}
     // console.log(thisButtonImg.src)
     // console.log(typeof(thisButtonImg.src))
     // console.log(thisButtonImgSrc.includes("red"))
@@ -422,20 +474,7 @@ function addToWishlist(clicked_id) {
     // console.log(!thisButtonImgSrc.includes("red"))
     // console.log(thisButtonImgSrc.includes("red"))
 
-    if (thisButtonImgSrc.includes("red")) {
-        // console.log(thisButtonImgSrc)
-        thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"
-        addToWishlist3(clicked_id)
-        // console.log(thisButtonImgSrc)
-        // console.log(thisButtonImg)
-        // let thisButtonParent = thisButton.parentElement
-        // thisButtonParent.remove()
-    } else {              
-        thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
-        addToWishlist4(clicked_id)
-        // setTest2(i)
-    }
-}
+  
 
 function addToWishlist3(clicked_id) {
     // let thisButton = document.getElementById(clicked_id)
@@ -670,6 +709,7 @@ function saveNewWishlistName() {
             nameChosenBricklist.innerHTML = savedWishlistName
             wishlistFilter.style.display = "none"
             h1Wishlist.style.display = "none"
+            divFilterDropdownW.style.removeProperty("display")
             // divWishlistFooterOuter.className = "divWishlistFooterOuter"
             console.log("truetrue")
             addWishlist()  
@@ -678,7 +718,13 @@ function saveNewWishlistName() {
    getY()                        
 }   
  
+// saved popup
 
+function savedPopup() {
+    let x = document.getElementById("savedPopup")
+    x.className = "appear"
+    setTimeout(function(){x.className = x.className.replace("appear", ""); }, 3000);
+}
 
 // ************************************** test post ***************************************
 
