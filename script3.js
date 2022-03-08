@@ -1,11 +1,11 @@
 // ***************************** variables *****************************
 
 
-let filterTheme = document.getElementById("filterTheme")
-let filterPrice = document.getElementById("filterPrice")
-let filterDefaultId = document.getElementById("filterDefaultId")
+// let filterTheme = document.getElementById("filterTheme")
+// let filterPrice = document.getElementById("filterPrice")
+// let filterDefaultId = document.getElementById("filterDefaultId")
 
-let arrayWishList = []
+
 
 // *******************  create new bricklist ***********************
 // input for naming new bricklist appear/disappear
@@ -132,6 +132,7 @@ function searchSets() {
 
 // ***************************** set creation shell  *****************************
 
+let arrayWishList = []
 // shell creation for searched sets
 function setTest(i) {
     // document.getElementById("divSets").innerHTML = "";
@@ -179,9 +180,6 @@ function setTest(i) {
     }    
 }    
 
-
-
-
 // ************************* triggering filter order  ***************************************
 
 function filterThemeOrder(selection) {
@@ -206,7 +204,6 @@ function filterThemeOrder(selection) {
 function filterPriceOrder(selection) {
     let arrayPrice = []
     const priceClass = document.getElementsByClassName("sets");
-
     // priceClass.dataset.price.sort(function(a,b){return a - b});
     // console.log(priceClass.dataset.price)
     // const result = priceClass.filter(price => price)
@@ -231,14 +228,7 @@ function filterPriceOrder(selection) {
     }
 }
 
-
-
-
-
-
 // ***************** wishlist tab top/bottom *********************
-
-
 
 const buttonWishUpDown = document.getElementById("buttonWishUpDown")
 const mainSets = document.getElementById("mainSets")
@@ -272,8 +262,7 @@ fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18
         for (const i of result.baskets) {
             let newOption = document.createElement("option")
             newOption.innerHTML = i.name
-            filterChooseWishlist.appendChild(newOption)
-                        
+            filterChooseWishlist.appendChild(newOption)                        
         }
     }) 
 
@@ -391,9 +380,9 @@ function expandImage(clicked_image) {
 
 
 // ***************** add to wishlist *********************
+
 const wishlistSets = document.getElementById("divWishlistSets")
 const searchedSets = document.getElementById("divSets")
-
 // wishlist page divwish
 // const themeAdd = document.getElementById("theme")
 // const wishlistAdd = document.getElementById("divWishlistSets")
@@ -414,19 +403,9 @@ function addToWishlist2(clicked_id) {
             let thisButton = i.children[3]
             let thisButtonParent = thisButton.parentElement
             // console.log(thisButtonParent)
-            thisButtonParent.remove()
-            
+            thisButtonParent.remove()            
         }
     }
-
-    // if (thisButtonImgSrc.includes("red")) {
-    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com.svg"
-    //     let thisButtonParent = thisButton.parentElement
-    //     thisButtonParent.remove()
-    // }
-    // } else {
-    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com-red.svg"
-    // }
 }
 
 // search page //addtowishlist 1 divsets
@@ -467,15 +446,7 @@ function addToWishlist(clicked_id) {
             
     }
 }
-    // console.log(thisButtonImg.src)
-    // console.log(typeof(thisButtonImg.src))
-    // console.log(thisButtonImgSrc.includes("red"))
-
-    // console.log(!thisButtonImgSrc.includes("red"))
-    // console.log(thisButtonImgSrc.includes("red"))
-
-  
-
+ 
 function addToWishlist3(clicked_id) {
     // let thisButton = document.getElementById(clicked_id)
     // let thisButtonImg = thisButton.children[0]
@@ -496,7 +467,6 @@ function addToWishlist3(clicked_id) {
     }
 }
 
-
 function addToWishlist4(clicked_id) {
     const wishlistSets = document.getElementById("divWishlistSets")
     const searchedSets = document.getElementById("divSets")
@@ -513,103 +483,13 @@ function addToWishlist4(clicked_id) {
     }
 }
 
-
-
-        
-        // arrayWishList2.push(clicked_id)  
-        // z = clicked_id
-        // console.log(z.src)
-        // console.log(clicked_id)
-
-        // fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')         
-        //     .then(function(response) {
-        //         if (!response.ok) {               
-        //             throw alert("Error with API. Please refresh page and try again.");
-        //         }
-        //         return response.json()
-        //         })                          
-        //     .then(data => {
-        //         for (const i of data.sets) {              
-        //             if (i.number == z) {
-        //                 setTest2(i)                    
-        //             } 
-        //         }
-        //     })
-
-        
-
-//         // console.log(clicked_id)
-//         // console.log(arrayWishList)
-//         for (const i of arrayWishList) {
-//             // console.log(clicked_id)
-//             // console.log(i)
-//             if (String(i) === String(clicked_id)) {
-//                 console.log("ghghghghghghgh")
-//                 console.log(typeof(clicked_id))
-//                 console.log(clicked_id)
-                
-//                 // let element = document.getel
-//                 console.log(thisButton.parentElement)
-//                 let thisButtonParent = thisButton.parentElement
-//                 thisButtonParent.remove()
-//             }
-//         }
-//         console.log(arrayWishList2) 
-//     }
-// }
-
-
-
-// ***************************** countdown timer *****************************
-
-
-
-// ***************************** test area *****************************
-
-// const dateTest = document.getElementsById("dateTest");
-function dateTest(iRd, release) {
-    // Set the date we're counting down to
-    var countDownDate = new Date(iRd).getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get today's date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        
-        
-        release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
-
-        // If the count down is finished, write some text
-        if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-        } 
-    }, 1000);
-    // console.log(p)
-}
-
-
-
 // ************************************** Wishlist Buttons ***************************************
+
 let lookupWishlist = document.getElementById("buttonLookUpWishlist")
 let saveWishlist = document.getElementById("buttonSaveToWishlist")
 
 let inputWishlistSearch = document.getElementById("inputWishlistSearch")
 let inputWishlistSave = document.getElementById("inputWishlistSave")
-
-
 
 let getTest = document.getElementById("getTest")
 
@@ -658,7 +538,6 @@ function addWishlist() {
         }         
     });
 }
-
 
 // ************************************** save new wishlist name ***************************************
 
@@ -719,65 +598,46 @@ function saveNewWishlistName() {
 }   
  
 // saved popup
-
 function savedPopup() {
     let x = document.getElementById("savedPopup")
     x.className = "appear"
     setTimeout(function(){x.className = x.className.replace("appear", ""); }, 3000);
 }
 
-// ************************************** test post ***************************************
+// ***************************** test area *****************************
 
-let postTest = document.getElementById("postTest")
+// ***************************** countdown timer *****************************
 
-function buttonGetTest() {
-    // let data = {element: "barium"};    
-    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
-        .then(response => response.json())
-        .then(result => {
-            console.log(result)
-            for (const i of result.baskets) {
-                console.log(i.name)
-            }
-        }) 
+// const dateTest = document.getElementsById("dateTest");
+function dateTest(iRd, release) {
+    // Set the date we're counting down to
+    var countDownDate = new Date(iRd).getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        
+        
+        release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+        } 
+    }, 1000);
+    // console.log(p)
 }
-
-
-function buttonPostTest() {
-
-    let data = {element: "barium"};
-
-    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/YOUR_BASKET_NAME", {
-        method: "POST",
-        headers: {'Content-Type': 'application/json'}, 
-        body: JSON.stringify(data)
-    }).then(res => {
-        console.log("Request complete! response:", res);
-    });
-
-}
-
-
-       
-        // .then(basketsGet => console.log(basketsGet.json()))
-        // method: "GET",
-        // headers: {'Content-Type': 'application/json'}, 
-        // body: JSON.stringify(data)
-    // }).then(res => {
-        // console.log(res);
-    // });
-    
-    
-
-
-
-
-
-
-// curl --location --request POST 'https://getpantry.cloud/apiv1/pantry/YOUR_PANTRY_ID/basket/YOUR_BASKET_NAME' \
-// --header 'Content-Type: application/json' \
-// --data-raw '{
-// 	"derp": "flerp123",
-// 	"testPayload": true,
-// 	"keysLength": 3
-// }'

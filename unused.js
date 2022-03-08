@@ -189,3 +189,126 @@ function addToWishlist(clicked_id) {
 
     console.log(arrayWishList) 
 }
+
+
+
+    // if (thisButtonImgSrc.includes("red")) {
+    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com.svg"
+    //     let thisButtonParent = thisButton.parentElement
+    //     thisButtonParent.remove()
+    // }
+    // } else {
+    //     thisButtonImgSrc = "SVG/heart-shapes-svgrepo-com-red.svg"
+    // }
+
+
+       // console.log(thisButtonImg.src)
+    // console.log(typeof(thisButtonImg.src))
+    // console.log(thisButtonImgSrc.includes("red"))
+
+    // console.log(!thisButtonImgSrc.includes("red"))
+    // console.log(thisButtonImgSrc.includes("red"))
+
+  
+
+
+        
+        // arrayWishList2.push(clicked_id)  
+        // z = clicked_id
+        // console.log(z.src)
+        // console.log(clicked_id)
+
+        // fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')         
+        //     .then(function(response) {
+        //         if (!response.ok) {               
+        //             throw alert("Error with API. Please refresh page and try again.");
+        //         }
+        //         return response.json()
+        //         })                          
+        //     .then(data => {
+        //         for (const i of data.sets) {              
+        //             if (i.number == z) {
+        //                 setTest2(i)                    
+        //             } 
+        //         }
+        //     })
+
+        
+
+//         // console.log(clicked_id)
+//         // console.log(arrayWishList)
+//         for (const i of arrayWishList) {
+//             // console.log(clicked_id)
+//             // console.log(i)
+//             if (String(i) === String(clicked_id)) {
+//                 console.log("ghghghghghghgh")
+//                 console.log(typeof(clicked_id))
+//                 console.log(clicked_id)
+                
+//                 // let element = document.getel
+//                 console.log(thisButton.parentElement)
+//                 let thisButtonParent = thisButton.parentElement
+//                 thisButtonParent.remove()
+//             }
+//         }
+//         console.log(arrayWishList2) 
+//     }
+// }
+
+
+
+// ************************************** test post ***************************************
+
+let postTest = document.getElementById("postTest")
+
+function buttonGetTest() {
+    // let data = {element: "barium"};    
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            for (const i of result.baskets) {
+                console.log(i.name)
+            }
+        }) 
+}
+
+
+function buttonPostTest() {
+
+    let data = {element: "barium"};
+
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/YOUR_BASKET_NAME", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+    }).then(res => {
+        console.log("Request complete! response:", res);
+    });
+
+}
+
+
+       
+        // .then(basketsGet => console.log(basketsGet.json()))
+        // method: "GET",
+        // headers: {'Content-Type': 'application/json'}, 
+        // body: JSON.stringify(data)
+    // }).then(res => {
+        // console.log(res);
+    // });
+    
+    
+
+
+
+
+
+
+// curl --location --request POST 'https://getpantry.cloud/apiv1/pantry/YOUR_PANTRY_ID/basket/YOUR_BASKET_NAME' \
+// --header 'Content-Type: application/json' \
+// --data-raw '{
+// 	"derp": "flerp123",
+// 	"testPayload": true,
+// 	"keysLength": 3
+// }'
