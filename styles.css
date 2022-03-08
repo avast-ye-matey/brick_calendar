@@ -5,45 +5,40 @@
     src: url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 }
 
-
-
 /* *********************** body, html, headers ************** */
-
-html {
-    height: 100%;
-}
-body {   
-    font-family: Open Sans, sans-serif;    
-    background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);    
-    height: auto;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    padding-bottom: 100px;
+* {
+    box-sizing: border-box;
 }
 
-h1, h2, h3 {
-    font-weight: normal;
-    /* color: #000000; */
-    color: whitesmoke;
-}
-
-h2 {
-    margin: 30px  0px 20px;
-    text-align: center;
-    font-size: 2rem;
-}
-
-body {
+html, body {   
     margin: 0;
 }
 
+body {   
+    font-family: Open Sans, sans-serif;    
+    background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);        
+    background-repeat: no-repeat;
+    background-attachment: fixed;       
+}
 
+h1, h2, h3 {
+    font-weight: normal;   
+    color: whitesmoke;
+}
 
-/* ************************ search bar ********************** */
+h2 {   
+    padding-top: 30px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* ************************ search bar for new sets ********************** */
 
 #formSearch {
     display: flex;   
-    margin-bottom: 10px;       
+    margin-bottom: 30px;       
     margin-left: 35px;
     margin-right: 35px;
 }
@@ -54,15 +49,29 @@ body {
     border-radius: 90px 0px 0px 90px;
     border: 0px;   
     width: 100%;    
+    color: #838383;
 }
 
 ::placeholder {
     color: silver;
 }
 
+#inputSearch:focus { 
+    outline: 5px solid silver;   
+    /* outline: none;    */
+}  
+
+#buttonSearch:focus {
+    outline: none;
+}
+
 #formSearch img {
     width: 50%;
     padding: 5px 0px 5px 0px;    
+}
+
+#saveNewWishlist svg {
+    fill: #838383;
 }
 
 #buttonSearch {   
@@ -74,152 +83,59 @@ body {
 }
 
 
+/* ************** filter sort by dropdown ******************** */
 
-/* ************** filter button and form ******************** */
-
-#divButtonFilter {
-    display: flex;    
-    /* margin-bottom: 30px;     */
-    justify-content: center;               
-}
-
-#buttonFilter {
-    display: inline-flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 30px;    
-    width: 30%;   
-    font-size: 1.25rem;
-    letter-spacing: 1px;    
-    color: #b6b6b6;    
-    border: none;  
-    border-radius: 45px;
-    background: #efefef;
-}
-
-#buttonFilter img {    
-    padding-left: 15%;   
-    padding-top: 5%;
-    padding-bottom: 5%;
-    height: 90%;    
-}
-
-#buttonFilterForm {        
-    grid-template-columns: .5fr 30fr .5fr 30fr .5fr 30fr;
-    align-items: center;   
-    background: rgba(255, 255, 255, 0.62);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.9px);
-    -webkit-backdrop-filter: blur(7.9px);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 10px;
-    margin: 0px 20px;
-}
-
-#buttonFilterForm input[type='checkbox'] {
-    height: 30px;   
-}
-
-#buttonFilterForm input[type='button'] {
-    height: 30px;
-    width: inherit;
-    grid-column-start: 6;    
-    margin: 0px 20px;    
-}
-
-
-
-/* ************************** hr *************************** */
-
-
-/* #hrMainBottom, #hrMainTop {
-    height: 12px;
-    border: 0;
-}
-
-#hrMainTop {
-    box-shadow: inset 0 -12px 12px -12px rgba(0, 0, 0, 0.5);
-}
-
-#hrMainBottom {
-    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
-} */
-
-
-
-/* ************************ example set ******************** */
-
-
-#divMainExampleSet {
-    position: sticky;
-    top: 0;
-    z-index: 997;
-    background: linear-gradient(315deg, rgba(160,186,221,1) 37%, rgba(34,180,195,1) 100%);
-    box-shadow: 0 0px 20px 0px rgba(0, 0, 0, 0.5);
-    color: whitesmoke;
-    font-size: .75rem;
-    margin-top: 50px;
-}
-
-#divExampleSet {    
-    display: grid;    
-    /* grid-template-columns: 1.5fr .75fr 2fr 1fr .75fr; */
-    grid-template-columns: 3fr 3fr 1.5fr 1.5fr;
-    max-width: 100vw;    
-    margin: 0px 20px 20px 20px;
+#divFilterDropdown, #divFilterDropdownW{
+    display: flex;
+    justify-content: center;
     align-items: center;
-    justify-items: center;    
 }
 
-#divExampleImg {
-    grid-column: 1 / 2;
-    /* object-fit: cover; */
-    width: 55%;
-    /* max-height: 100%;     */
-    /* height: 50%; */
+#divFilterDropdown h3, #divFilterDropdown h3 {
+    margin: 0;
 }
 
-/* #divExampleSetNumber {
-    grid-column: 2 / 3;
-} */
-
-#divExampleSetName {
-    grid-column: 2 / 3;
+#filterTheme, #filterPrice, #filterChooseWishlist {
+    color: #7e7e7e;
+    background-color: whitesmoke; 
+    border-radius: 90px;
+    width: 100px;
+    padding: 5px;
+    border: none;
 }
 
-#divExamplePrice {
-    grid-column: 3 / 4;
+#filterTheme, #filterChooseWishlist {
+    margin: 0px 10px;    
 }
 
-#divExampleAddToWishlist {
-    grid-column: 4 / 5;    
+#filterTheme:focus, #filterPrice:focus {
+    outline: 5px solid silver; 
 }
-
 
 
 /* *********************** sets **************************** */
 
+
+.mainSets {
+    display: none;    
+}
+
 #divSets {
+    padding-bottom: 60px;
+}
+
+.sets {
     display: grid;    
-    grid-template-columns: 3fr 3fr 1.5fr 1.5fr;
+    /* grid-template-columns: 3fr 3fr 1.5fr 1.5fr; */
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     max-width: 100vw;
     align-items: center;    
     justify-items: center;
-    padding: 20px 0px;
+    padding: 5px 5px;
     margin: 20px;
-    align-content: space-evenly;
-    row-gap: 20px;
-    font-size: .75rem;
-
-    /* From https://css.glass */
-    /* background: rgba(255, 255, 255, 0.07);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.11); */
-
+    align-content: space-evenly;    
+    font-size: .9rem;
     /* From https://css.glass */
     background: rgba(255, 255, 255, 0.27);
     border-radius: 16px;
@@ -229,23 +145,46 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-#divSets img {
+#setImg {
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
     object-fit: cover;
-    width: 100%;
+    width: 75%;
+    max-height: 100%;
+}
+
+.name {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+    padding-left: 10%;
+}
+
+.price {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3
+}   
+
+#wishButtonImg {
+    border: none;
+    background: none;    
+    object-fit: cover;
+    width: 90%;
     max-height: 100%;   
 }
 
-
-
-
+.divWishlistButton {
+    object-fit: cover;
+    width: 90%;
+    max-height: 100%;  
+    grid-column: 4 / 5;
+    grid-row: 2 / 3; 
+}
 
 /* ************************* theme ************************** */
 
 #theme {
     display: grid;
 }
-
-
 
 /* *********************** expand image ********************* */
 #divImgExpand {    
@@ -254,7 +193,7 @@ body {
     left:0;
     width:100%;
     height:100%;
-    z-index: 999;
+    z-index: 1009;
     background: rgba(0, 0, 0, 0.494);
     display: flex;
     align-items: center;
@@ -267,55 +206,102 @@ body {
 
 /* ************************ wishlist ************************ */
 
-#divWishlist {
+#buttonWishUpDown {   
+    z-index: 1000;
+    border-radius: 90px;
+    border: none;
+    height: 45px;
+    width: 45px;      
+    background: none;    
+}
+
+#buttonWishUpDown svg{
+    height: 20px;
+    width: 20px;
+    fill: whitesmoke;  
+}
+
+#smooth {
+    min-height: 100%;
+    /* position: relative; */
+}
+
+.wishlist {
+        
+    border-radius: 40px 40px 0px 0px;     
+    min-height: 100vh;    
+    background: linear-gradient(135deg, rgb(35 117 219) 37%, rgb(123 184 191) 100%);    
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: calc(100% + 100vh);
+}
+
+.divWishlist {
+    display: none;
+    position: fixed; 
+    bottom: 0px;
     height: 50px;
     width: 100vw;    
-    left: 0px;
-    bottom: 0px;   
-    background-color: aquamarine;
-    padding-bottom: 25px;  
+    left: 0px;    
+    background-color: aquamarine;    
     border-radius: 40px 40px 0px 0px;  
     box-shadow: 0px -1px 13px 0px #4a6060;
     z-index: 998;     
 }
 
-#divWishlistSets {
-    display: grid;    
-    grid-template-columns: 3fr 3fr 1.5fr 1.5fr;
-    max-width: 100vw;
-    height: 80%;
-    align-items: center;    
-    justify-items: center;    
-    margin: 20px;   
-    align-content: space-evenly;
-    row-gap: 20px;
-    font-size: .75rem;    
-    overflow-y: scroll;
-
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.62);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(7.9px);
-    -webkit-backdrop-filter: blur(7.9px);
-    border: 1px solid rgba(255, 255, 255, 0.18);    
+#divWishlistSets {       
+    padding-bottom: 60px;   
 }
 
 #divWishlistTitle h1 {
     text-align: center; 
+    margin: 0px;
+    padding: 60px 20px 40px;
 }
 
-#divWishlistFooterOuter {
-    overflow: hidden;
-    position: relative;
+.divWishlistFooterOuter {
+    display: flex;    
+    height: 60px;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;    
+    z-index: 1004;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aquamarine; */   
+    border-radius: 40px 40px 0px 0px;  
+    box-shadow: 0px -1px 13px 0px #4a6060;
+    background: linear-gradient(315deg, rgb(35 117 219) 37%, rgb(123 184 191) 100%);        
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-#divWishlistFooter {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    bottom: -100px;   
-    background-color: blue;    
+.divWishlistFooterOuter2 {
+    display: flex;    
+    height: 60px;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;       
+    z-index: 1004;
+    align-items: center;
+    justify-content: center;    
+    background: transparent;   
+    /* transform: rotate(180deg);     */
+}
+
+.divWishlistFooterOuter2 svg {    
+    transform: rotate(180deg);    
+}
+
+#divWishlistFooterOuter h1 {
+    font-size: 1.5rem;   
+    margin-right: 20px;    
+    color: whitesmoke;    
+}
+
+.divWishlistButton {
+    border: none;
+    background: none;
 }
 
 #stop {
@@ -324,28 +310,153 @@ body {
 }
 
 
-
-/* ************************ test!!!!!!!!! ************************ */
-
-
-.img {
-    grid-column: 1 / 2;
-    object-fit: cover;
-    width: 75%;
-    max-height: 100%;
+#wishlistFilter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 40%;
+    bottom: 50%;
 }
 
-.name {
-    grid-column: 2 / 3;
-    padding-left: 100%;
+
+#wlH3 {  
+    margin: 0;    
+} 
+
+#sss {
+    display: flex;
+    justify-content: center;
+    /* padding-top: 30px; */
+    /* margin-bottom: 10px; */
 }
 
-.price {
-    grid-column: 3 / 4;
-}   
 
-.wishButton {
+#saveNewWishlist {
+    color: whitesmoke;
+    font-weight: normal;
+    text-align: center;
+    font-size: 1.17rem;
+}
+
+
+#saveNewWishlist svg {
+    height: 30px;
+} 
+
+/* ************************ name new wishlist ************************ */
+
+#saveNewWishlist {
+    display: flex;   
+    margin: 30px 35px;
+    margin-bottom: 30px;       
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+#saveNewWishlist input {    
+    font-size: .90rem;       
+    padding-left: 10px;
+    border-radius: 90px 0px 0px 90px;
+    border: 0px;   
+    width: 100%;    
+    color: #838383;
+}
+
+::placeholder {
+    color: silver;
+}
+
+#saveNewWishlist:focus { 
+    outline: 5px solid silver;   
+    /* outline: none;    */
+}  
+
+#buttonLookUpWishlist2:focus {
+    outline: none;
+}
+
+#saveNewWishlist svg {
+    width: 50%;
+    padding: 5px 0px 5px 0px;    
+    fill: #838383;
+}
+
+#buttonLookUpWishlist2 {   
+    grid-column: 3 / 4;   
+    padding: 0;
+    border-radius: 0px 90px 90px 0px;
+    border: 0px;   
+    width: 100px;     
+}
+
+#create {
+    /* border-radius: 30px; */
     border: none;
-    background: none;
-    grid-column: 4 / 5;
+    padding: 10px;
+    /* color: silver; */
+    color: #7e7e7e;
+    background-color: whitesmoke; 
+    border-radius: 90px;
+}
+
+.notHere {
+    display: none;
+}
+
+#nameChosenBricklist {
+    text-align: center;
+    /* margin-right: 30px; */
+}
+
+#savedPopup {
+    position: fixed;
+    visibility: hidden;
+    top: 10px; 
+    right: 10px;
+    color: green;
+    background-color: rgb(203, 255, 124);
+    width: 80px;
+    height: 40px;
+    text-align: center;    
+    padding-top: 10px;
+    border-radius: 90px;
+}
+
+#savedPopup.appear {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {top: 0; opacity: 0;}
+    to {top: 10px; opacity: 1;}
+  }
+
+  @keyframes fadeout {
+    from {top: 10px; opacity: 1;}
+    to {top: 0; opacity: 0;}
+  }
+
+#buttonHome {
+    background: rgb(35, 117, 219);
+    border: none;
+    border-radius: 90px;
+    height: 45px;
+    width: 45px;     
+}
+
+#buttonHome svg {
+    transform: rotate(270deg);   
+    height: 20px;
+    width: 20px;
+    fill: whitesmoke;
+}
+
+#wishlistHeadline {  
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
 }

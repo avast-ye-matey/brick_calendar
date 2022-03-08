@@ -1,231 +1,347 @@
-// ***************************** search button alert *****************************
-
-function buttonSearchS() {
-    alert("Sorry, the search function does not currently work. Thank you for your understanding.");
-}
-
 // ***************************** variables *****************************
 
-// var sheet = document.createElement('style')
 
-const brickheadz = document.getElementById("brickheadz");
-const disney = document.getElementById("disney");
-const ideas = document.getElementById("ideas");
-
-// const divWrapperName = document.getElementById("divName");
-// const divWrapperChildName = document.createElement("div");
-// const divWrapperChildPrice = document.createElement("div");
-// const divWrapperSetChildImage = document.createElement("img")
+// let filterTheme = document.getElementById("filterTheme")
+// let filterPrice = document.getElementById("filterPrice")
+// let filterDefaultId = document.getElementById("filterDefaultId")
 
 
-// ***************************** reveal filter form  *****************************
 
-// const revealForm = document.getElementById("buttonFilterForm")
-const reveal = document.getElementById("buttonFilter");
-reveal.addEventListener("click", function() {
-    if (revealForm.style.display === "grid") {
-        revealForm.style.display = "none";
-    } else {
-        revealForm.style.display = "grid";
-    }  
+// *******************  create new bricklist ***********************
+// input for naming new bricklist appear/disappear
+
+let create = document.getElementById("create")
+
+function createWishlist() { 
+    let saveNewWishlist = document.getElementById("saveNewWishlist")    
+    if (saveNewWishlist.style.display === "none") {        
+        saveNewWishlist.style.display = ""
+    } 
+}
+
+// *******************  hit enter on input field ***********************
+//hitting enter during set search triggers button click for search
+
+var inputSearch = document.getElementById("inputSearch");
+
+inputSearch.addEventListener("keyup", function(event) { 
+  if (event.key === "Enter") {   
+    event.preventDefault();    
+    document.getElementById("buttonSearch").click();
+  }
 });
 
 
+// ***************************** searchbar *****************************
 
-// ***************************** submit filter form button / create sets *****************************
-const revealForm = document.getElementById("buttonFilterForm")
-function submitFilter() {
+function searchSets() {    
     document.getElementById("divSets").innerHTML = "";
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
-        .then(data => {
-            for (const i of data.sets) {
-                const divWrapperSets = document.getElementById("divSets");
-                divWrapperSets.style.visibility = "";
+    let titleArray = []
+    let themeArray = [] 
+    // let numberArray = []   
+    let input = document.getElementById('inputSearch').value.toLowerCase();    
+    // let y = document.getElementById("demoSearch")
+    // y.innerHTML = ""
+    let r = document.getElementById("filterTheme").children.length
+    console.log(input)
+    if (input === "") {
+        alert("Search bar blank. Please input your search.")
+    } else {    
+        if (r > 1) {
+            filterTheme.innerHTML = "";
+            let option = document.createElement("option")
+            option.innerHTML = "Theme"
+            filterTheme.appendChild(option)
+        }        
+        let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+            .then(function(response) {
+                if (!response.ok) {               
+                    throw alert("Error with API. Please refresh page and try again.");
+                }
+                return response.json()
+            })                         
+            .then(data => {
+                for (const i of data.sets) {  
+                    let inputLength = input.length                                             
+                    if (i.name.toLowerCase().includes(input)) {                                      
+                        titleArray.push(i.name)                   
+                        themeArray.push(i.theme)                    
+                    } else {                                                          
+                        while (inputLength > 3) {                        
+                            --inputLength
+                            if (!i.name.toLowerCase().includes(input.slice(0, inputLength))) {                             
+                            } else {                           
+                                titleArray.push(i.name)
+                                themeArray.push(i.theme)
+                            }                          
+                        }
+                    }   
+                    if (i.theme.toLowerCase().includes(input)) {
+                        titleArray.push(i.name)
+                        themeArray.push(i.theme)
+                    }  
+                    // console.log(i.number)
+                    // console.log(input)
+                    // console.log(i.number === input)
+                    if (i.number.toString() === input) {
+                        titleArray.push(i.name)
+                        themeArray.push(i.theme)
+                    }                                                                                    
+                }     
+                console.log(Array.isArray(titleArray))
+                console.log(themeArray)
+                if (titleArray - themeArray === 0) {                    
+                    alert("Couldn't find a set mathing your search. Please try again.")
+                } else {
+                    let titleSet = new Set(titleArray)           
+                    let themeSet = new Set(themeArray)
+                    // let numberSet = new Set(numberArray)
+                    themeSet.forEach((value) => {                               
+                        let theme = document.createElement("option")
+                        theme.innerHTML = value
+                        filterTheme.appendChild(theme)
+                    })           
+                    // titleSet.forEach((value) => {                              
+                        // let text = document.createElement("p")
+                        // text.innerHTML = value               
+                        // y.appendChild(text)
+                    // console.log(titleSet)
+                    titleSet = Array.from(titleSet);              
+                    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+                            .then(function(response) {
+                                if (!response.ok) {                        
+                                    throw alert("Error with API. Please refresh page and try again.");
+                                }
+                                return response.json()
+                                })                        
+                            .then(data => {
+                                for (const i of data.sets) {                                
+                                    for (const z of titleSet) {                                    
+                                        if (i.name === z) {                                                                                                                  
+                                            setTest(i)
+                                        }  
+                                    }                                                                
+                                }
+                            })
+                }    
                 
-                if (brickheadz.checked === true && i.theme === "BrickHeadz") {
-                    
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")    
-                    const divWishlistButton = document.createElement("button")   
-                                                           
-                    divSetChildImage.setAttribute("src", `${i.img}`);
-                    divSetChildImage.style.gridColumn = "1 / 2";
-                    divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "75%";
-                    divSetChildImage.style.maxHeight = "100%";                    
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
-                    divWrapperSets.appendChild(divSetChildImage);
-                    
-                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
-                    divSetChildName.style.gridColumn = "2 / 3";
-                    divSetChildName.style.paddingLeft = "10%";
-                    divWrapperSets.appendChild(divSetChildName);
-                    
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "3 / 4";
-                    divWrapperSets.appendChild(divWrapperChildPrice);
+            })  
+    } 
+}
+      
 
-                    // divWishlistButton.appendChild(document.createTextNode("+"));
-                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
-                    divWishlistButton.style.border = "none";
-                    divWishlistButton.style.background = "none";
-                    
-                    // divWishlistButton.dataset.id = `${i.number}`;    
-                    divWishlistButton.setAttribute("id", `${i.number}`)                
-                    divWishlistButton.style.gridColumn = "4 / 5";
-                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
-                    divWrapperSets.appendChild(divWishlistButton);
-                };                
-                // console.log(i.theme)
+// ***************************** set creation shell  *****************************
 
-                if (disney.checked === true && i.theme === "Disney" ) {
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")    
-                    const divWishlistButton = document.createElement("button")   
-                                                           
-                    divSetChildImage.setAttribute("src", `${i.img}`);
-                    divSetChildImage.style.gridColumn = "1 / 2";
-                    divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "75%";
-                    divSetChildImage.style.maxHeight = "100%";                    
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
-                    divWrapperSets.appendChild(divSetChildImage);
-                    
-                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
-                    divSetChildName.style.gridColumn = "2 / 3";
-                    divSetChildName.style.paddingLeft = "10%";
-                    divWrapperSets.appendChild(divSetChildName);
-                    
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "3 / 4";
-                    divWrapperSets.appendChild(divWrapperChildPrice);
+let arrayWishList = []
+// shell creation for searched sets
+function setTest(i) {
+    // document.getElementById("divSets").innerHTML = "";
+    console.log("howdy")
+    const divWrapperSets = document.getElementById("divSets");
+    divWrapperSets.style.visibility = "";
+    const divSet = document.createElement("div");
+    divSet.setAttribute("class", "sets") 
+    // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+    divSet.dataset.theme = `${i.theme}`      
+    divSet.dataset.price = `${i.price}` 
+    let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
+                    <div class="name">${i.number} - ${i.name}</div>
+                    <div class="price">$${i.price}</div>                    
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
+                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
+    let htmlSegmentRed = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
+                    <div class="name">${i.number} - ${i.name}</div>
+                    <div class="price">$${i.price}</div>                    
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
+                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
+    console.log(arrayWishList)
+    if (arrayWishList.includes(i.number)) {
+        console.log("gotcha")
+        divSet.innerHTML = htmlSegmentRed;    
+        // let iRd = `${i.releaseDate}`       
+        let z =  divWrapperSets.appendChild(divSet);   
+        // const release = document.getElementById(`${i.releaseDate}2`);
+        // console.log(release)
+        // release.innerHTML = dateTest(iRd, release);    
+        console.log(z)
+        // return z
+    } else {
+        console.log("dont gotcha")
+        divSet.innerHTML = htmlSegment;    
+        // let iRd = `${i.releaseDate}`       
+        let z =  divWrapperSets.appendChild(divSet);   
+        // const release = document.getElementById(`${i.releaseDate}2`);
+        // console.log(release)
+        // release.innerHTML = dateTest(iRd, release);    
+        console.log(z)
+        // return z
+    }    
+}    
 
-                    divWishlistButton.appendChild(document.createTextNode("+"));
-                    // divWishlistButton.dataset.id = `${i.number}`;    
-                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
-                    divWishlistButton.style.border = "none";
-                    divWishlistButton.style.background = "none";
+// ************************* triggering filter order  ***************************************
 
-                    divWishlistButton.setAttribute("id", `${i.number}`)                
-                    divWishlistButton.style.gridColumn = "4 / 5";
-                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
-                    divWrapperSets.appendChild(divWishlistButton);
+function filterThemeOrder(selection) {
+    const themeClass = document.getElementsByClassName("sets");
+    // console.log(selection.options[selection.selectedIndex].text)
+    for (const i of themeClass) {
+        // console.log(i.dataset.theme)
+        console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+        // console.log(String(selection.options[selection.selectedIndex].text))
+        if (String(selection.options[selection.selectedIndex].text) === "Theme") {
+            i.style.display = "";
+        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
+            // console.log(i.dataset.theme) 
+            // console.log(i)
+            i.style.display = "none";
+        } else {
+            i.style.display = "";
+        }
+    }
+}
 
-                    // const divSetChildName = document.createElement("div");
-                    // const divWrapperChildPrice = document.createElement("div");
-                    // const divWrapperSetChildImage = document.createElement("img")       
-                                                           
-                    // divWrapperSetChildImage.src = i.img
-                    // divWrapperSetChildImage.style.gridColumn = "2 / span 1";
-                    // divWrapperSetChildImage.style.objectFit = "cover";
-                    // divWrapperSetChildImage.style.width = "100%";
-                    // divWrapperSetChildImage.style.maxHeight = "100%";
-                    // divWrapperSetChildImage.style.marginBottom = "20px";
-                    // divWrapperSets.appendChild(divWrapperSetChildImage);
-
-                    // divSetChildName.appendChild(document.createTextNode(i.name));
-                    // divSetChildName.style.gridColumn = "4 / span 1";
-                    // divSetChildName.style.paddingLeft = "10%";
-                    // divWrapperSets.appendChild(divSetChildName);
-                    
-                    // divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    // divWrapperChildPrice.style.gridColumn = "5 / span 1";
-                    // divWrapperSets.appendChild(divWrapperChildPrice);
-                };
-
-                if (ideas.checked === true && i.theme === "Ideas" ) {
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")    
-                    const divWishlistButton = document.createElement("button")   
-                                                           
-                    divSetChildImage.setAttribute("src", `${i.img}`);
-                    divSetChildImage.style.gridColumn = "1 / 2";
-                    divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "75%";
-                    divSetChildImage.style.maxHeight = "100%";                    
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");                    
-                    divWrapperSets.appendChild(divSetChildImage);
-                    
-                    divSetChildName.appendChild(document.createTextNode(i.number + " - " + i.name));
-                    divSetChildName.style.gridColumn = "2 / 3";
-                    divSetChildName.style.paddingLeft = "10%";
-                    divWrapperSets.appendChild(divSetChildName);
-                    
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "3 / 4";
-                    divWrapperSets.appendChild(divWrapperChildPrice);
-
-                    divWishlistButton.appendChild(document.createTextNode("+"));
-                    // divWishlistButton.dataset.id = `${i.number}`;    
-                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com.svg"/>';
-                    divWishlistButton.style.border = "none";
-                    divWishlistButton.style.background = "none";
-
-                    divWishlistButton.setAttribute("id", `${i.number}`)                
-                    divWishlistButton.style.gridColumn = "4 / 5";
-                    divWishlistButton.setAttribute("onclick", "addToWishlist(this.id);")
-                    divWrapperSets.appendChild(divWishlistButton);
-
-                    // const divSetChildName = document.createElement("div");
-                    // const divWrapperChildPrice = document.createElement("div");
-                    // const divWrapperSetChildImage = document.createElement("img")       
-                                                           
-                    // divWrapperSetChildImage.src = i.img
-                    // divWrapperSetChildImage.style.gridColumn = "2 / span 1";
-                    // divWrapperSetChildImage.style.objectFit = "cover";
-                    // divWrapperSetChildImage.style.width = "100%";
-                    // divWrapperSetChildImage.style.maxHeight = "100%";
-                    // divWrapperSetChildImage.style.marginBottom = "20px";
-                    // divWrapperSets.appendChild(divWrapperSetChildImage);
-
-                    // divSetChildName.appendChild(document.createTextNode(i.name));
-                    // divSetChildName.style.gridColumn = "4 / span 1";
-                    // divSetChildName.style.paddingLeft = "10%";
-                    // divWrapperSets.appendChild(divSetChildName);
-                    
-                    // divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    // divWrapperChildPrice.style.gridColumn = "5 / span 1";
-                    // divWrapperSets.appendChild(divWrapperChildPrice);
-                };
-
-            revealForm.style.display = "none";
-            };
-        }); 
-};
-
-
-
+function filterPriceOrder(selection) {
+    let arrayPrice = []
+    const priceClass = document.getElementsByClassName("sets");
+    // priceClass.dataset.price.sort(function(a,b){return a - b});
+    // console.log(priceClass.dataset.price)
+    // const result = priceClass.filter(price => price)
+    // console.log(selection.options[selection.selectedIndex].text)
+    for (const i of priceClass) {
+        console.log(i.dataset.price)
+        if (i >= arrayPrice[0]) {
+            arrayPrice.unshift(i)
+        } else {
+            arrayPrice.push(i)
+        } 
+        // arrayPrice.push
+        // (i < arrayPrice[0])
+    }
+    console.log(arrayPrice)
+    const wipeSets = document.getElementById("divSets")
+    wipeSets.innerHTML = ""
+    for (const i of arrayPrice) {
+        console.log(i)
+        wipeSets.appendChild(i)
+        // setTest(i)
+    }
+}
 
 // ***************** wishlist tab top/bottom *********************
 
-const divWishlist = document.getElementById("divWishlist")
-divWishlist.addEventListener("click", function() {
-    // divWishlist.style.backgroundColor = "blue"
-    if (divWishlist.style.bottom === "0px") {
-        // divWishList.style.left = "0";
-        divWishlist.style.removeProperty("bottom");
-        divWishlist.style.top = "0px";
-        // divWishlist.style.backgroundColor = "blue";
-        divWishlist.style.height = "100vh";
-        
-        // divWishlist.style.removeProperty("position")
-    } else {
-        divWishlist.style.removeProperty("top");
-        divWishlist.style.bottom = "0px";
-        divWishlist.style.removeProperty("height");
-        // divWishlist.style.position = "fixed";
-        divWishlist.style.position = "fixed";
-    }
-    
-})
+const buttonWishUpDown = document.getElementById("buttonWishUpDown")
+const mainSets = document.getElementById("mainSets")
+const divWishlistFooterOuter = document.getElementById("divWishlistFooterOuter")
+const h1Wishlist2 = document.getElementById("h1Wishlist2")
 
+function wishUpDown() {
+    if (divWishlist.className === "divWishlist") {
+        console.log("howdy")
+        divWishlist.className = "wishlist"
+        mainSets.className = "mainSets"
+        divWishlistFooterOuter.className = "divWishlistFooterOuter2"
+        h1Wishlist2.innerHTML = ""
+        buttonWishUpDown.style.background = "rgb(35 117 219)"
+        buttonWishUpDown.style.borderRadius = "90px"       
+    } else {
+        divWishlist.className = "divWishlist"
+        mainSets.classList.remove("mainSets")
+        divWishlistFooterOuter.className = "divWishlistFooterOuter"
+        h1Wishlist2.innerHTML = "Search Sets" //change to selected variable bricklist
+    }
+}
+
+const filterOptionChooseWishlist = document.getElementById("filterOptionChooseWishlist")
+const filterChooseWishlist = document.getElementById("filterChooseWishlist")
+
+fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+    .then(response => response.json())
+    .then(result => {
+        console.log(result)
+        for (const i of result.baskets) {
+            let newOption = document.createElement("option")
+            newOption.innerHTML = i.name
+            filterChooseWishlist.appendChild(newOption)                        
+        }
+    }) 
+
+//shell creation for saved/wishlist bricklist selection
+function setTest2(i) { 
+    // const divWishlistSets = document.getElementById("divWishlistSets")
+    // divWishlistSets.innerHTML = "";
+    console.log("howdy2")
+    // const divWrapperSets = document.getElementById("divSets");
+    // divWishlistSets.style.visibility = "";
+    const divSet = document.createElement("div");
+    divSet.setAttribute("class", "sets") 
+    // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+    divSet.dataset.theme = `${i.theme}`      
+    divSet.dataset.price = `${i.price}`    
+    let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
+                    <div class="name">${i.number} - ${i.name}</div>
+                    <div class="price">$${i.price}</div>                    
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
+                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
+    divSet.innerHTML = htmlSegment;    
+    // let iRd = `${i.releaseDate}`       
+    z =  divWishlistSets.appendChild(divSet);   
+    // const release = document.getElementById(`${i.releaseDate}2`);
+    // console.log(release)
+    // release.innerHTML = dateTest(iRd, release);    
+    // console.log(z)
+    return z
+}
+
+let divFilterDropdownW = document.getElementById("divFilterDropdownW")
+let nameChosenBricklist = document.getElementById("nameChosenBricklist")
+function filterWishlist(selection) {
+    savedPopup()
+    nameChosenBricklist.innerHTML = 
+    divWishlistFooterOuter.className = "divWishlistFooterOuter"
+    const divWishlistSets = document.getElementById("divWishlistSets")
+    divWishlistSets.innerHTML = "";
+    console.log(selection.options[selection.selectedIndex].text)
+    let z = selection.options[selection.selectedIndex].text
+    nameChosenBricklist.innerHTML = z
+    wishlistFilter.style.display = "none"
+    h1Wishlist.style.display = "none"
+    bricklistNameTitle.innerHTML = z
+    divFilterDropdownW.style.removeProperty("display")
+    let x = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${z}`
+    fetch(x)
+        .then(response => response.json())
+        .then(result => {
+            // console.log(result)
+            // console.log(result.baskets)
+            // console.log(result.sets)
+            for (const i of result.sets) {
+                arrayWishList.push(i.number)
+                // console.log(i)
+                setTest2(i)                
+            }          
+        }) 
+}
+
+
+
+const themeClass = document.getElementsByClassName("sets");
+// console.log(selection.options[selection.selectedIndex].text)
+for (const i of themeClass) {
+    // console.log(i.dataset.theme)
+    console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+    // console.log(String(selection.options[selection.selectedIndex].text))
+    if (String(selection.options[selection.selectedIndex].text) === "Theme") {
+        i.style.display = "";
+    } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
+        // console.log(i.dataset.theme) 
+        // console.log(i)
+        i.style.display = "none";
+    } else {
+        i.style.display = "";
+    }
+}
 
 
 // ***************** img expand/minimize *********************
@@ -236,30 +352,24 @@ function minImage() {
     divImgExpand.style.display = "none";
 }
 
-
 function expandImage(clicked_image) {
     divImgExpand.style.removeProperty("display")
-    divImgExpand.innerHTML = "";
-    // alert("hello")
+    divImgExpand.innerHTML = "";   
     v = clicked_image
     console.log(v)
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
+    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')      
+        .then(function(response) {
+            if (!response.ok) {    
+                minImage()           
+                throw alert("Error with API. Please refresh page and try again.");
+                
+            }
+            return response.json()
+            })                           
         .then(data => {
-            for (const i of data.sets) {
-                // console.log("2")
-                // console.log("=" + i.number)
-                // console.log(i.img)
-                // console.log(v)
-                if (i.img === v) {
-                    
-                    // console.log("howdy" + i.img)
-                    // console.log(v)
-
-                    // console.log(i + "iii")
-                    // console.log(z + "zzz")
-                    const divSetChildImage = document.createElement("img")
-                    // divSetChildImage.setAttribute.src = v
+            for (const i of data.sets) {                
+                if (i.img === v) {                  
+                    const divSetChildImage = document.createElement("img")                   
                     divSetChildImage.src = i.img
                     divSetChildImage.setAttribute("onclick", "minImage();")
                     divImgExpand.appendChild(divSetChildImage);
@@ -271,186 +381,263 @@ function expandImage(clicked_image) {
 
 // ***************** add to wishlist *********************
 
-const themeAdd = document.getElementById("theme")
-const wishlistAdd = document.getElementById("divWishlistSets")
-
-let arrayWishList = []
-function addToWishlist(clicked_id) {
-    
-    // alert(clicked_id)
-
-    arrayWishList.push(clicked_id)
-    // console.log(arrayWishList)
-    z = clicked_id
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        .then(response => response.json())                            
-        .then(data => {
-            for (const i of data.sets) {
-                // console.log("2")
-                // console.log("=" + i.number)
-                // console.log(z)
-                if (i.number == z) {
-
-                    const divSetChildName = document.createElement("div");
-                    const divWrapperChildPrice = document.createElement("div");
-                    const divSetChildImage = document.createElement("img")  
-                    const divSetNumber = document.createElement("div")    
-                    // const divWishlistButton = document.createElement("button")  
-
-                    const divWishlistButton = document.getElementById(z)  
-                    divWishlistButton.innerHTML = '<img src="SVG/heart-shapes-svgrepo-com-red.svg"/>';
-                    divWishlistButton.style.border = "none";
-                    divWishlistButton.style.background = "none";
-                    // console.log(i + "iii")
-                    // console.log(z + "zzz")
-                    // divSetWhishlist.appendChild(document.createTextNode(i.number));
-                    // divSetWhishlist.style.gridColumn = "3 / span 1";                    
-                    // themeAdd.appendChild(divSetWhishlist);
-
-
-
-                     
-                                                           
-                    divSetChildImage.src = i.img
-                    divSetChildImage.style.gridColumn = "1 / 2";
-                    divSetChildImage.style.objectFit = "cover";
-                    divSetChildImage.style.width = "100%";
-                    divSetChildImage.style.maxHeight = "100%";
-                    divSetChildImage.style.marginBottom = "20px";
-                    divSetChildImage.setAttribute("onclick", "expandImage(this.src);");
-                    wishlistAdd.appendChild(divSetChildImage);
-                    console.log("1")
-
-                    divSetNumber.appendChild(document.createTextNode(i.number));
-                    divSetNumber.style.gridColumn = "2 / 3";                    
-                    wishlistAdd.appendChild(divSetNumber);
-
-                    divSetChildName.appendChild(document.createTextNode(i.name));
-                    divSetChildName.style.gridColumn = "3 / 4";
-                    divSetChildName.style.paddingLeft = "10%";
-                    wishlistAdd.appendChild(divSetChildName);
-                    
-                    divWrapperChildPrice.appendChild(document.createTextNode("$" + i.price));
-                    divWrapperChildPrice.style.gridColumn = "4 / 5";
-                    wishlistAdd.appendChild(divWrapperChildPrice);
-                } 
-            }
-        })
-
-    console.log(arrayWishList)
-
-    // document.getElementById("divSets").innerHTML = "";
-    // fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-    //     .then(response => response.json())                            
-    //     .then(data => {
-
-// divWishlistButton.appendChild(document.createTextNode("+"));
-// divWishlistButton.style.gridColumn = "6 / span 1";
-// divWrapperSets.appendChild(divWishlistButton);
-
+const wishlistSets = document.getElementById("divWishlistSets")
+const searchedSets = document.getElementById("divSets")
+// wishlist page divwish
+// const themeAdd = document.getElementById("theme")
+// const wishlistAdd = document.getElementById("divWishlistSets")
+//added when click heart from set search
+let arrayWishList2 = []
+function addToWishlist2(clicked_id) {  
+    // console.log("gogogogogo")
+    let thisButton = document.getElementById(clicked_id)
+    let thisButtonImg = thisButton.children[0]
+    let thisButtonImgSrc = thisButtonImg.src
+    wishlistSetsChildren = wishlistSets.children
+    // console.log(thisButtonImg.src)
+    // console.log(typeof(thisButtonImg.src))
+    // console.log(thisButtonImgSrc.includes("red"))
+    for (let i of wishlistSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            thisButtonParent.remove()            
+        }
+    }
 }
 
+// search page //addtowishlist 1 divsets
+function addToWishlist(clicked_id) { 
+    // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+    searchedSetsChildren = searchedSets.children
+    wishlistSetsChildren = wishlistSets.children
+    for (let i of searchedSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            console.log("ololol")
+            let thisButton = i.children[3]
+            let thisButtonImg = thisButton.children[0]
+            let thisButtonImgSrc = thisButtonImg.src
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            // thisButtonParent.remove()
+            console.log(thisButton)
+            console.log(thisButtonImgSrc)
+            if (thisButtonImgSrc.includes("red")) {
+                console.log(thisButtonImg)
+                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"
+                console.log(thisButtonImg.src)
+                addToWishlist3(clicked_id)
+                // addToWishlist3(clicked_id)
+                // console.log(thisButtonImgSrc)
+                // console.log(thisButtonImg)
+                // let thisButtonParent = thisButton.parentElement
+                // thisButtonParent.remove()
+            } else {              
+                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
+                addToWishlist4(clicked_id)
+                // setTest2(i)
+            }
+        }
+            
+    }
+}
+ 
+function addToWishlist3(clicked_id) {
+    // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+    console.log(clicked_id)
+    const wishlistSets = document.getElementById("divWishlistSets")
+    wishlistSetsChildren = wishlistSets.children
+    
+    for (let i of wishlistSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            // console.log(thisButtonParent)
+            thisButtonParent.remove()
+            
+        }
+    }
+}
+
+function addToWishlist4(clicked_id) {
+    const wishlistSets = document.getElementById("divWishlistSets")
+    const searchedSets = document.getElementById("divSets")
+    searchSetsChildren = searchedSets.children
+    for (let i of searchSetsChildren) {
+        console.log(i.children[3].id)
+        if (clicked_id === i.children[3].id) {
+            let thisButton = i.children[3]
+            let thisButtonParent = thisButton.parentElement
+            let ooo = thisButtonParent.cloneNode(true)
+            // console.log(thisButtonParent)
+            wishlistSets.appendChild(ooo)            
+        }
+    }
+}
+
+// ************************************** Wishlist Buttons ***************************************
+
+let lookupWishlist = document.getElementById("buttonLookUpWishlist")
+let saveWishlist = document.getElementById("buttonSaveToWishlist")
+
+let inputWishlistSearch = document.getElementById("inputWishlistSearch")
+let inputWishlistSave = document.getElementById("inputWishlistSave")
+
+let getTest = document.getElementById("getTest")
+
+function searchWishlist() {
+    // let data = {element: "barium"};    
+    fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+        .then(response => response.json())
+        .then(result => {
+            console.log(result)
+            for (const i of result.baskets) {
+                // console.log(i.name)
+                // console.log(inputWishlistSearch.value)
+                if (inputWishlistSearch.value === i.name ) {
+                    console.log(i.name)
+                    alert("found")  
+                } else {
+                    // alert("not found")
+                }                
+            }
+        }) 
+}
+
+inputWishlistSave.addEventListener("keyup", function(event) { 
+    if (event.key === "Enter") {   
+      event.preventDefault();    
+      document.getElementById("buttonLookUpWishlist2").click();
+    }
+  });
 
 
+//creates new wishlist (maybe can be used to update wishlist like a save button)
+// needs to be attached to submit new wishlist
+function addWishlist() {
+    let data = {"sets": []}
+    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${inputWishlistSave.value}`
+    // console.log(String(url))
+    fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+    }).then(function(response) {
+        if (!response.ok) {               
+            throw alert("Error with API. Please try again.");
+        } else {
+            alert("Wishlist Saved");
+        }         
+    });
+}
+
+// ************************************** save new wishlist name ***************************************
+
+let wishlistFilter = document.getElementById("wishlistFilter")
+// let inputWishlistSave = document.getElementById("inputWishlistSave")
+let h1Wishlist = document.getElementById("h1Wishlist")
+let bricklistNameTitle = document.getElementById("bricklistNameTitle")
+let savedWishlistName = ""
+function saveNewWishlistName() {
+    let promise = new Promise(function (resolve, reject) {
+        z = false
+        if (inputWishlistSave.value === "" ) {
+            alert("Your response is blank. Please try again.")
+            z = true
+            console.log(z + 1)
+            resolve(z)
+        }
+        resolve(z)
+    })
+    let promise2 = new Promise(function (resolve, reject) {    
+        fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
+            .then(response => response.json())
+            .then(result => {
+                console.log(result)
+                z = false
+                for (const i of result.baskets) {
+                    console.log(i.name)
+                    if (inputWishlistSave.value === i.name) {
+                        z = true
+                        alert("Name already used. Please enter another name.")
+                        console.log(z + 2)
+                        resolve(z)                 
+                    } 
+                }
+                console.log(z)
+                resolve(z)
+            }) 
+    })
+    async function getY() {
+        let y = await promise
+        let x = await promise2
+        if (y === false && x === false) {
+            console.log(inputWishlistSave.value)
+            savedWishlistName = inputWishlistSave.value
+            console.log(savedWishlistName)
+            wishUpDown()
+            bricklistNameTitle.innerHTML = savedWishlistName
+            nameChosenBricklist.innerHTML = savedWishlistName
+            wishlistFilter.style.display = "none"
+            h1Wishlist.style.display = "none"
+            divFilterDropdownW.style.removeProperty("display")
+            // divWishlistFooterOuter.className = "divWishlistFooterOuter"
+            console.log("truetrue")
+            addWishlist()  
+        }      
+    }
+   getY()                        
+}   
+ 
+// saved popup
+function savedPopup() {
+    let x = document.getElementById("savedPopup")
+    x.className = "appear"
+    setTimeout(function(){x.className = x.className.replace("appear", ""); }, 3000);
+}
 
 // ***************************** test area *****************************
 
-function getName() {
-    
-    fetch("./items.json")
-        .then(response => response.json())
-        .then(data => {                       
-            let obj = data.sets;
-            obj.map(getNames);
-            function getNames(item) { 
-                var ul = document.getElementById("name");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.name));
-                ul.appendChild(li);             
-                return [item.name]                
-            };   
-            // console.log(obj.name)         
-        });   
-        // console.log(2); 
-    // console.log(3);    
-}
+// ***************************** countdown timer *****************************
 
-function getTheme() {
-    fetch("./items.json")
-        .then(response => response.json())
-        .then(data => {
-            let obj = data.sets;
-            obj.map(getTheme);
+// const dateTest = document.getElementsById("dateTest");
+function dateTest(iRd, release) {
+    // Set the date we're counting down to
+    var countDownDate = new Date(iRd).getTime();
 
-            function getTheme(item) {
-                var ul = document.getElementById("theme");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.theme));
-                ul.appendChild(li);   
-                // console.log(item.theme)
-                return [item.theme]
-            };            
-        });    
-}
+    // Update the count down every 1 second
+    var x = setInterval(function() {
 
-function getUser1data() {
-    fetch("./user1.json")
-        .then(response => response.json())
-        .then(data => {
-            let obj = data;
-            obj.map(getName);
+        // Get today's date and time
+        var now = new Date().getTime();
 
-            function getNameAndTheme(item) {
-                var ulName = document.getElementById("name");
-                var ulTheme = document.getElementById("theme");
-                var li = document.createElement("li");
-                li.appendChild(document.createTextNode(item.name));
-                console.log(1);
-                ulName.appendChild(li);  
-                li.appendChild(document.createTextNode(item.theme));
-                ulTheme.appendChild(li);   
-                // console.log(item.theme)
-                // return [item.theme]
-            };
-            obj.map(getTheme);
-            function getNameAndTheme(item) {
-                // var ulName = document.getElementById("name");
-                var ulTheme = document.getElementById("theme");
-                var li = document.createElement("li");
-                // li.appendChild(document.createTextNode(item.name));
-                // console.log(1);
-                // ulName.appendChild(li);  
-                li.appendChild(document.createTextNode(item.theme));
-                ulTheme.appendChild(li);   
-                // console.log(item.theme)
-                // return [item.theme]
-            };            
-        });   
-}
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
 
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-function test1() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())                            
-        .then(data => {
-            for (const i of data.sets) {
-                console.log(i.theme)
-            }
-        })        
-}
+        // Display the result in the element with id="demo"
+        
+        
+        release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
 
-function test2() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())
-        .then(data => {
-            for (const i of data.sets) {
-                console.log(i.name)
-            }
-        })
-}
-
-function json() {
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/items')
-        .then(response => response.json())
-        .then(data => console.log(data.sets))
+        // If the count down is finished, write some text
+        if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+        } 
+    }, 1000);
+    // console.log(p)
 }
