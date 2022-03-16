@@ -7,6 +7,19 @@
 
 
 
+
+function filterListPrice() {
+
+}
+
+function filterSetTheme() {
+
+}
+
+function filterSetPrice() {
+
+}
+
 // *******************  create new bricklist ***********************
 // input for naming new bricklist appear/disappear
 
@@ -43,6 +56,8 @@ function searchSets() {
     // let y = document.getElementById("demoSearch")
     // y.innerHTML = ""
     let r = document.getElementById("filterTheme").children.length
+    let filterTheme = document.getElementById("filterTheme")
+    // let filterTheme2 = document.getElementById("filterTheme")
     console.log(input)
     if (input === "") {
         alert("Search bar blank. Please input your search.")
@@ -93,14 +108,17 @@ function searchSets() {
                 if (titleArray - themeArray === 0) {                    
                     alert("Couldn't find a set mathing your search. Please try again.")
                 } else {
+                    filterListTheme(themeArray)
                     let titleSet = new Set(titleArray)           
-                    let themeSet = new Set(themeArray)
-                    // let numberSet = new Set(numberArray)
-                    themeSet.forEach((value) => {                               
-                        let theme = document.createElement("option")
-                        theme.innerHTML = value
-                        filterTheme.appendChild(theme)
-                    })           
+                    // let themeSet = new Set(themeArray)
+                    // // let numberSet = new Set(numberArray)
+                    // themeSet.forEach((value) => {                               
+                    //     let theme = document.createElement("option")
+                    //     theme.innerHTML = value
+                    //     filterTheme.appendChild(theme)
+                    // })           
+
+
                     // titleSet.forEach((value) => {                              
                         // let text = document.createElement("p")
                         // text.innerHTML = value               
@@ -127,6 +145,40 @@ function searchSets() {
                 
             })  
     } 
+}
+
+
+function filterListTheme(themeArray) {    
+      
+
+    // let themeArray = []
+    // let titleSet = new Set(titleArray)           
+    let themeSet = new Set(themeArray)
+    // let numberSet = new Set(numberArray)
+    themeSet.forEach((value) => {                               
+        let theme = document.createElement("option")
+        theme.innerHTML = value
+        filterTheme.appendChild(theme)
+    })
+}
+
+function filterListTheme2(themeArray2) {
+    let filterTheme2 = document.getElementById("filterTheme2")         
+    filterTheme2.innerHTML = "";
+    let option = document.createElement("option")
+    option.innerHTML = "Theme"
+    filterTheme2.appendChild(option)  
+
+    // const filterTheme2 = document.getElementById("filterTheme2")
+    // let themeArray = []
+    // let titleSet = new Set(titleArray)           
+    let themeSet = new Set(themeArray2)
+    // let numberSet = new Set(numberArray)
+    themeSet.forEach((value) => {                               
+        let theme = document.createElement("option")
+        theme.innerHTML = value
+        filterTheme2.appendChild(theme)
+    })
 }
       
 
@@ -183,7 +235,8 @@ function setTest(i) {
 // ************************* triggering filter order  ***************************************
 
 function filterThemeOrder(selection) {
-    const themeClass = document.getElementsByClassName("sets");
+    const divSets = document.getElementById("divSets")
+    const themeClass = divSets.getElementsByClassName("sets");
     // console.log(selection.options[selection.selectedIndex].text)
     for (const i of themeClass) {
         // console.log(i.dataset.theme)
@@ -200,6 +253,27 @@ function filterThemeOrder(selection) {
         }
     }
 }
+
+function filterThemeOrder2(selection) {
+    const divWishlistSets = document.getElementById("divWishlistSets")
+    const themeClass = divWishlistSets.getElementsByClassName("sets");
+    // console.log(selection.options[selection.selectedIndex].text)
+    for (const i of themeClass) {
+        // console.log(i.dataset.theme)
+        console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+        // console.log(String(selection.options[selection.selectedIndex].text))
+        if (String(selection.options[selection.selectedIndex].text) === "Theme") {
+            i.style.display = "";
+        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
+            // console.log(i.dataset.theme) 
+            // console.log(i)
+            i.style.display = "none";
+        } else {
+            i.style.display = "";
+        }
+    }
+}
+
 
 function filterPriceOrder(selection) {
     let arrayPrice = []
@@ -267,7 +341,8 @@ fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18
     }) 
 
 //shell creation for saved/wishlist bricklist selection
-function setTest2(i) { 
+function setTest2(i, themeArray2) { 
+    // themeArray = []
     // const divWishlistSets = document.getElementById("divWishlistSets")
     // divWishlistSets.innerHTML = "";
     console.log("howdy2")
@@ -291,12 +366,14 @@ function setTest2(i) {
     // console.log(release)
     // release.innerHTML = dateTest(iRd, release);    
     // console.log(z)
+    themeArray2.push(i.theme)
     return z
 }
 
 let divFilterDropdownW = document.getElementById("divFilterDropdownW")
 let nameChosenBricklist = document.getElementById("nameChosenBricklist")
 function filterWishlist(selection) {
+    themeArray2 = []
     savedPopup()
     nameChosenBricklist.innerHTML = 
     divWishlistFooterOuter.className = "divWishlistFooterOuter"
@@ -318,9 +395,10 @@ function filterWishlist(selection) {
             // console.log(result.sets)
             for (const i of result.sets) {
                 arrayWishList.push(i.number)
-                // console.log(i)
-                setTest2(i)                
-            }          
+                // console.log(i)   
+                setTest2(i, themeArray2)                
+            }      
+            filterListTheme2(themeArray2)    
         }) 
 }
 
@@ -387,7 +465,7 @@ const searchedSets = document.getElementById("divSets")
 // const themeAdd = document.getElementById("theme")
 // const wishlistAdd = document.getElementById("divWishlistSets")
 //added when click heart from set search
-let arrayWishList2 = []
+// let arrayWishList2 = []
 function addToWishlist2(clicked_id) {  
     // console.log("gogogogogo")
     let thisButton = document.getElementById(clicked_id)
@@ -397,15 +475,32 @@ function addToWishlist2(clicked_id) {
     // console.log(thisButtonImg.src)
     // console.log(typeof(thisButtonImg.src))
     // console.log(thisButtonImgSrc.includes("red"))
-    for (let i of wishlistSetsChildren) {
-        console.log(i.children[3].id)
+    let toRemove = []
+    let arrayWishList2 = []
+    for (const i of wishlistSetsChildren) {
+        // console.log(i)
+        // console.log(wishlistSetsChildren)
+        // console.log(i.children[3].id)
+        // console.log(clicked_id)
         if (clicked_id === i.children[3].id) {
             let thisButton = i.children[3]
             let thisButtonParent = thisButton.parentElement
             // console.log(thisButtonParent)
-            thisButtonParent.remove()            
+            // console.log(thisButtonParent)
+            // thisButtonParent.remove()     
+            toRemove.push(thisButtonParent)       
+        } else {
+            // console.log()
+            arrayWishList2.push(i.dataset.theme)
         }
+        // console.log(i)
     }
+    console.log(toRemove)
+    for (const i of toRemove) {
+        i.remove()
+    }
+    console.log(arrayWishList2)
+    filterListTheme2(arrayWishList2)    
 }
 
 // search page //addtowishlist 1 divsets
@@ -415,7 +510,7 @@ function addToWishlist(clicked_id) {
     // let thisButtonImgSrc = thisButtonImg.src
     searchedSetsChildren = searchedSets.children
     wishlistSetsChildren = wishlistSets.children
-    for (let i of searchedSetsChildren) {
+    for (const i of searchedSetsChildren) {
         console.log(i.children[3].id)
         if (clicked_id === i.children[3].id) {
             console.log("ololol")
@@ -447,31 +542,48 @@ function addToWishlist(clicked_id) {
     }
 }
  
+// take away item
 function addToWishlist3(clicked_id) {
     // let thisButton = document.getElementById(clicked_id)
     // let thisButtonImg = thisButton.children[0]
     // let thisButtonImgSrc = thisButtonImg.src
+    themeArrayWishlist = []
+
     console.log(clicked_id)
     const wishlistSets = document.getElementById("divWishlistSets")
     wishlistSetsChildren = wishlistSets.children
+
+    const searchedSets = document.getElementById("divSets")
+
     
-    for (let i of wishlistSetsChildren) {
+    
+    themeArraySets = []
+    
+    console.log(wishlistSetsChildren)
+    for (const i of wishlistSetsChildren) {        
         console.log(i.children[3].id)
         if (clicked_id === i.children[3].id) {
             let thisButton = i.children[3]
             let thisButtonParent = thisButton.parentElement
             // console.log(thisButtonParent)
-            thisButtonParent.remove()
-            
-        }
+            thisButtonParent.remove()            
+        } 
     }
+    for (const z of wishlistSetsChildren)  {
+        themeArrayWishlist.push(z.dataset.theme)
+    }
+    console.log(themeArrayWishlist)
+
+    filterListTheme2(themeArrayWishlist)
 }
 
 function addToWishlist4(clicked_id) {
+    let wishlistSetArray2 = []
     const wishlistSets = document.getElementById("divWishlistSets")
+    const wishlistSetsChildren = wishlistSets.children
     const searchedSets = document.getElementById("divSets")
-    searchSetsChildren = searchedSets.children
-    for (let i of searchSetsChildren) {
+    const searchSetsChildren = searchedSets.children
+    for (const i of searchSetsChildren) {
         console.log(i.children[3].id)
         if (clicked_id === i.children[3].id) {
             let thisButton = i.children[3]
@@ -481,6 +593,11 @@ function addToWishlist4(clicked_id) {
             wishlistSets.appendChild(ooo)            
         }
     }
+    for (const z of wishlistSetsChildren)  {
+        wishlistSetArray2.push(z.dataset.theme)
+    }
+    console.log(wishlistSetArray2)
+    filterListTheme2(wishlistSetArray2)
 }
 
 // ************************************** Wishlist Buttons ***************************************
