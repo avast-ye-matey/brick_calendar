@@ -183,7 +183,7 @@ function filterListTheme2(themeArray2) {
       
 
 // ***************************** set creation shell  *****************************
-
+let arrayPrice = []
 let arrayWishList = []
 // shell creation for searched sets
 function setTest(i) {
@@ -196,37 +196,39 @@ function setTest(i) {
     // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}` 
+    divSet.dataset.number = `${i.number}`
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
-                    <div class="price">$${i.price}</div>                    
+                    <div class="price">$${i.price}</div>                                              
+                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>                              
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
-                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
                     // <p id="${i.releaseDate}2"></p> 
     let htmlSegmentRed = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
-                    <div class="price">$${i.price}</div>                    
+                    <div class="price">$${i.price}</div>                      
+                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>                                   
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
-                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
                     // <p id="${i.releaseDate}2"></p> 
     console.log(arrayWishList)
+    // arrayPrice.push(`${i.price}`)
     if (arrayWishList.includes(i.number)) {
         console.log("gotcha")
         divSet.innerHTML = htmlSegmentRed;    
-        // let iRd = `${i.releaseDate}`       
+        let iRd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
-        // const release = document.getElementById(`${i.releaseDate}2`);
-        // console.log(release)
-        // release.innerHTML = dateTest(iRd, release);    
+        const release = document.getElementById(`${i.number}${i.releaseDate}`);
+        console.log(release)
+        release.innerHTML = dateTest(iRd, release);    
         console.log(z)
         // return z
     } else {
         console.log("dont gotcha")
         divSet.innerHTML = htmlSegment;    
-        // let iRd = `${i.releaseDate}`       
+        let iRd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
-        // const release = document.getElementById(`${i.releaseDate}2`);
-        // console.log(release)
-        // release.innerHTML = dateTest(iRd, release);    
+        const release = document.getElementById(`${i.releaseDate}`);
+        console.log(release)
+        release.innerHTML = dateTest(iRd, release);    
         console.log(z)
         // return z
     }    
@@ -274,33 +276,192 @@ function filterThemeOrder2(selection) {
     }
 }
 
+let arrayPriceFilter = []
+let arrayPriceFilter2 = [
+    {
+        "id": "default",
+        "price": 0
+    }
+]
+function filterPriceOrder2(selection) {   
+    
+    // console.log(arrayPriceFilter.length)
+    // console.log(typeof(arrayPriceFilter2[0].price))
+    const setList = document.getElementById("divWishlistSets")
+    const setListSets = setList.getElementsByClassName("sets")
+    // console.log(setListSets)
+    for (const i of setListSets) {
+        // console.log(i)
+    y = {
+        "id": `${i.dataset.number}`,
+        "price": parseFloat(`${i.dataset.price}`)  
+        }
+    arrayPriceFilter.push(y)
+    // console.log(arrayPriceFilter.length)
+    }
+    for (const i of arrayPriceFilter) {
+        // console.log(i)
+    }
+    // console.log(arrayPriceFilter2)
+    
+    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)
+    console.log(arrayPriceFilter)   
+    
+    if (String(selection.options[selection.selectedIndex].text) === "low - high") {
 
-function filterPriceOrder(selection) {
-    let arrayPrice = []
-    const priceClass = document.getElementsByClassName("sets");
-    // priceClass.dataset.price.sort(function(a,b){return a - b});
-    // console.log(priceClass.dataset.price)
-    // const result = priceClass.filter(price => price)
-    // console.log(selection.options[selection.selectedIndex].text)
-    for (const i of priceClass) {
-        console.log(i.dataset.price)
-        if (i >= arrayPrice[0]) {
-            arrayPrice.unshift(i)
-        } else {
-            arrayPrice.push(i)
-        } 
-        // arrayPrice.push
-        // (i < arrayPrice[0])
+        function putBack(ii) {
+            // console.log("yoooooo")
+            const setList2 = document.getElementById("divWishlistSets")
+            const setListSets2 = setList2.getElementsByClassName("sets")
+            // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";        
+            for (const x of setListSets2) {
+                // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)            
+                if (ii === x.dataset.number) {
+                    divWishlistSets.appendChild(x)
+                }
+            }
+        }
+        for (const i of arrayPriceFilter) {
+            // console.log(i)
+            ii = i.id
+            putBack(ii)                       
+        }   
+        // console.log(arrayPriceFilter)
+        // console.log(arrayPriceFilter2)   
+        // console.log(arrayPriceFilter2)
+
+    } 
+
+    if (String(selection.options[selection.selectedIndex].text) === "high - low") {
+        const reverse = arrayPriceFilter.reverse()
+        function putBack(ii) {
+            // console.log("yoooooo")
+            const setList2 = document.getElementById("divWishlistSets")
+            const setListSets2 = setList2.getElementsByClassName("sets")
+            // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";        
+            for (const x of setListSets2) {
+                // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)            
+                if (ii === x.dataset.number) {
+                    divWishlistSets.appendChild(x)
+                }
+            }
+        }
+        for (const i of reverse) {
+            // console.log(i)
+            ii = i.id
+            putBack(ii)                       
+        }   
     }
-    console.log(arrayPrice)
-    const wipeSets = document.getElementById("divSets")
-    wipeSets.innerHTML = ""
-    for (const i of arrayPrice) {
-        console.log(i)
-        wipeSets.appendChild(i)
-        // setTest(i)
-    }
+
+    
 }
+
+
+function filterPriceOrder(selection) {   
+
+    let arrayPriceFilter = []
+    let arrayPriceFilter2 = [
+        {
+            "id": "default",
+            "price": 0
+        }
+    ]
+    
+    // console.log(arrayPriceFilter.length)
+    // console.log(typeof(arrayPriceFilter2[0].price))
+    const setList = document.getElementById("divSets")
+    const setListSets = setList.getElementsByClassName("sets")
+    // console.log(setListSets)
+    for (const i of setListSets) {
+        // console.log(i)
+    y = {
+        "id": `${i.dataset.number}`,
+        "price": parseFloat(`${i.dataset.price}`)  
+        }
+    arrayPriceFilter.push(y)
+    // console.log(arrayPriceFilter.length)
+    }
+    for (const i of arrayPriceFilter) {
+        // console.log(i)
+    }
+    // console.log(arrayPriceFilter2)
+    
+    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)
+    console.log(arrayPriceFilter)   
+    
+    if (String(selection.options[selection.selectedIndex].text) === "low - high") {
+
+        function putBack(ii) {
+            // console.log("yoooooo")
+            const setList2 = document.getElementById("divSets")
+            const setListSets2 = setList2.getElementsByClassName("sets")
+            // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";        
+            for (const x of setListSets2) {
+                // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)            
+                if (ii === x.dataset.number) {
+                    setList2.appendChild(x)
+                }
+            }
+        }
+        for (const i of arrayPriceFilter) {
+            // console.log(i)
+            ii = i.id
+            putBack(ii)                       
+        }   
+        // console.log(arrayPriceFilter)
+        // console.log(arrayPriceFilter2)   
+        // console.log(arrayPriceFilter2)
+
+    } 
+
+    if (String(selection.options[selection.selectedIndex].text) === "high - low") {
+        const reverse = arrayPriceFilter.reverse()
+        function putBack(ii) {
+            // console.log("yoooooo")
+            const setList2 = document.getElementById("divSets")
+            const setListSets2 = setList2.getElementsByClassName("sets")
+            // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";        
+            for (const x of setListSets2) {
+                // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)            
+                if (ii === x.dataset.number) {
+                    setList2.appendChild(x)
+                }
+            }
+        }
+        for (const i of reverse) {
+            // console.log(i)
+            ii = i.id
+            putBack(ii)                       
+        }   
+    }
+
+    
+}
+    
 
 // ***************** wishlist tab top/bottom *********************
 
@@ -325,6 +486,10 @@ function wishUpDown() {
         h1Wishlist2.innerHTML = "Search Sets" //change to selected variable bricklist
     }
 }
+
+
+
+
 
 const filterOptionChooseWishlist = document.getElementById("filterOptionChooseWishlist")
 const filterChooseWishlist = document.getElementById("filterChooseWishlist")
@@ -353,18 +518,22 @@ function setTest2(i, themeArray2) {
     // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}`    
-    let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
+    divSet.dataset.number = `${i.number}`
+    let htmlSegment = `
+                    <img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
-                    <div class="price">$${i.price}</div>                    
-                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
+                    <div class="price">$${i.price}</div>                      
+                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>      
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>               
+                    `;
                     // <p id="${i.releaseDate}">${i.releaseDate}</p>
                     // <p id="${i.releaseDate}2"></p> 
     divSet.innerHTML = htmlSegment;    
-    // let iRd = `${i.releaseDate}`       
+    let iRd = `${i.releaseDate}`       
     z =  divWishlistSets.appendChild(divSet);   
-    // const release = document.getElementById(`${i.releaseDate}2`);
-    // console.log(release)
-    // release.innerHTML = dateTest(iRd, release);    
+    const release = document.getElementById(`${i.number}${i.releaseDate}`);
+    console.log(release)
+    release.innerHTML = dateTest(iRd, release);    
     // console.log(z)
     themeArray2.push(i.theme)
     return z
@@ -725,16 +894,20 @@ function savedPopup() {
 
 // ***************************** countdown timer *****************************
 
-// const dateTest = document.getElementsById("dateTest");
+// const dateTimer = document.getElementsById("dateTimer");
 function dateTest(iRd, release) {
+    console.log(release)
+    console.log(iRd)
     // Set the date we're counting down to
     var countDownDate = new Date(iRd).getTime();
+    console.log(countDownDate)
 
     // Update the count down every 1 second
     var x = setInterval(function() {
 
         // Get today's date and time
         var now = new Date().getTime();
+        // console.log(now)
 
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
@@ -748,12 +921,14 @@ function dateTest(iRd, release) {
         // Display the result in the element with id="demo"
         
         
-        release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
+        // release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
+        release.innerHTML = days + " days remain!";
 
         // If the count down is finished, write some text
         if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
+            clearInterval(x);
+            release.innerHTML = "Available!";
+            release.classList.toggle("greenText")
         } 
     }, 1000);
     // console.log(p)

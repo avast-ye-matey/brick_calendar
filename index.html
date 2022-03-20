@@ -35,13 +35,13 @@
         <!------------------ search sets filter dropdowns ---------------------->    
         <div id="divFilterDropdown">    
             <h3>Sort by:</h3>        
-            <select name="filterTheme" id="filterTheme" onchange="filterThemeOrder(this)">
+            <select name="filterTheme" id="filterTheme" class="dropDownTheme" onchange="filterThemeOrder(this)">
                 <option id="filterDefaultId" value="">Theme</option>        
             </select>
     
             <br>
             
-            <select name="filterPrice" id="filterPrice" onchange="filterPriceOrder()">
+            <select name="filterPrice" id="filterPrice" class="dropDownPrice" onchange="filterPriceOrder(this)">
                 <option value="">Price</option>
                 <option value="descending">low - high</option>
                 <option value="ascending">high - low</option>        
@@ -93,13 +93,13 @@
         <!-- bricklist filter dropdowns -->
         <div id="divFilterDropdownW" style="display: none;">    
             <h3>Sort by:</h3>        
-            <select name="filterTheme" id="filterTheme2" onchange="filterThemeOrder2(this)">
+            <select name="filterTheme" id="filterTheme2" class="dropDownTheme" onchange="filterThemeOrder2(this)">
                 <option id="filterDefaultId" value="">Theme</option>        
             </select>
 
             <br>
             
-            <select name="filterPrice" id="filterPrice" onchange="filterPriceOrder()">
+            <select name="filterPrice" id="filterPrice2" class="dropDownPrice" onchange="filterPriceOrder2(this)">
                 <option value="">Price</option>
                 <option value="descending">low - high</option>
                 <option value="ascending">high - low</option>        

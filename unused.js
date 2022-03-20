@@ -312,3 +312,135 @@ function buttonPostTest() {
 // 	"testPayload": true,
 // 	"keysLength": 3
 // }'
+
+
+
+// for (const i of arrayPriceFilter) {
+    //     console.log(i.price)
+    //     // console.log(typeof(arrayPriceFilter2[0]))
+    //     console.log(arrayPriceFilter2[0].price)
+    //     if (i.price >= arrayPriceFilter2[0].price) {
+    //         // console.log(arrayPrice2[0])
+    //         // console.log(typeof(arrayPrice2[0]))
+    //         arrayPriceFilter2.unshift(i)
+    //         console.log(arrayPriceFilter2)
+    //     } else {
+    //         arrayPriceFilter2.push(i)
+    //     }
+    // }
+    // for (const i of arrayPriceFilter2) {
+    //     console.log(i)
+    // }
+
+
+
+    // const divWishlistSets = document.getElementById("divWishlistSets")
+    // divWishlistSets.innerHTML = "";
+
+
+
+ // const divWishlistSets = document.getElementById("divWishlistSets")
+    // divWishlistSets.innerHTML = "";
+    // setTest2(i, themeArray2)
+    // ggg = arrayPriceFilter.price.sort((a,b)=>b-a)
+    // console.log(ggg)
+    
+   
+
+
+
+
+        // y = {
+        //     id: `${i.dataset.number}`,
+        //     price: parseFloat(`${i.dataset.price}`)  
+        // }
+        // arrayPriceFilter.push(y)
+        // }
+    
+        
+    //     // arrayPriceFilter.push({
+    //     //     id: `${i.dataset.number}`,
+    //     //     price: parseFloat(`${i.dataset.price}`)           
+    //     // })
+    //     console.log(y)
+       
+    //     console.log(arrayPriceFilter)
+        // return y
+    // }
+
+
+     // for (const i of setListSets) {
+    //     console.log(arrayPriceFilter)
+    //     console.log(i)
+    //     y = {
+    //         id: `${i.dataset.number}`,
+    //         price: parseFloat(`${i.dataset.price}`)  
+    //     }
+    //     // arrayPriceFilter.push({
+    //     //     id: `${i.dataset.number}`,
+    //     //     price: parseFloat(`${i.dataset.price}`)           
+    //     // })
+    //     console.log(y)
+    //     arrayPriceFilter.push(y)
+    //     console.log(arrayPriceFilter)
+    // }
+    // console.log(arrayPriceFilter)
+    // console.log(arrayPriceFilter2)
+    // // arrayPrice.forEach(function (arrayItem) {
+    // for (const x of arrayPriceFilter) {
+    //     // console.log(arrayPrice2)
+    //     // console.log(x)
+    //     // console.log(typeof(x.price))
+    //     // console.log(arrayPrice2)
+    //     // console.log(arrayPrice2[0])
+    //     // console.log(typeof(arrayPrice2[0].price))
+    //     // let x = arrayItem.price
+    //     // console.log(x)
+    //     // let i = arrayItem.price
+    //     if (x.price >= parseFloat(arrayPriceFilter2[0].price)) {
+    //         // console.log(arrayPrice2[0])
+    //         // console.log(typeof(arrayPrice2[0]))
+    //         arrayPriceFilter2.unshift(x)
+    //     } else {
+    //         arrayPriceFilter2.push(x)
+    //     }
+
+
+    // newArray = arrayPriceFilter2
+    // console.log(newArray)  
+
+
+
+    // console.log(arrayPrice2)
+
+
+
+    // const priceClass = document.getElementsByClassName("sets");
+    // priceClass.dataset.price.sort(function(a,b){return a - b});
+    // console.log(priceClass.dataset.price)
+    // const result = priceClass.filter(price => price)
+    // console.log(selection.options[selection.selectedIndex].text)
+
+    // for (const i of priceClass) {
+    //     console.log(i.dataset.price)
+    //     if (i >= arrayPrice[0]) {
+    //         arrayPrice.unshift(i)
+    //     } else {
+    //         arrayPrice.push(i)
+    //     } 
+    //     // arrayPrice.push
+    //     // (i < arrayPrice[0])
+    // }
+
+    // console.log(arrayPrice)
+    // const wipeSets = document.getElementById("divSets")
+    // wipeSets.innerHTML = ""
+    // for (const i of arrayPrice) {
+    //     console.log(i)
+    //     wipeSets.appendChild(i)
+    //     // setTest(i)
+    // }
+
+
+
+// }
