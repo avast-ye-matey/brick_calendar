@@ -197,6 +197,9 @@ function setTest(i) {
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}` 
     divSet.dataset.number = `${i.number}`
+    divSet.dataset.name = `${i.name}`
+    divSet.dataset.releaseDate = `${i.releaseDate}`
+    divSet.dataset.img = `${i.img}`
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                                              
@@ -226,7 +229,7 @@ function setTest(i) {
         divSet.innerHTML = htmlSegment;    
         let iRd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
-        const release = document.getElementById(`${i.releaseDate}`);
+        const release = document.getElementById(`${i.number}${i.releaseDate}`);
         console.log(release)
         release.innerHTML = dateTest(iRd, release);    
         console.log(z)
@@ -543,7 +546,7 @@ let divFilterDropdownW = document.getElementById("divFilterDropdownW")
 let nameChosenBricklist = document.getElementById("nameChosenBricklist")
 function filterWishlist(selection) {
     themeArray2 = []
-    savedPopup()
+    // savedPopup()
     nameChosenBricklist.innerHTML = 
     divWishlistFooterOuter.className = "divWishlistFooterOuter"
     const divWishlistSets = document.getElementById("divWishlistSets")
@@ -635,41 +638,74 @@ const searchedSets = document.getElementById("divSets")
 // const wishlistAdd = document.getElementById("divWishlistSets")
 //added when click heart from set search
 // let arrayWishList2 = []
+function addToWishlistDeletePopup(clicked_id) {
+    deleteItem(clicked_id)
+}
+
+// ***************************** delete popup *****************************
+
+
+function deleteItem() {
+    const deletePopup = document.getElementById("deletePopupExpand")
+    deletePopup.classList.replace("notHere", "deletePopupExpand")
+    // deletePopup.classList.add("deletePopup")
+   
+}
+
 function addToWishlist2(clicked_id) {  
-    // console.log("gogogogogo")
-    let thisButton = document.getElementById(clicked_id)
-    let thisButtonImg = thisButton.children[0]
-    let thisButtonImgSrc = thisButtonImg.src
-    wishlistSetsChildren = wishlistSets.children
-    // console.log(thisButtonImg.src)
-    // console.log(typeof(thisButtonImg.src))
-    // console.log(thisButtonImgSrc.includes("red"))
-    let toRemove = []
-    let arrayWishList2 = []
-    for (const i of wishlistSetsChildren) {
-        // console.log(i)
-        // console.log(wishlistSetsChildren)
-        // console.log(i.children[3].id)
-        // console.log(clicked_id)
-        if (clicked_id === i.children[3].id) {
-            let thisButton = i.children[3]
-            let thisButtonParent = thisButton.parentElement
-            // console.log(thisButtonParent)
-            // console.log(thisButtonParent)
-            // thisButtonParent.remove()     
-            toRemove.push(thisButtonParent)       
-        } else {
-            // console.log()
-            arrayWishList2.push(i.dataset.theme)
+    console.log(clicked_id)
+    const deletePopup = document.getElementById("deletePopupExpand")
+    deletePopup.classList.replace("notHere", "deletePopupExpand")
+    const x = clicked_id
+    document.getElementById("yes").addEventListener("click", function(){
+        console.log("jdjdjdjdjdjdjdjdj")
+        console.log(x)
+    
+        // console.log("gogogogogo")
+        let thisButton = document.getElementById(x)
+        let thisButtonImg = thisButton.children[0]
+        let thisButtonImgSrc = thisButtonImg.src
+        wishlistSetsChildren = wishlistSets.children
+        console.log(thisButtonImg.src)
+        // console.log(typeof(thisButtonImg.src))
+        // console.log(thisButtonImgSrc.includes("red"))
+        let toRemove = []
+        let arrayWishList2 = []
+        for (const i of wishlistSetsChildren) {
+            // console.log(i)
+            // console.log(wishlistSetsChildren)
+            console.log(i.children[4].id)
+            // console.log(clicked_id)
+            if (x === i.children[4].id) {
+                let thisButton = i.children[4]
+                let thisButtonParent = thisButton.parentElement
+                console.log(thisButtonParent)
+                // console.log(thisButtonParent)
+                // thisButtonParent.remove()  
+                console.log(toRemove)   
+                toRemove.push(thisButtonParent)       
+            } else {
+                // console.log()
+                arrayWishList2.push(i.dataset.theme)
+            }
+            // console.log(i)
         }
-        // console.log(i)
-    }
-    console.log(toRemove)
-    for (const i of toRemove) {
-        i.remove()
-    }
-    console.log(arrayWishList2)
-    filterListTheme2(arrayWishList2)    
+        console.log(toRemove)
+        for (const i of toRemove) {
+            i.remove()
+        }
+        console.log(arrayWishList2)
+        filterListTheme2(arrayWishList2)    
+        deletePopup.classList.replace("deletePopupExpand", "notHere")
+        saveUpdate()
+        
+    });
+
+    document.getElementById("no").addEventListener("click", function(){
+        deletePopup.classList.replace("deletePopupExpand", "notHere")
+    });
+
+        
 }
 
 // search page //addtowishlist 1 divsets
@@ -680,10 +716,10 @@ function addToWishlist(clicked_id) {
     searchedSetsChildren = searchedSets.children
     wishlistSetsChildren = wishlistSets.children
     for (const i of searchedSetsChildren) {
-        console.log(i.children[3].id)
-        if (clicked_id === i.children[3].id) {
+        console.log(i.children[4].id)
+        if (clicked_id === i.children[4].id) {
             console.log("ololol")
-            let thisButton = i.children[3]
+            let thisButton = i.children[4]
             let thisButtonImg = thisButton.children[0]
             let thisButtonImgSrc = thisButtonImg.src
             let thisButtonParent = thisButton.parentElement
@@ -730,9 +766,9 @@ function addToWishlist3(clicked_id) {
     
     console.log(wishlistSetsChildren)
     for (const i of wishlistSetsChildren) {        
-        console.log(i.children[3].id)
-        if (clicked_id === i.children[3].id) {
-            let thisButton = i.children[3]
+        console.log(i.children[4].id)
+        if (clicked_id === i.children[4].id) {
+            let thisButton = i.children[4]
             let thisButtonParent = thisButton.parentElement
             // console.log(thisButtonParent)
             thisButtonParent.remove()            
@@ -744,6 +780,7 @@ function addToWishlist3(clicked_id) {
     console.log(themeArrayWishlist)
 
     filterListTheme2(themeArrayWishlist)
+    saveUpdate()
 }
 
 function addToWishlist4(clicked_id) {
@@ -753,9 +790,9 @@ function addToWishlist4(clicked_id) {
     const searchedSets = document.getElementById("divSets")
     const searchSetsChildren = searchedSets.children
     for (const i of searchSetsChildren) {
-        console.log(i.children[3].id)
-        if (clicked_id === i.children[3].id) {
-            let thisButton = i.children[3]
+        console.log(i.children[4].id)
+        if (clicked_id === i.children[4].id) {
+            let thisButton = i.children[4]
             let thisButtonParent = thisButton.parentElement
             let ooo = thisButtonParent.cloneNode(true)
             // console.log(thisButtonParent)
@@ -767,6 +804,67 @@ function addToWishlist4(clicked_id) {
     }
     console.log(wishlistSetArray2)
     filterListTheme2(wishlistSetArray2)
+    console.log(wishlistSetsChildren)
+    saveUpdate()
+}
+
+
+
+
+
+
+
+// ************************************** save/update ***************************************
+let inputWishlistSave = document.getElementById("inputWishlistSave")
+function saveUpdate() {
+    let bricklistSetArray = []
+    let objectArray = []
+    const bricklist = document.getElementById("divWishlistSets")
+    const bricklistSets = bricklist.getElementsByClassName("sets")
+    console.log(bricklistSets)
+    console.log(bricklist.children)
+    console.log(bricklistSets[0])
+    console.log(bricklistSets.length)
+    let arrayLength = bricklistSets.length;
+    for (let z = 0 ; z < arrayLength; z++) {
+        let val = bricklistSets[z];
+        let currentObject = {
+            "number": parseInt(`${val.dataset.number}`),
+            "theme": `${val.dataset.theme}`,
+            "price": parseFloat(`${val.dataset.price}`),
+            "name": `${val.dataset.name}`,
+            "releaseDate": `${val.dataset.releaseDate}` ,         
+            "img": `${val.dataset.img}`        
+        }
+        console.log(currentObject)
+        objectArray.push(currentObject)
+        bricklistSetArray.push(val)
+        console.log(val)
+    }
+    console.log(objectArray)
+    // for (const i in bricklist.children) {
+    //     console.log(i)
+    //     bricklistSetArray.push(i)
+    // }
+    console.log(bricklistSetArray)
+    let data = {"sets": objectArray}
+    console.log(data)
+    let bricklistName = document.getElementById("nameChosenBricklist")
+    console.log(bricklistName.textContent)
+    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${bricklistName.textContent}`
+    // console.log(String(url))
+    fetch(url, {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(data)
+    }).then(function(response) {
+        if (!response.ok) {               
+            throw alert("Error with API. Please try again.");
+        } else {
+            savedPopup()
+            // alert("Wishlist Saved");
+        }         
+    });
 }
 
 // ************************************** Wishlist Buttons ***************************************
@@ -775,7 +873,7 @@ let lookupWishlist = document.getElementById("buttonLookUpWishlist")
 let saveWishlist = document.getElementById("buttonSaveToWishlist")
 
 let inputWishlistSearch = document.getElementById("inputWishlistSearch")
-let inputWishlistSave = document.getElementById("inputWishlistSave")
+// let inputWishlistSave = document.getElementById("inputWishlistSave")
 
 let getTest = document.getElementById("getTest")
 
@@ -820,7 +918,8 @@ function addWishlist() {
         if (!response.ok) {               
             throw alert("Error with API. Please try again.");
         } else {
-            alert("Wishlist Saved");
+            savedPopup()
+            // alert("Wishlist Saved");
         }         
     });
 }
@@ -889,6 +988,8 @@ function savedPopup() {
     x.className = "appear"
     setTimeout(function(){x.className = x.className.replace("appear", ""); }, 3000);
 }
+
+
 
 // ***************************** test area *****************************
 

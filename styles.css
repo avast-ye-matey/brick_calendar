@@ -490,12 +490,12 @@ h2 {
 @keyframes fadein {
     from {top: 0; opacity: 0;}
     to {top: 10px; opacity: 1;}
-  }
+}
 
-  @keyframes fadeout {
+@keyframes fadeout {
     from {top: 10px; opacity: 1;}
     to {top: 0; opacity: 0;}
-  }
+}
 
 #buttonHome {
     background: rgb(35, 117, 219);
@@ -519,3 +519,59 @@ h2 {
     justify-content: center;
     gap: 40px;
 }
+
+.deletePopupExpand {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* position: absolute; */
+    z-index: 110000;
+    /* background: violet; */
+}
+
+#deletePopup {
+    display: flex;
+    background: yellow;
+    width: 300px;
+    height: 150px;
+    /* z-index: 110001; */
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    margin-left:-150px;   
+    margin-top:-75px; 
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 15px;
+    color: whitesmoke;
+
+    /* border-radius: 40px 40px 0px 0px;   */
+    box-shadow: 0px -1px 13px 0px #4a6060;
+    background: linear-gradient(315deg, rgb(35 117 219) 37%, rgb(123 184 191) 100%);        
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+#deletePopupButtons {
+    display: flex;       
+}
+
+#deletePopupButtons button {      
+    width: 80px;
+    height: 30px;
+    border-radius: 30px;
+    border: none;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #7e7e7e;    
+}
+
+#deletePopupButtons button:hover {      
+    box-shadow: 0px -1px 13px 5px #4a6060;    
+}
+
+
