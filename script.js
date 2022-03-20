@@ -203,13 +203,13 @@ function setTest(i) {
     let htmlSegment = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                                              
-                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>                              
+                    <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>                              
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
                     // <p id="${i.releaseDate}2"></p> 
     let htmlSegmentRed = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                      
-                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>                                   
+                    <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>                                   
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
                     // <p id="${i.releaseDate}2"></p> 
     console.log(arrayWishList)
@@ -221,6 +221,7 @@ function setTest(i) {
         let z =  divWrapperSets.appendChild(divSet);   
         const release = document.getElementById(`${i.number}${i.releaseDate}`);
         console.log(release)
+        // release.innerHTML = "..."
         release.innerHTML = dateTest(iRd, release);    
         console.log(z)
         // return z
@@ -231,6 +232,7 @@ function setTest(i) {
         let z =  divWrapperSets.appendChild(divSet);   
         const release = document.getElementById(`${i.number}${i.releaseDate}`);
         console.log(release)
+        // release.innerHTML = "..."
         release.innerHTML = dateTest(iRd, release);    
         console.log(z)
         // return z
@@ -522,11 +524,14 @@ function setTest2(i, themeArray2) {
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}`    
     divSet.dataset.number = `${i.number}`
+    divSet.dataset.name = `${i.name}`
+    divSet.dataset.releaseDate = `${i.releaseDate}`
+    divSet.dataset.img = `${i.img}`
     let htmlSegment = `
                     <img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                      
-                    <p id="${i.number}${i.releaseDate}" class="redText">${i.releaseDate}</p>      
+                    <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>      
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>               
                     `;
                     // <p id="${i.releaseDate}">${i.releaseDate}</p>
@@ -536,6 +541,7 @@ function setTest2(i, themeArray2) {
     z =  divWishlistSets.appendChild(divSet);   
     const release = document.getElementById(`${i.number}${i.releaseDate}`);
     console.log(release)
+    // release.innerHTML = "..."
     release.innerHTML = dateTest(iRd, release);    
     // console.log(z)
     themeArray2.push(i.theme)
@@ -997,6 +1003,7 @@ function savedPopup() {
 
 // const dateTimer = document.getElementsById("dateTimer");
 function dateTest(iRd, release) {
+    // release.innerHTML = "..."
     console.log(release)
     console.log(iRd)
     // Set the date we're counting down to
@@ -1005,32 +1012,47 @@ function dateTest(iRd, release) {
 
     // Update the count down every 1 second
     var x = setInterval(function() {
-
         // Get today's date and time
         var now = new Date().getTime();
         // console.log(now)
-
         // Find the distance between now and the count down date
         var distance = countDownDate - now;
-
         // Time calculations for days, hours, minutes and seconds
         var days = Math.floor(distance / (1000 * 60 * 60 * 24));
         var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Display the result in the element with id="demo"
-        
-        
+        // Display the result in the element with id="demo"               
         // release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
-        release.innerHTML = days + " days remain!";
-
+        // release.classList.replace("notHere", "redText")
+        // release.innerHTML = days + " days remain!";
         // If the count down is finished, write some text
         if (distance < 0) {
             clearInterval(x);
             release.innerHTML = "Available!";
-            release.classList.toggle("greenText")
-        } 
+            release.classList.replace("notHere", "greenText")
+        } else {
+            release.innerHTML = days + " days remain!";
+            release.classList.replace("notHere", "redText")            
+        }
     }, 1000);
-    // console.log(p)
+
+
+
+    
+    // // console.log(p)
+    // var now = new Date().getTime();
+    //     // console.log(now)
+    //     // Find the distance between now and the count down date
+    // var distance = countDownDate - now;
+    // // Time calculations for days, hours, minutes and seconds
+    // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    // if (distance < 0) {
+    //     clearInterval(x);
+    //     release.innerHTML = "Available!";
+    //     release.classList.replace("notHere", "greenText")
+    // } else {
+    //     release.innerHTML = days + " days remain!";
+    //     release.classList.replace("notHere", "redText")            
+    // }
 }
