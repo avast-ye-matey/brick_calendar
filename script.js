@@ -1,25 +1,3 @@
-// ***************************** variables *****************************
-
-
-// let filterTheme = document.getElementById("filterTheme")
-// let filterPrice = document.getElementById("filterPrice")
-// let filterDefaultId = document.getElementById("filterDefaultId")
-
-
-
-
-function filterListPrice() {
-
-}
-
-function filterSetTheme() {
-
-}
-
-function filterSetPrice() {
-
-}
-
 // *******************  create new bricklist ***********************
 // input for naming new bricklist appear/disappear
 
@@ -44,21 +22,15 @@ inputSearch.addEventListener("keyup", function(event) {
   }
 });
 
-
 // ***************************** searchbar *****************************
 
 function searchSets() {    
     document.getElementById("divSets").innerHTML = "";
     let titleArray = []
-    let themeArray = [] 
-    // let numberArray = []   
-    let input = document.getElementById('inputSearch').value.toLowerCase();    
-    // let y = document.getElementById("demoSearch")
-    // y.innerHTML = ""
+    let themeArray = []     
+    let input = document.getElementById('inputSearch').value.toLowerCase();       
     let r = document.getElementById("filterTheme").children.length
-    let filterTheme = document.getElementById("filterTheme")
-    // let filterTheme2 = document.getElementById("filterTheme")
-    console.log(input)
+    let filterTheme = document.getElementById("filterTheme")       
     if (input === "") {
         alert("Search bar blank. Please input your search.")
     } else {    
@@ -94,10 +66,7 @@ function searchSets() {
                     if (i.theme.toLowerCase().includes(input)) {
                         titleArray.push(i.name)
                         themeArray.push(i.theme)
-                    }  
-                    // console.log(i.number)
-                    // console.log(input)
-                    // console.log(i.number === input)
+                    }                      
                     if (i.number.toString() === input) {
                         titleArray.push(i.name)
                         themeArray.push(i.theme)
@@ -109,21 +78,7 @@ function searchSets() {
                     alert("Couldn't find a set mathing your search. Please try again.")
                 } else {
                     filterListTheme(themeArray)
-                    let titleSet = new Set(titleArray)           
-                    // let themeSet = new Set(themeArray)
-                    // // let numberSet = new Set(numberArray)
-                    // themeSet.forEach((value) => {                               
-                    //     let theme = document.createElement("option")
-                    //     theme.innerHTML = value
-                    //     filterTheme.appendChild(theme)
-                    // })           
-
-
-                    // titleSet.forEach((value) => {                              
-                        // let text = document.createElement("p")
-                        // text.innerHTML = value               
-                        // y.appendChild(text)
-                    // console.log(titleSet)
+                    let titleSet = new Set(titleArray)                            
                     titleSet = Array.from(titleSet);              
                     fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
                             .then(function(response) {
@@ -148,13 +103,8 @@ function searchSets() {
 }
 
 
-function filterListTheme(themeArray) {    
-      
-
-    // let themeArray = []
-    // let titleSet = new Set(titleArray)           
-    let themeSet = new Set(themeArray)
-    // let numberSet = new Set(numberArray)
+function filterListTheme(themeArray) {                     
+    let themeSet = new Set(themeArray)   
     themeSet.forEach((value) => {                               
         let theme = document.createElement("option")
         theme.innerHTML = value
@@ -167,33 +117,24 @@ function filterListTheme2(themeArray2) {
     filterTheme2.innerHTML = "";
     let option = document.createElement("option")
     option.innerHTML = "Theme"
-    filterTheme2.appendChild(option)  
-
-    // const filterTheme2 = document.getElementById("filterTheme2")
-    // let themeArray = []
-    // let titleSet = new Set(titleArray)           
-    let themeSet = new Set(themeArray2)
-    // let numberSet = new Set(numberArray)
+    filterTheme2.appendChild(option)                
+    let themeSet = new Set(themeArray2)   
     themeSet.forEach((value) => {                               
         let theme = document.createElement("option")
         theme.innerHTML = value
         filterTheme2.appendChild(theme)
     })
-}
-      
+}      
 
 // ***************************** set creation shell  *****************************
 let arrayPrice = []
 let arrayWishList = []
 // shell creation for searched sets
-function setTest(i) {
-    // document.getElementById("divSets").innerHTML = "";
-    console.log("howdy")
+function setTest(i) {   
     const divWrapperSets = document.getElementById("divSets");
     divWrapperSets.style.visibility = "";
     const divSet = document.createElement("div");
-    divSet.setAttribute("class", "sets") 
-    // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+    divSet.setAttribute("class", "sets")     
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}` 
     divSet.dataset.number = `${i.number}`
@@ -204,38 +145,24 @@ function setTest(i) {
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                                              
                     <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>                              
-                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                  
-                    // <p id="${i.releaseDate}2"></p> 
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com.svg"/></button>`;                                      
     let htmlSegmentRed = `<img src="${i.img}" onclick="expandImage(this.src);" id="setImg"></img>
                     <div class="name">${i.number} - ${i.name}</div>
                     <div class="price">$${i.price}</div>                      
                     <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>                                   
-                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;                  
-                    // <p id="${i.releaseDate}2"></p> 
-    console.log(arrayWishList)
-    // arrayPrice.push(`${i.price}`)
-    if (arrayWishList.includes(i.number)) {
-        console.log("gotcha")
+                    <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;               
+    if (arrayWishList.includes(i.number)) {       
         divSet.innerHTML = htmlSegmentRed;    
-        let iRd = `${i.releaseDate}`       
+        let cdd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
-        const release = document.getElementById(`${i.number}${i.releaseDate}`);
-        console.log(release)
-        // release.innerHTML = "..."
-        release.innerHTML = dateTest(iRd, release);    
-        console.log(z)
-        // return z
-    } else {
-        console.log("dont gotcha")
+        const release = document.getElementById(`${i.number}${i.releaseDate}`);                
+        release.innerHTML = dateTest(cdd, release);            
+    } else {        
         divSet.innerHTML = htmlSegment;    
-        let iRd = `${i.releaseDate}`       
+        let cdd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
-        const release = document.getElementById(`${i.number}${i.releaseDate}`);
-        console.log(release)
-        // release.innerHTML = "..."
-        release.innerHTML = dateTest(iRd, release);    
-        console.log(z)
-        // return z
+        const release = document.getElementById(`${i.number}${i.releaseDate}`);               
+        release.innerHTML = dateTest(cdd, release);            
     }    
 }    
 
@@ -243,17 +170,11 @@ function setTest(i) {
 
 function filterThemeOrder(selection) {
     const divSets = document.getElementById("divSets")
-    const themeClass = divSets.getElementsByClassName("sets");
-    // console.log(selection.options[selection.selectedIndex].text)
-    for (const i of themeClass) {
-        // console.log(i.dataset.theme)
-        console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
-        // console.log(String(selection.options[selection.selectedIndex].text))
+    const themeClass = divSets.getElementsByClassName("sets");    
+    for (const i of themeClass) {                    
         if (String(selection.options[selection.selectedIndex].text) === "Theme") {
             i.style.display = "";
-        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
-            // console.log(i.dataset.theme) 
-            // console.log(i)
+        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {          
             i.style.display = "none";
         } else {
             i.style.display = "";
@@ -263,17 +184,11 @@ function filterThemeOrder(selection) {
 
 function filterThemeOrder2(selection) {
     const divWishlistSets = document.getElementById("divWishlistSets")
-    const themeClass = divWishlistSets.getElementsByClassName("sets");
-    // console.log(selection.options[selection.selectedIndex].text)
-    for (const i of themeClass) {
-        // console.log(i.dataset.theme)
-        console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
-        // console.log(String(selection.options[selection.selectedIndex].text))
+    const themeClass = divWishlistSets.getElementsByClassName("sets");   
+    for (const i of themeClass) {       
         if (String(selection.options[selection.selectedIndex].text) === "Theme") {
             i.style.display = "";
-        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
-            // console.log(i.dataset.theme) 
-            // console.log(i)
+        } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {           
             i.style.display = "none";
         } else {
             i.style.display = "";
@@ -288,185 +203,104 @@ let arrayPriceFilter2 = [
         "price": 0
     }
 ]
-function filterPriceOrder2(selection) {   
-    
-    // console.log(arrayPriceFilter.length)
-    // console.log(typeof(arrayPriceFilter2[0].price))
+function filterPriceOrder2(selection) {       
     const setList = document.getElementById("divWishlistSets")
-    const setListSets = setList.getElementsByClassName("sets")
-    // console.log(setListSets)
-    for (const i of setListSets) {
-        // console.log(i)
+    const setListSets = setList.getElementsByClassName("sets")    
+    for (const i of setListSets) {       
     y = {
         "id": `${i.dataset.number}`,
         "price": parseFloat(`${i.dataset.price}`)  
         }
-    arrayPriceFilter.push(y)
-    // console.log(arrayPriceFilter.length)
+    arrayPriceFilter.push(y)    
     }
-    for (const i of arrayPriceFilter) {
-        // console.log(i)
-    }
-    // console.log(arrayPriceFilter2)
-    
-    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)
-    console.log(arrayPriceFilter)   
-    
+    for (const i of arrayPriceFilter) {        
+    }      
+    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)        
     if (String(selection.options[selection.selectedIndex].text) === "low - high") {
-
-        function putBack(ii) {
-            // console.log("yoooooo")
+        function putBack(ii) {           
             const setList2 = document.getElementById("divWishlistSets")
-            const setListSets2 = setList2.getElementsByClassName("sets")
-            // console.log(setListSets2)
-            // divWishlistSets.innerHTML = "";        
-            for (const x of setListSets2) {
-                // console.log("ggggggg")
-                // console.log(typeof(x))
-                // console.log(x)
-                // console.log(x.dataset.number)
-                // console.log(typeof(x.dataset.number))
-                // console.log(x)            
+            const setListSets2 = setList2.getElementsByClassName("sets")                 
+            for (const x of setListSets2) {                       
                 if (ii === x.dataset.number) {
                     divWishlistSets.appendChild(x)
                 }
             }
         }
-        for (const i of arrayPriceFilter) {
-            // console.log(i)
+        for (const i of arrayPriceFilter) {           
             ii = i.id
             putBack(ii)                       
-        }   
-        // console.log(arrayPriceFilter)
-        // console.log(arrayPriceFilter2)   
-        // console.log(arrayPriceFilter2)
-
+        }       
     } 
-
     if (String(selection.options[selection.selectedIndex].text) === "high - low") {
         const reverse = arrayPriceFilter.reverse()
-        function putBack(ii) {
-            // console.log("yoooooo")
+        function putBack(ii) {            
             const setList2 = document.getElementById("divWishlistSets")
-            const setListSets2 = setList2.getElementsByClassName("sets")
-            // console.log(setListSets2)
-            // divWishlistSets.innerHTML = "";        
-            for (const x of setListSets2) {
-                // console.log("ggggggg")
-                // console.log(typeof(x))
-                // console.log(x)
-                // console.log(x.dataset.number)
-                // console.log(typeof(x.dataset.number))
-                // console.log(x)            
+            const setListSets2 = setList2.getElementsByClassName("sets")                
+            for (const x of setListSets2) {                       
                 if (ii === x.dataset.number) {
                     divWishlistSets.appendChild(x)
                 }
             }
         }
-        for (const i of reverse) {
-            // console.log(i)
+        for (const i of reverse) {            
             ii = i.id
             putBack(ii)                       
         }   
-    }
-
-    
+    }    
 }
 
-
-function filterPriceOrder(selection) {   
-
+function filterPriceOrder(selection) {  
     let arrayPriceFilter = []
     let arrayPriceFilter2 = [
         {
             "id": "default",
             "price": 0
         }
-    ]
-    
-    // console.log(arrayPriceFilter.length)
-    // console.log(typeof(arrayPriceFilter2[0].price))
+    ]   
     const setList = document.getElementById("divSets")
-    const setListSets = setList.getElementsByClassName("sets")
-    // console.log(setListSets)
-    for (const i of setListSets) {
-        // console.log(i)
-    y = {
-        "id": `${i.dataset.number}`,
-        "price": parseFloat(`${i.dataset.price}`)  
-        }
-    arrayPriceFilter.push(y)
-    // console.log(arrayPriceFilter.length)
+    const setListSets = setList.getElementsByClassName("sets")  
+    for (const i of setListSets) {       
+        y = {
+            "id": `${i.dataset.number}`,
+            "price": parseFloat(`${i.dataset.price}`)  
+            }
+        arrayPriceFilter.push(y)   
     }
-    for (const i of arrayPriceFilter) {
-        // console.log(i)
-    }
-    // console.log(arrayPriceFilter2)
-    
-    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)
-    console.log(arrayPriceFilter)   
-    
+    for (const i of arrayPriceFilter) {       
+    }        
+    arrayPriceFilter.sort((a,b) => (a.price > b.price) ? 1 : -1)       
     if (String(selection.options[selection.selectedIndex].text) === "low - high") {
-
-        function putBack(ii) {
-            // console.log("yoooooo")
+        function putBack(ii) {           
             const setList2 = document.getElementById("divSets")
-            const setListSets2 = setList2.getElementsByClassName("sets")
-            // console.log(setListSets2)
-            // divWishlistSets.innerHTML = "";        
-            for (const x of setListSets2) {
-                // console.log("ggggggg")
-                // console.log(typeof(x))
-                // console.log(x)
-                // console.log(x.dataset.number)
-                // console.log(typeof(x.dataset.number))
-                // console.log(x)            
+            const setListSets2 = setList2.getElementsByClassName("sets")               
+            for (const x of setListSets2) {                         
                 if (ii === x.dataset.number) {
                     setList2.appendChild(x)
                 }
             }
         }
-        for (const i of arrayPriceFilter) {
-            // console.log(i)
+        for (const i of arrayPriceFilter) {           
             ii = i.id
             putBack(ii)                       
-        }   
-        // console.log(arrayPriceFilter)
-        // console.log(arrayPriceFilter2)   
-        // console.log(arrayPriceFilter2)
-
+        }        
     } 
-
     if (String(selection.options[selection.selectedIndex].text) === "high - low") {
         const reverse = arrayPriceFilter.reverse()
-        function putBack(ii) {
-            // console.log("yoooooo")
+        function putBack(ii) {           
             const setList2 = document.getElementById("divSets")
-            const setListSets2 = setList2.getElementsByClassName("sets")
-            // console.log(setListSets2)
-            // divWishlistSets.innerHTML = "";        
-            for (const x of setListSets2) {
-                // console.log("ggggggg")
-                // console.log(typeof(x))
-                // console.log(x)
-                // console.log(x.dataset.number)
-                // console.log(typeof(x.dataset.number))
-                // console.log(x)            
+            const setListSets2 = setList2.getElementsByClassName("sets")              
+            for (const x of setListSets2) {                   
                 if (ii === x.dataset.number) {
                     setList2.appendChild(x)
                 }
             }
         }
-        for (const i of reverse) {
-            // console.log(i)
+        for (const i of reverse) {           
             ii = i.id
             putBack(ii)                       
         }   
-    }
-
-    
-}
-    
+    }    
+}    
 
 // ***************** wishlist tab top/bottom *********************
 
@@ -492,10 +326,6 @@ function wishUpDown() {
     }
 }
 
-
-
-
-
 const filterOptionChooseWishlist = document.getElementById("filterOptionChooseWishlist")
 const filterChooseWishlist = document.getElementById("filterChooseWishlist")
 
@@ -511,16 +341,9 @@ fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18
     }) 
 
 //shell creation for saved/wishlist bricklist selection
-function setTest2(i, themeArray2) { 
-    // themeArray = []
-    // const divWishlistSets = document.getElementById("divWishlistSets")
-    // divWishlistSets.innerHTML = "";
-    console.log("howdy2")
-    // const divWrapperSets = document.getElementById("divSets");
-    // divWishlistSets.style.visibility = "";
+function setTest2(i, themeArray2) {      
     const divSet = document.createElement("div");
-    divSet.setAttribute("class", "sets") 
-    // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+    divSet.setAttribute("class", "sets")   
     divSet.dataset.theme = `${i.theme}`      
     divSet.dataset.price = `${i.price}`    
     divSet.dataset.number = `${i.number}`
@@ -533,17 +356,12 @@ function setTest2(i, themeArray2) {
                     <div class="price">$${i.price}</div>                      
                     <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>      
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist2(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>               
-                    `;
-                    // <p id="${i.releaseDate}">${i.releaseDate}</p>
-                    // <p id="${i.releaseDate}2"></p> 
+                    `;                   
     divSet.innerHTML = htmlSegment;    
-    let iRd = `${i.releaseDate}`       
+    let cdd = `${i.releaseDate}`       
     z =  divWishlistSets.appendChild(divSet);   
-    const release = document.getElementById(`${i.number}${i.releaseDate}`);
-    console.log(release)
-    // release.innerHTML = "..."
-    release.innerHTML = dateTest(iRd, release);    
-    // console.log(z)
+    const release = document.getElementById(`${i.number}${i.releaseDate}`);  
+    release.innerHTML = dateTest(cdd, release);      
     themeArray2.push(i.theme)
     return z
 }
@@ -551,13 +369,11 @@ function setTest2(i, themeArray2) {
 let divFilterDropdownW = document.getElementById("divFilterDropdownW")
 let nameChosenBricklist = document.getElementById("nameChosenBricklist")
 function filterWishlist(selection) {
-    themeArray2 = []
-    // savedPopup()
+    themeArray2 = []   
     nameChosenBricklist.innerHTML = 
     divWishlistFooterOuter.className = "divWishlistFooterOuter"
     const divWishlistSets = document.getElementById("divWishlistSets")
-    divWishlistSets.innerHTML = "";
-    console.log(selection.options[selection.selectedIndex].text)
+    divWishlistSets.innerHTML = "";    
     let z = selection.options[selection.selectedIndex].text
     nameChosenBricklist.innerHTML = z
     wishlistFilter.style.display = "none"
@@ -567,38 +383,26 @@ function filterWishlist(selection) {
     let x = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${z}`
     fetch(x)
         .then(response => response.json())
-        .then(result => {
-            // console.log(result)
-            // console.log(result.baskets)
-            // console.log(result.sets)
+        .then(result => {           
             for (const i of result.sets) {
-                arrayWishList.push(i.number)
-                // console.log(i)   
+                arrayWishList.push(i.number)               
                 setTest2(i, themeArray2)                
             }      
             filterListTheme2(themeArray2)    
         }) 
 }
 
-
-
 const themeClass = document.getElementsByClassName("sets");
-// console.log(selection.options[selection.selectedIndex].text)
-for (const i of themeClass) {
-    // console.log(i.dataset.theme)
-    console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
-    // console.log(String(selection.options[selection.selectedIndex].text))
+
+for (const i of themeClass) {       
     if (String(selection.options[selection.selectedIndex].text) === "Theme") {
         i.style.display = "";
-    } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {
-        // console.log(i.dataset.theme) 
-        // console.log(i)
+    } else if (i.dataset.theme !== String(selection.options[selection.selectedIndex].text)) {      
         i.style.display = "none";
     } else {
         i.style.display = "";
     }
 }
-
 
 // ***************** img expand/minimize *********************
 
@@ -639,114 +443,67 @@ function expandImage(clicked_image) {
 
 const wishlistSets = document.getElementById("divWishlistSets")
 const searchedSets = document.getElementById("divSets")
-// wishlist page divwish
-// const themeAdd = document.getElementById("theme")
-// const wishlistAdd = document.getElementById("divWishlistSets")
-//added when click heart from set search
-// let arrayWishList2 = []
+
 function addToWishlistDeletePopup(clicked_id) {
     deleteItem(clicked_id)
 }
 
 // ***************************** delete popup *****************************
 
-
 function deleteItem() {
     const deletePopup = document.getElementById("deletePopupExpand")
-    deletePopup.classList.replace("notHere", "deletePopupExpand")
-    // deletePopup.classList.add("deletePopup")
-   
+    deletePopup.classList.replace("notHere", "deletePopupExpand")     
 }
 
-function addToWishlist2(clicked_id) {  
-    console.log(clicked_id)
+function addToWishlist2(clicked_id) {      
     const deletePopup = document.getElementById("deletePopupExpand")
     deletePopup.classList.replace("notHere", "deletePopupExpand")
     const x = clicked_id
-    document.getElementById("yes").addEventListener("click", function(){
-        console.log("jdjdjdjdjdjdjdjdj")
-        console.log(x)
-    
-        // console.log("gogogogogo")
+    document.getElementById("yes").addEventListener("click", function(){    
         let thisButton = document.getElementById(x)
         let thisButtonImg = thisButton.children[0]
         let thisButtonImgSrc = thisButtonImg.src
-        wishlistSetsChildren = wishlistSets.children
-        console.log(thisButtonImg.src)
-        // console.log(typeof(thisButtonImg.src))
-        // console.log(thisButtonImgSrc.includes("red"))
+        wishlistSetsChildren = wishlistSets.children       
         let toRemove = []
         let arrayWishList2 = []
-        for (const i of wishlistSetsChildren) {
-            // console.log(i)
-            // console.log(wishlistSetsChildren)
-            console.log(i.children[4].id)
-            // console.log(clicked_id)
+        for (const i of wishlistSetsChildren) {          
             if (x === i.children[4].id) {
                 let thisButton = i.children[4]
-                let thisButtonParent = thisButton.parentElement
-                console.log(thisButtonParent)
-                // console.log(thisButtonParent)
-                // thisButtonParent.remove()  
-                console.log(toRemove)   
+                let thisButtonParent = thisButton.parentElement               
                 toRemove.push(thisButtonParent)       
-            } else {
-                // console.log()
+            } else {              
                 arrayWishList2.push(i.dataset.theme)
-            }
-            // console.log(i)
-        }
-        console.log(toRemove)
+            }          
+        }        
         for (const i of toRemove) {
             i.remove()
         }
-        console.log(arrayWishList2)
+        
         filterListTheme2(arrayWishList2)    
         deletePopup.classList.replace("deletePopupExpand", "notHere")
-        saveUpdate()
-        
+        saveUpdate()        
     });
-
     document.getElementById("no").addEventListener("click", function(){
         deletePopup.classList.replace("deletePopupExpand", "notHere")
-    });
-
-        
+    });        
 }
 
 // search page //addtowishlist 1 divsets
-function addToWishlist(clicked_id) { 
-    // let thisButton = document.getElementById(clicked_id)
-    // let thisButtonImg = thisButton.children[0]
-    // let thisButtonImgSrc = thisButtonImg.src
+function addToWishlist(clicked_id) {     
     searchedSetsChildren = searchedSets.children
     wishlistSetsChildren = wishlistSets.children
-    for (const i of searchedSetsChildren) {
-        console.log(i.children[4].id)
-        if (clicked_id === i.children[4].id) {
-            console.log("ololol")
+    for (const i of searchedSetsChildren) {        
+        if (clicked_id === i.children[4].id) {          
             let thisButton = i.children[4]
             let thisButtonImg = thisButton.children[0]
             let thisButtonImgSrc = thisButtonImg.src
-            let thisButtonParent = thisButton.parentElement
-            // console.log(thisButtonParent)
-            // thisButtonParent.remove()
-            console.log(thisButton)
-            console.log(thisButtonImgSrc)
-            if (thisButtonImgSrc.includes("red")) {
-                console.log(thisButtonImg)
-                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"
-                console.log(thisButtonImg.src)
-                addToWishlist3(clicked_id)
-                // addToWishlist3(clicked_id)
-                // console.log(thisButtonImgSrc)
-                // console.log(thisButtonImg)
-                // let thisButtonParent = thisButton.parentElement
-                // thisButtonParent.remove()
+            let thisButtonParent = thisButton.parentElement          
+            if (thisButtonImgSrc.includes("red")) {                
+                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"               
+                addToWishlist3(clicked_id)               
             } else {              
                 thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
-                addToWishlist4(clicked_id)
-                // setTest2(i)
+                addToWishlist4(clicked_id)               
             }
         }
             
@@ -754,37 +511,22 @@ function addToWishlist(clicked_id) {
 }
  
 // take away item
-function addToWishlist3(clicked_id) {
-    // let thisButton = document.getElementById(clicked_id)
-    // let thisButtonImg = thisButton.children[0]
-    // let thisButtonImgSrc = thisButtonImg.src
-    themeArrayWishlist = []
-
-    console.log(clicked_id)
+function addToWishlist3(clicked_id) {   
+    themeArrayWishlist = []   
     const wishlistSets = document.getElementById("divWishlistSets")
     wishlistSetsChildren = wishlistSets.children
-
-    const searchedSets = document.getElementById("divSets")
-
-    
-    
-    themeArraySets = []
-    
-    console.log(wishlistSetsChildren)
-    for (const i of wishlistSetsChildren) {        
-        console.log(i.children[4].id)
+    const searchedSets = document.getElementById("divSets")       
+    themeArraySets = []      
+    for (const i of wishlistSetsChildren) {             
         if (clicked_id === i.children[4].id) {
             let thisButton = i.children[4]
-            let thisButtonParent = thisButton.parentElement
-            // console.log(thisButtonParent)
+            let thisButtonParent = thisButton.parentElement           
             thisButtonParent.remove()            
         } 
     }
     for (const z of wishlistSetsChildren)  {
         themeArrayWishlist.push(z.dataset.theme)
-    }
-    console.log(themeArrayWishlist)
-
+    }   
     filterListTheme2(themeArrayWishlist)
     saveUpdate()
 }
@@ -795,30 +537,20 @@ function addToWishlist4(clicked_id) {
     const wishlistSetsChildren = wishlistSets.children
     const searchedSets = document.getElementById("divSets")
     const searchSetsChildren = searchedSets.children
-    for (const i of searchSetsChildren) {
-        console.log(i.children[4].id)
+    for (const i of searchSetsChildren) {        
         if (clicked_id === i.children[4].id) {
             let thisButton = i.children[4]
             let thisButtonParent = thisButton.parentElement
-            let ooo = thisButtonParent.cloneNode(true)
-            // console.log(thisButtonParent)
+            let ooo = thisButtonParent.cloneNode(true)            
             wishlistSets.appendChild(ooo)            
         }
     }
     for (const z of wishlistSetsChildren)  {
         wishlistSetArray2.push(z.dataset.theme)
-    }
-    console.log(wishlistSetArray2)
-    filterListTheme2(wishlistSetArray2)
-    console.log(wishlistSetsChildren)
+    }   
+    filterListTheme2(wishlistSetArray2)   
     saveUpdate()
 }
-
-
-
-
-
-
 
 // ************************************** save/update ***************************************
 let inputWishlistSave = document.getElementById("inputWishlistSave")
@@ -826,11 +558,7 @@ function saveUpdate() {
     let bricklistSetArray = []
     let objectArray = []
     const bricklist = document.getElementById("divWishlistSets")
-    const bricklistSets = bricklist.getElementsByClassName("sets")
-    console.log(bricklistSets)
-    console.log(bricklist.children)
-    console.log(bricklistSets[0])
-    console.log(bricklistSets.length)
+    const bricklistSets = bricklist.getElementsByClassName("sets")   
     let arrayLength = bricklistSets.length;
     for (let z = 0 ; z < arrayLength; z++) {
         let val = bricklistSets[z];
@@ -841,24 +569,13 @@ function saveUpdate() {
             "name": `${val.dataset.name}`,
             "releaseDate": `${val.dataset.releaseDate}` ,         
             "img": `${val.dataset.img}`        
-        }
-        console.log(currentObject)
+        }        
         objectArray.push(currentObject)
-        bricklistSetArray.push(val)
-        console.log(val)
-    }
-    console.log(objectArray)
-    // for (const i in bricklist.children) {
-    //     console.log(i)
-    //     bricklistSetArray.push(i)
-    // }
-    console.log(bricklistSetArray)
-    let data = {"sets": objectArray}
-    console.log(data)
-    let bricklistName = document.getElementById("nameChosenBricklist")
-    console.log(bricklistName.textContent)
-    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${bricklistName.textContent}`
-    // console.log(String(url))
+        bricklistSetArray.push(val)       
+    }  
+    let data = {"sets": objectArray}   
+    let bricklistName = document.getElementById("nameChosenBricklist")    
+    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${bricklistName.textContent}`  
     fetch(url, {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
@@ -867,8 +584,7 @@ function saveUpdate() {
         if (!response.ok) {               
             throw alert("Error with API. Please try again.");
         } else {
-            savedPopup()
-            // alert("Wishlist Saved");
+            savedPopup()           
         }         
     });
 }
@@ -877,23 +593,14 @@ function saveUpdate() {
 
 let lookupWishlist = document.getElementById("buttonLookUpWishlist")
 let saveWishlist = document.getElementById("buttonSaveToWishlist")
-
 let inputWishlistSearch = document.getElementById("inputWishlistSearch")
-// let inputWishlistSave = document.getElementById("inputWishlistSave")
-
 let getTest = document.getElementById("getTest")
-
-function searchWishlist() {
-    // let data = {element: "barium"};    
+function searchWishlist() { 
     fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
         .then(response => response.json())
-        .then(result => {
-            console.log(result)
-            for (const i of result.baskets) {
-                // console.log(i.name)
-                // console.log(inputWishlistSearch.value)
-                if (inputWishlistSearch.value === i.name ) {
-                    console.log(i.name)
+        .then(result => {           
+            for (const i of result.baskets) {                
+                if (inputWishlistSearch.value === i.name ) {                    
                     alert("found")  
                 } else {
                     // alert("not found")
@@ -914,8 +621,7 @@ inputWishlistSave.addEventListener("keyup", function(event) {
 // needs to be attached to submit new wishlist
 function addWishlist() {
     let data = {"sets": []}
-    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${inputWishlistSave.value}`
-    // console.log(String(url))
+    let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${inputWishlistSave.value}`    
     fetch(url, {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
@@ -924,8 +630,7 @@ function addWishlist() {
         if (!response.ok) {               
             throw alert("Error with API. Please try again.");
         } else {
-            savedPopup()
-            // alert("Wishlist Saved");
+            savedPopup()            
         }         
     });
 }
@@ -933,7 +638,6 @@ function addWishlist() {
 // ************************************** save new wishlist name ***************************************
 
 let wishlistFilter = document.getElementById("wishlistFilter")
-// let inputWishlistSave = document.getElementById("inputWishlistSave")
 let h1Wishlist = document.getElementById("h1Wishlist")
 let bricklistNameTitle = document.getElementById("bricklistNameTitle")
 let savedWishlistName = ""
@@ -942,8 +646,7 @@ function saveNewWishlistName() {
         z = false
         if (inputWishlistSave.value === "" ) {
             alert("Your response is blank. Please try again.")
-            z = true
-            console.log(z + 1)
+            z = true            
             resolve(z)
         }
         resolve(z)
@@ -951,37 +654,29 @@ function saveNewWishlistName() {
     let promise2 = new Promise(function (resolve, reject) {    
         fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
             .then(response => response.json())
-            .then(result => {
-                console.log(result)
+            .then(result => {                
                 z = false
-                for (const i of result.baskets) {
-                    console.log(i.name)
+                for (const i of result.baskets) {                    
                     if (inputWishlistSave.value === i.name) {
                         z = true
-                        alert("Name already used. Please enter another name.")
-                        console.log(z + 2)
+                        alert("Name already used. Please enter another name.")                        
                         resolve(z)                 
                     } 
-                }
-                console.log(z)
+                }                
                 resolve(z)
             }) 
     })
     async function getY() {
         let y = await promise
         let x = await promise2
-        if (y === false && x === false) {
-            console.log(inputWishlistSave.value)
-            savedWishlistName = inputWishlistSave.value
-            console.log(savedWishlistName)
+        if (y === false && x === false) {            
+            savedWishlistName = inputWishlistSave.value           
             wishUpDown()
             bricklistNameTitle.innerHTML = savedWishlistName
             nameChosenBricklist.innerHTML = savedWishlistName
             wishlistFilter.style.display = "none"
             h1Wishlist.style.display = "none"
-            divFilterDropdownW.style.removeProperty("display")
-            // divWishlistFooterOuter.className = "divWishlistFooterOuter"
-            console.log("truetrue")
+            divFilterDropdownW.style.removeProperty("display")           
             addWishlist()  
         }      
     }
@@ -995,38 +690,14 @@ function savedPopup() {
     setTimeout(function(){x.className = x.className.replace("appear", ""); }, 3000);
 }
 
-
-
-// ***************************** test area *****************************
-
 // ***************************** countdown timer *****************************
 
-// const dateTimer = document.getElementsById("dateTimer");
-function dateTest(iRd, release) {
-    // release.innerHTML = "..."
-    console.log(release)
-    console.log(iRd)
-    // Set the date we're counting down to
-    var countDownDate = new Date(iRd).getTime();
-    console.log(countDownDate)
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-        // Get today's date and time
-        var now = new Date().getTime();
-        // console.log(now)
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        // Display the result in the element with id="demo"               
-        // release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
-        // release.classList.replace("notHere", "redText")
-        // release.innerHTML = days + " days remain!";
-        // If the count down is finished, write some text
+function dateTest(cdd, release) {        
+    var countDownDate = new Date(cdd).getTime();    
+    var x = setInterval(function() {      
+        var now = new Date().getTime();             
+        var distance = countDownDate - now;        
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));            
         if (distance < 0) {
             clearInterval(x);
             release.innerHTML = "Available!";
@@ -1035,24 +706,7 @@ function dateTest(iRd, release) {
             release.innerHTML = days + " days remain!";
             release.classList.replace("notHere", "redText")            
         }
-    }, 1000);
-
-
-
-    
-    // // console.log(p)
-    // var now = new Date().getTime();
-    //     // console.log(now)
-    //     // Find the distance between now and the count down date
-    // var distance = countDownDate - now;
-    // // Time calculations for days, hours, minutes and seconds
-    // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    // if (distance < 0) {
-    //     clearInterval(x);
-    //     release.innerHTML = "Available!";
-    //     release.classList.replace("notHere", "greenText")
-    // } else {
-    //     release.innerHTML = days + " days remain!";
-    //     release.classList.replace("notHere", "redText")            
-    // }
+    }, 1000);      
 }
+
+// ***************************** test area *****************************
