@@ -444,3 +444,454 @@ function buttonPostTest() {
 
 
 // }
+
+
+
+ // let themeSet = new Set(themeArray)
+                    // // let numberSet = new Set(numberArray)
+                    // themeSet.forEach((value) => {                               
+                    //     let theme = document.createElement("option")
+                    //     theme.innerHTML = value
+                    //     filterTheme.appendChild(theme)
+                    // })           
+
+
+                    // titleSet.forEach((value) => {                              
+                        // let text = document.createElement("p")
+                        // text.innerHTML = value               
+                        // y.appendChild(text)
+                    // console.log(titleSet)
+
+
+
+// let numberArray = []   
+
+// let y = document.getElementById("demoSearch")
+    // y.innerHTML = ""
+
+// let filterTheme2 = document.getElementById("filterTheme")
+
+console.log(input)
+
+ // let themeArray = []
+    // let titleSet = new Set(titleArray) 
+
+     // let numberSet = new Set(numberArray)
+
+// const filterTheme2 = document.getElementById("filterTheme2")
+    // let themeArray = []
+    // let titleSet = new Set(titleArray) 
+
+ // let numberSet = new Set(numberArray)
+
+
+  // document.getElementById("divSets").innerHTML = "";
+  console.log("howdy")
+
+
+  // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+
+  // <p id="${i.releaseDate}2"></p> 
+  // <p id="${i.releaseDate}2"></p> 
+
+  console.log(arrayWishList)
+    // arrayPrice.push(`${i.price}`)
+
+    // release.innerHTML = "..."
+
+    console.log(z)
+        // return z
+
+        console.log(release)
+
+        console.log("gotcha")
+
+        // release.innerHTML = "..."
+
+        console.log(z)
+        // return z
+
+        console.log(release)
+
+        console.log("dont gotcha")
+
+        // console.log(selection.options[selection.selectedIndex].text)
+
+
+         // console.log(i.dataset.theme)
+
+
+         // console.log(String(selection.options[selection.selectedIndex].text))
+
+
+           // console.log(i.dataset.theme) 
+            // console.log(i)
+
+
+            console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+
+             // console.log(selection.options[selection.selectedIndex].text)
+
+              // console.log(i.dataset.theme)
+        console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+        // console.log(String(selection.options[selection.selectedIndex].text))
+
+         // console.log(i.dataset.theme) 
+            // console.log(i)
+
+             // console.log(arrayPriceFilter.length)
+    // console.log(typeof(arrayPriceFilter2[0].price))
+
+    // console.log(setListSets)
+
+     // console.log(i)
+
+     // console.log(arrayPriceFilter.length)
+
+     // console.log(i)
+
+       // console.log(arrayPriceFilter2)
+
+       console.log(arrayPriceFilter)  
+
+        // console.log("yoooooo")
+          // console.log(setListSets2)
+            // divWishlistSets.innerHTML = ""; 
+
+             // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)    
+
+                 // console.log(i)
+
+                     // console.log(arrayPriceFilter)
+        // console.log(arrayPriceFilter2)   
+        // console.log(arrayPriceFilter2)
+
+
+        // console.log("yoooooo")
+
+          // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";  
+
+
+             // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)    
+
+
+                // console.log(i)
+
+
+                 
+    // console.log(arrayPriceFilter.length)
+    // console.log(typeof(arrayPriceFilter2[0].price))
+
+      // console.log(setListSets)
+
+
+       // console.log(i)
+
+
+        // console.log(arrayPriceFilter.length)
+
+
+         // console.log(i)
+
+
+         // console.log(arrayPriceFilter2)
+
+         console.log(arrayPriceFilter)   
+
+
+          // console.log("yoooooo")
+
+
+            // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";   
+
+
+              // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x) 
+
+
+                 // console.log(i)
+
+                   // console.log(arrayPriceFilter)
+        // console.log(arrayPriceFilter2)   
+        // console.log(arrayPriceFilter2)
+
+
+         // console.log("yoooooo")
+
+
+           // console.log(setListSets2)
+            // divWishlistSets.innerHTML = "";    
+
+
+              // console.log("ggggggg")
+                // console.log(typeof(x))
+                // console.log(x)
+                // console.log(x.dataset.number)
+                // console.log(typeof(x.dataset.number))
+                // console.log(x)       
+
+
+                 // console.log(i)
+
+
+                   // themeArray = []
+    // const divWishlistSets = document.getElementById("divWishlistSets")
+    // divWishlistSets.innerHTML = "";
+
+
+      // const divWrapperSets = document.getElementById("divSets");
+    // divWishlistSets.style.visibility = "";
+
+
+      // divSet.setAttribute("dataset.theme", `"${i.theme}"`)
+
+
+      console.log("howdy2")  
+
+
+       // <p id="${i.releaseDate}">${i.releaseDate}</p>
+                    // <p id="${i.releaseDate}2"></p> 
+
+
+                    console.log(release)
+                    // release.innerHTML = "..."
+
+
+
+                      // console.log(z)
+
+
+                       // savedPopup()
+
+                       console.log(selection.options[selection.selectedIndex].text)
+
+
+                        // console.log(result)
+            // console.log(result.baskets)
+            // console.log(result.sets)
+
+
+             // console.log(i)   
+
+
+             // console.log(selection.options[selection.selectedIndex].text)
+
+
+              // console.log(i.dataset.theme)
+
+
+              console.log((String(selection.options[selection.selectedIndex].text) === "Theme"))
+    // console.log(String(selection.options[selection.selectedIndex].text))
+
+
+      // console.log(i.dataset.theme) 
+        // console.log(i)
+
+
+        // wishlist page divwish
+// const themeAdd = document.getElementById("theme")
+// const wishlistAdd = document.getElementById("divWishlistSets")
+//added when click heart from set search
+// let arrayWishList2 = []
+
+
+ // deletePopup.classList.add("deletePopup")
+
+
+ console.log("jdjdjdjdjdjdjdjdj")
+ console.log(x)
+
+ // console.log("gogogogogo")
+
+
+ console.log(clicked_id)
+
+ console.log(thisButtonImg.src)
+ // console.log(typeof(thisButtonImg.src))
+ // console.log(thisButtonImgSrc.includes("red"))
+
+   // console.log(i)
+            // console.log(wishlistSetsChildren)
+            console.log(i.children[4].id)
+            // console.log(clicked_id)
+
+
+            console.log(thisButtonParent)
+            // console.log(thisButtonParent)
+            // thisButtonParent.remove()  
+            console.log(toRemove)   
+
+              // console.log()
+
+                // console.log(i)
+
+                console.log(toRemove)
+
+                console.log(arrayWishList2)
+
+                // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+
+    console.log(i.children[4].id)
+
+    console.log("ololol")
+
+      // console.log(thisButtonParent)
+            // thisButtonParent.remove()
+            console.log(thisButton)
+            console.log(thisButtonImgSrc)
+
+            console.log(thisButtonImg)
+
+            console.log(thisButtonImg.src)
+
+             // addToWishlist3(clicked_id)
+                // console.log(thisButtonImgSrc)
+                // console.log(thisButtonImg)
+                // let thisButtonParent = thisButton.parentElement
+                // thisButtonParent.remove()
+
+                 // setTest2(i)
+
+                  // let thisButton = document.getElementById(clicked_id)
+    // let thisButtonImg = thisButton.children[0]
+    // let thisButtonImgSrc = thisButtonImg.src
+
+
+    console.log(clicked_id)
+
+    console.log(wishlistSetsChildren)
+
+    console.log(i.children[4].id)
+
+     // console.log(thisButtonParent)
+
+     console.log(themeArrayWishlist)
+
+     console.log(i.children[4].id)
+
+     // console.log(thisButtonParent)
+
+     console.log(wishlistSetArray2)
+
+     console.log(wishlistSetsChildren)
+
+     console.log(bricklistSets)
+     console.log(bricklist.children)
+     console.log(bricklistSets[0])
+     console.log(bricklistSets.length)
+
+     console.log(currentObject)
+
+     console.log(val)
+
+     console.log(objectArray)
+     // for (const i in bricklist.children) {
+     //     console.log(i)
+     //     bricklistSetArray.push(i)
+     // }
+     console.log(bricklistSetArray)
+
+     console.log(data)
+
+     console.log(bricklistName.textContent)
+
+       // console.log(String(url))
+
+        // alert("Wishlist Saved");
+
+        // let inputWishlistSave = document.getElementById("inputWishlistSave")
+
+           // let data = {element: "barium"};    
+
+           console.log(result)
+
+           // console.log(i.name)
+                // console.log(inputWishlistSearch.value)
+
+                console.log(i.name)
+
+                // console.log(String(url))
+
+                // alert("Wishlist Saved");
+
+                // let inputWishlistSave = document.getElementById("inputWishlistSave")
+
+                console.log(z + 1)
+
+                console.log(result)
+
+                console.log(i.name)
+
+                console.log(z + 2)
+
+                console.log(z)
+
+                console.log(inputWishlistSave.value)
+
+                console.log(savedWishlistName)
+
+                 // divWishlistFooterOuter.className = "divWishlistFooterOuter"
+            console.log("truetrue")
+
+            // release.innerHTML = "..."
+    console.log(release)
+    console.log(iRd)
+
+    console.log(countDownDate)
+
+     // console.log(now)
+
+
+     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+     // Display the result in the element with id="demo"               
+     // release.innerHTML = days + "/days " + hours + "h " + minutes + "m " + seconds + "s ";
+     // release.classList.replace("notHere", "redText")
+     // release.innerHTML = days + " days remain!";
+
+     // const dateTimer = document.getElementsById("dateTimer");
+
+
+     // ***************************** countdown timer *****************************
+
+function dateTest(iRd, release) {    
+    // Set the date we're counting down to
+    var countDownDate = new Date(iRd).getTime(); 
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+        // Get today's date and time
+        var now = new Date().getTime();       
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));      
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            release.innerHTML = "Available!";
+            release.classList.replace("notHere", "greenText")
+        } else {
+            release.innerHTML = days + " days remain!";
+            release.classList.replace("notHere", "redText")            
+        }
+    }, 1000);      
+}

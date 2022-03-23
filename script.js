@@ -459,6 +459,7 @@ function addToWishlist2(clicked_id) {
     const deletePopup = document.getElementById("deletePopupExpand")
     deletePopup.classList.replace("notHere", "deletePopupExpand")
     const x = clicked_id
+    console.log(x)
     document.getElementById("yes").addEventListener("click", function(){    
         let thisButton = document.getElementById(x)
         let thisButtonImg = thisButton.children[0]
@@ -489,7 +490,7 @@ function addToWishlist2(clicked_id) {
 }
 
 // search page //addtowishlist 1 divsets
-function addToWishlist(clicked_id) {     
+function addToWishlist(clicked_id) {        
     searchedSetsChildren = searchedSets.children
     wishlistSetsChildren = wishlistSets.children
     for (const i of searchedSetsChildren) {        
@@ -498,15 +499,22 @@ function addToWishlist(clicked_id) {
             let thisButtonImg = thisButton.children[0]
             let thisButtonImgSrc = thisButtonImg.src
             let thisButtonParent = thisButton.parentElement          
-            if (thisButtonImgSrc.includes("red")) {                
-                thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"               
-                addToWishlist3(clicked_id)               
-            } else {              
+            if (thisButtonImgSrc.includes("red")) {          
+                const deletePopup = document.getElementById("deletePopupExpand")
+                deletePopup.classList.replace("notHere", "deletePopupExpand") 
+                document.getElementById("yes").addEventListener("click", function(){     
+                    deletePopup.classList.replace("deletePopupExpand", "notHere")
+                    thisButtonImg.src = "SVG/heart-shapes-svgrepo-com.svg"               
+                    addToWishlist3(clicked_id)             
+                });
+                document.getElementById("no").addEventListener("click", function(){
+                    deletePopup.classList.replace("deletePopupExpand", "notHere")
+                }); 
+            } else {                     
                 thisButtonImg.src = "SVG/heart-shapes-svgrepo-com-red.svg"
                 addToWishlist4(clicked_id)               
             }
-        }
-            
+        }            
     }
 }
  
@@ -541,7 +549,11 @@ function addToWishlist4(clicked_id) {
         if (clicked_id === i.children[4].id) {
             let thisButton = i.children[4]
             let thisButtonParent = thisButton.parentElement
-            let ooo = thisButtonParent.cloneNode(true)            
+            let ooo = thisButtonParent.cloneNode(true)  
+            // console.log(ooo)         
+            // console.log(ooo.children[4])  
+            ooo.children[4].setAttribute("onclick", "addToWishlist2(this.id)")
+            // console.log(ooo.children[4]) 
             wishlistSets.appendChild(ooo)            
         }
     }
