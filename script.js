@@ -421,8 +421,7 @@ function expandImage(clicked_image) {
         .then(function(response) {
             if (!response.ok) {    
                 minImage()           
-                throw alert("Error with API. Please refresh page and try again.");
-                
+                throw alert("Error with API. Please refresh page and try again.");                
             }
             return response.json()
             })                           
