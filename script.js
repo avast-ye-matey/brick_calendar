@@ -40,7 +40,8 @@ function searchSets() {
             option.innerHTML = "Theme"
             filterTheme.appendChild(option)
         }        
-        let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        // let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+        let x = fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew')
             .then(function(response) {
                 if (!response.ok) {               
                     throw alert("Error with API. Please refresh page and try again.");
@@ -71,16 +72,14 @@ function searchSets() {
                         titleArray.push(i.name)
                         themeArray.push(i.theme)
                     }                                                                                    
-                }     
-                console.log(Array.isArray(titleArray))
-                console.log(themeArray)
+                }                   
                 if (titleArray - themeArray === 0) {                    
                     alert("Couldn't find a set mathing your search. Please try again.")
                 } else {
                     filterListTheme(themeArray)
                     let titleSet = new Set(titleArray)                            
                     titleSet = Array.from(titleSet);              
-                    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
+                    fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew')
                             .then(function(response) {
                                 if (!response.ok) {                        
                                     throw alert("Error with API. Please refresh page and try again.");
@@ -131,6 +130,12 @@ let arrayPrice = []
 let arrayWishList = []
 // shell creation for searched sets
 function setTest(i) {   
+    let arrayWishList2 = []   
+    let brickSets = document.getElementById("divWishlistSets")
+    let brickSets2 = brickSets.getElementsByClassName("sets")
+    for (const y of brickSets2) {
+        arrayWishList2.push(parseInt(y.dataset.number))
+    }            
     const divWrapperSets = document.getElementById("divSets");
     divWrapperSets.style.visibility = "";
     const divSet = document.createElement("div");
@@ -151,7 +156,7 @@ function setTest(i) {
                     <div class="price">$${i.price}</div>                      
                     <p id="${i.number}${i.releaseDate}" class="notHere">${i.releaseDate}</p>                                   
                     <button id="${i.number}" class="divWishlistButton" onclick="addToWishlist(this.id);"><img id="wishButtonImg" src="SVG/heart-shapes-svgrepo-com-red.svg"/></button>`;               
-    if (arrayWishList.includes(i.number)) {       
+    if (arrayWishList2.includes(i.number)) {       
         divSet.innerHTML = htmlSegmentRed;    
         let cdd = `${i.releaseDate}`       
         let z =  divWrapperSets.appendChild(divSet);   
@@ -310,8 +315,7 @@ const divWishlistFooterOuter = document.getElementById("divWishlistFooterOuter")
 const h1Wishlist2 = document.getElementById("h1Wishlist2")
 
 function wishUpDown() {
-    if (divWishlist.className === "divWishlist") {
-        console.log("howdy")
+    if (divWishlist.className === "divWishlist") {        
         divWishlist.className = "wishlist"
         mainSets.className = "mainSets"
         divWishlistFooterOuter.className = "divWishlistFooterOuter2"
@@ -331,8 +335,7 @@ const filterChooseWishlist = document.getElementById("filterChooseWishlist")
 
 fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18")
     .then(response => response.json())
-    .then(result => {
-        console.log(result)
+    .then(result => {       
         for (const i of result.baskets) {
             let newOption = document.createElement("option")
             newOption.innerHTML = i.name
@@ -415,9 +418,8 @@ function minImage() {
 function expandImage(clicked_image) {
     divImgExpand.style.removeProperty("display")
     divImgExpand.innerHTML = "";   
-    v = clicked_image
-    console.log(v)
-    fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')      
+    v = clicked_image    
+    fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew')      
         .then(function(response) {
             if (!response.ok) {    
                 minImage()           
@@ -454,12 +456,20 @@ function deleteItem() {
     deletePopup.classList.replace("notHere", "deletePopupExpand")     
 }
 
-function addToWishlist2(clicked_id) {      
+function addToWishlist2(clicked_id) {           
     const deletePopup = document.getElementById("deletePopupExpand")
     deletePopup.classList.replace("notHere", "deletePopupExpand")
-    const x = clicked_id
-    console.log(x)
-    document.getElementById("yes").addEventListener("click", function(){    
+    const x = clicked_id   
+    document.getElementById("yes").addEventListener("click", function(){  
+        let setsFind = document.getElementById("divSets")  
+        let setsFind2 = setsFind.getElementsByClassName("sets")    
+        for (const y of setsFind2) {        
+            if (y.dataset.number === clicked_id) {
+                u = y.children[4]
+                u2 = u.children[0]            
+                u2.src = "SVG/heart-shapes-svgrepo-com.svg"
+            }
+        }  
         let thisButton = document.getElementById(x)
         let thisButtonImg = thisButton.children[0]
         let thisButtonImgSrc = thisButtonImg.src
@@ -485,7 +495,8 @@ function addToWishlist2(clicked_id) {
     });
     document.getElementById("no").addEventListener("click", function(){
         deletePopup.classList.replace("deletePopupExpand", "notHere")
-    });        
+    });  
+    
 }
 
 // search page //addtowishlist 1 divsets
@@ -548,11 +559,8 @@ function addToWishlist4(clicked_id) {
         if (clicked_id === i.children[4].id) {
             let thisButton = i.children[4]
             let thisButtonParent = thisButton.parentElement
-            let ooo = thisButtonParent.cloneNode(true)  
-            // console.log(ooo)         
-            // console.log(ooo.children[4])  
-            ooo.children[4].setAttribute("onclick", "addToWishlist2(this.id)")
-            // console.log(ooo.children[4]) 
+            let ooo = thisButtonParent.cloneNode(true)             
+            ooo.children[4].setAttribute("onclick", "addToWishlist2(this.id)")          
             wishlistSets.appendChild(ooo)            
         }
     }
