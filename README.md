@@ -87,7 +87,7 @@ I had to create a list of items for testing purposes. Currently this is the full
 76393 - Harry Potter & Hermione Granger<br />
 31201 - Harry Potter Hogwarts Crests<br />
 76383 - Hogwarts Moment: Potions Class<br />
-76382 Hogwarts Moment: Transfiguration Class<br /><br />
+76382 - Hogwarts Moment: Transfiguration Class<br /><br />
 	
 **!!! If site is broken... !!!**<br />
 I use getpantry.cloud to store my API JSON information. They use to have a auto delete date but while making this project they changed the layout of their site. I don't see a date anymore. Unfortunately I can't predict how long this will say up. Hopefully I can transfer this info to a server/database I own. If project is broken, sorry. 
@@ -117,13 +117,13 @@ I use getpantry.cloud to store my API JSON information. They use to have a auto 
  
 <a name="featurelistitemsused"></a>
 ### Feature List Items Used ![image](https://user-images.githubusercontent.com/84582506/140657351-81caf107-4fac-405a-9999-41c909351143.png) <br />
-(I posted one example for each of the following inside my JavaScript code)
-1) Read and parse an external file (such as JSON or CSV) into your application and display some data from that in your app
-2) Retrieve data from an external API and display data in your app (such as with fetch() or with AJAX)
-3) Post to an external API and show that it has saved/persisted
-4) Create an array, dictionary or list, populate it with multiple values, retrieve at least one value, and use or display it in your application
-5) Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event)
-6) Create and use a function that accepts two or more values (parameters), calculates or determines a new value based on those inputs, and returns a new value
+(I posted one example for each of the following inside my JavaScript code. CTRL+F in JavaScript file and search for "// feature list item" to find code faster)
+1) Read and parse an external file (such as JSON or CSV) into your application and display some data from that in your app.<br />*I use JSON data to store my set information. The app retrieves that info to build the set layout.*
+2) Retrieve data from an external API and display data in your app (such as with fetch() or with AJAX).<br />*The ap uses fetch() to retrieve JSON data then uses that data to build the set layout.*
+3) Post to an external API and show that it has saved/persisted.<br />*Various parts of the app auto saves the updated data. There is a save icon that appears to show this. Another way to check if it was updated is start the app over to and click on the Bricklist again. It fetches the live data and will match the changes you previously made.*
+4) Create an array, dictionary or list, populate it with multiple values, retrieve at least one value, and use or display it in your application.<br />*I use an array to build an updated list to compare the main page and the drawer to know what sets should be displayed. I also build a dictionary to store the updated JSON data.*
+5) Calculate and display data based on an external factor (ex: get the current date, and display how many days remaining until some event).<br />*The app retrieves the release date of a set and the current date of the users computer and compares the two to display how many days until release or if set is already available.*
+6) Create and use a function that accepts two or more values (parameters), calculates or determines a new value based on those inputs, and returns a new value.<br />*The app uses JSON data and an array for a set creation function. It builds innerHTML and HTML elements based on those two values and returns the new set element and its internal details. At same time appends it to the parent div.*
 
 
 
