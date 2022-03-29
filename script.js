@@ -41,7 +41,7 @@ function searchSets() {
             filterTheme.appendChild(option)
         }        
         // let x = fetch('https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/setsNew')
-        let x = fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew')
+        let x = fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew') // feature list item 2
             .then(function(response) {
                 if (!response.ok) {               
                     throw alert("Error with API. Please refresh page and try again.");
@@ -79,12 +79,12 @@ function searchSets() {
                     filterListTheme(themeArray)
                     let titleSet = new Set(titleArray)                            
                     titleSet = Array.from(titleSet);              
-                    fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew')
+                    fetch('https://getpantry.cloud/apiv1/pantry/db0bad39-3243-4735-bfe4-099f32cc1f0c/basket/setsNew') // feature list item 1
                             .then(function(response) {
                                 if (!response.ok) {                        
                                     throw alert("Error with API. Please refresh page and try again.");
                                 }
-                                return response.json()
+                                return response.json() // feature list item 1
                                 })                        
                             .then(data => {
                                 for (const i of data.sets) {                                
@@ -130,7 +130,7 @@ let arrayPrice = []
 let arrayWishList = []
 // shell creation for searched sets
 function setTest(i) {   
-    let arrayWishList2 = []   
+    let arrayWishList2 = []   // feature list item 4
     let brickSets = document.getElementById("divWishlistSets")
     let brickSets2 = brickSets.getElementsByClassName("sets")
     for (const y of brickSets2) {
@@ -344,7 +344,7 @@ fetch("https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18
     }) 
 
 //shell creation for saved/wishlist bricklist selection
-function setTest2(i, themeArray2) {      
+function setTest2(i, themeArray2) {       // feature list item 6
     const divSet = document.createElement("div");
     divSet.setAttribute("class", "sets")   
     divSet.dataset.theme = `${i.theme}`      
@@ -596,7 +596,7 @@ function saveUpdate() {
     let bricklistName = document.getElementById("nameChosenBricklist")    
     let url = `https://getpantry.cloud/apiv1/pantry/6d0c08f2-b3ab-4481-a0ea-67ec5871db18/basket/${bricklistName.textContent}`  
     fetch(url, {
-        method: "POST",
+        method: "POST", // Feature list item 3 
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(data)
     }).then(function(response) {
@@ -711,6 +711,7 @@ function savedPopup() {
 
 // ***************************** countdown timer *****************************
 
+// feature list item 5
 function dateTest(cdd, release) {        
     var countDownDate = new Date(cdd).getTime();    
     var x = setInterval(function() {      
