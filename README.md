@@ -87,10 +87,20 @@ I had to create a list of items for testing purposes. Currently this is the full
 76393 - Harry Potter & Hermione Granger<br />
 31201 - Harry Potter Hogwarts Crests<br />
 76383 - Hogwarts Moment: Potions Class<br />
-76382 - Hogwarts Moment: Transfiguration Class<br /><br />
+76382 - Hogwarts Moment: Transfiguration Class<br />
+76956 - T. rex Breakout<br />
+76832 - XL-15 Spaceship<br />
+75339 - Death Star Trash Compactor Diorama<br />
+75328 - The Mandalorian Helmet<br />
+75317 - The Mandalorian™ & the Child<br />
+75310 - Duel on Mandalore<br />
+40539 - Ahsoka Tano<br />
+71395 - Super Mario 64 Question Mark Block<br /><br />
 	
 **!!! If site is broken... !!!**<br />
-I use getpantry.cloud to store my API JSON information. They use to have a auto delete date but while making this project they changed the layout of their site. I don't see a date anymore. Unfortunately I can't predict how long this will say up. Hopefully I can transfer this info to a server/database I own. If project is broken, sorry. 
+I use getpantry.cloud to store my API JSON information. They use to have a auto delete date but while making this project they changed the layout of their site. I don't see a date anymore. Unfortunately I can't predict how long this will say up. Hopefully I can transfer this info to a server/database I own. If project is broken, sorry.<br /><br />
+	
+P.S. The release dates do NOT reflect the actual release dates. I changed a few for testing purposes.
 </blockquote><br /><br /><br />
 
 
