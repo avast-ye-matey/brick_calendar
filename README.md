@@ -1,3 +1,16 @@
+### Development
+To run this locally type the following in the command prompt:
+```bash
+python3 -m http.server
+```
+
+Then open a browser to the following URL:   
+http://localhost:8000/  
+
+To see new changes simply refresh the page.  
+
+---
+
 # Bricklist!!!
 ### GitHub Pages link - https://avast-ye-matey.github.io/bricklist/ 
 ### Try on either Mobile or PC - (currently designed for mobile with minor visual media queries for PC)
