@@ -10,11 +10,12 @@
 </head>
 <body>
 
+	<div id="app"></div>
+
     <!-- image expand/min -->
     <div id="divImgExpand" style="display: none;" >       
     </div>  
-
-    <!-- saved list popup -->
+<!-- saved list popup -->
     <div id="savedPopup">Saved!</div>
 
     <!-- delete popup -->
@@ -122,5 +123,40 @@
         </div>   
     </div>  
 
+  <!-- Libraries -->
+  <!-- babel is required in order to parse JSX -->
+  <script src="./lib/babel.min.js"></script>
+  <!-- import react.js -->
+  <script src="./lib/react.development.js"></script>
+  <!-- import react-dom.js -->
+  <script src="./lib/react-dom.development.js"> </script>
+
+  <!-- import your JS and add - type="text/babel" - otherwise babel wont parse it -->
+  <script type="text/babel">
+
+	// main.js
+	//
+	// /* You don't need these imports
+	// **  import React from 'react';
+	// **  import ReactDOM from 'react-dom';
+	// */
+	// // React and ReactDOM are already imported in you HTML
+	// // Also import / require are NodeJS thing that doesn't exist in a browser
+
+	function tick() {
+		  const element = (
+				  <div>
+					<h1>Hello, world!</h1>
+					<h2>It is {new Date().toLocaleTimeString()}.</h2>
+				  </div>
+				);
+		  ReactDOM.render(
+				  element,
+				  document.getElementById('app')
+				);
+	}
+
+	setInterval(tick, 1000);
+  </script>
 </body>
 </html>
