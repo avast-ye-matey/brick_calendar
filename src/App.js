@@ -52,7 +52,9 @@ function App() {
                     <p>Price: ${val.price}</p>
                     <p>Theme: {val.theme}</p>  
                   </div>
-                                                
+                  <div className='setDivButtons'>
+                    <button onClick={() => setList([...listState, val.number])}>Add</button>                     
+                  </div>                               
                 </div>                  
               );
             })} 
@@ -64,7 +66,27 @@ function App() {
         <div className='subLists'> 
           <h1>Bricklist:</h1>  
                    
-                       
+          { listState.length !== 0 && JSON.filter((val) => {    
+            for (let i = 0; i <= listState.length; i++) {
+              if (val.number === listState[i]) {
+                return val
+              }
+            }
+          }).map((val, key) =>  {  
+              return (
+                <div key={key} className='setDiv'>
+                    <div>
+                      <p>{val.name}</p>
+                      <p>Price: ${val.price}</p>
+                      <p>Theme: {val.theme}</p>  
+                    </div>
+                    <div className='setDivButtons'>                      
+                      <button onClick={() => setList(item => item.filter(x => x !== val.number))}>Delete</button>
+                      {/* <button onClick={() => console.log(val.number)}>Delete</button> */}
+                    </div>                               
+                  </div>  
+              )
+          })}                
         </div>         
 
       </div>
