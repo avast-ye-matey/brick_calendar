@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import JSON from './data.json'
+import { AddButton, DeleteButton } from './setbuttons';
+import SetDetail from './setdetail';
 
-/* A Set:
+/* A Set's datail from JSON:
 {
   "number": number
   "theme": string
@@ -39,9 +41,9 @@ function App() {
 
 
   /**
-   * search
+   * input search bar
    * 
-   * Returns a list of sets that matcht a given search term.
+   * Returns a list of sets that matches a given search term.
    * 
    * @param {string} term : search term to filer by
    * @returns Set[]
@@ -52,38 +54,52 @@ function App() {
 
 
   /**
+   * creates full set detail card w/ add button
    * 
-   * @param {Set} Set :  
+   * @param {Set} Set :  set information to fill set detail card
    * @returns JSX.Element
    */
-  function setDetails(set) {
+  function setCardAdd(set) {
     return (
-      <div key={set.number} className='setDiv'>
-        {/* TODO 4: lift this into its own component */}
-        <div>
-          <p>{set.name}</p>
-          <p>Price: ${set.price}</p>
-          <p>Theme: {set.theme}</p>  
-          {/* TODO 1: add image here */}
-        </div>
-        {/* end TODO 4 */}
-        <div className='setDivButtons'>
-          <button onClick={() => setList([...listState, set.number])}>Add</button>
-        </div>
+      <div key={set.number} className='setDiv'>        
+        <SetDetail set={set}/>        
+        <AddButton listState={listState} set={set} setList={setList}/>
       </div>
     );
   }
 
+  /**
+   * creates full set detail card w/ delete button
+   * 
+   * @param {Set} Set :  set information to fill set detail card
+   * @returns JSX.Element
+   */
+  function setCardDelete(set) {
+    return (
+      <div key={set.number} className='setDiv'>        
+        <SetDetail set={set}/>        
+        <DeleteButton listState={listState} set={set} setList={setList}/>
+      </div>
+    );
+  }
+
+  // displays sets using search bar
   const setsToDisplay = searchTerm.length > 0
-                      ? search(searchTerm).map(set => setDetails(set))
+                      ? search(searchTerm).map(set => setCardAdd(set))
                       : []
   /* == Is the same as ^ ==
   let setsToDisplay = []
   if(searchTerm.length > 0) {
-    setsToDisplay = search(searchTerm).map(set => setDetails(set))
+    setsToDisplay = search(searchTerm).map(set => setCard(set))
   }
-  */
+  */      
 
+  // displays bricklist using the state of variable listState 
+  const listToDisplay = listState.length > 0               
+                      ? [...new Map(listState.map(item => [item.number, item])).values()].map(set => setCardDelete(set))
+                      : [] 
+
+       
   return (
     <div>
       <input
@@ -105,30 +121,8 @@ function App() {
         <div className='middle'></div>        
 
         <div className='subLists'> 
-          <h1>Bricklist:</h1>  
-                   
-          {/* TODO 2: lift this into its own fuction (like search)  */}
-          { listState.length !== 0 && JSON.filter((val) => {    
-            for (let i = 0; i <= listState.length; i++) {
-              if (val.number === listState[i]) {
-                return val
-              }
-            }
-          }).map((val, key) =>  {  
-              // TODO 3: lift this into its own function (like setDetails)
-              return (
-                <div key={key} className='setDiv'>
-                    <div>
-                      <p>{val.name}</p>
-                      <p>Price: ${val.price}</p>
-                      <p>Theme: {val.theme}</p>  
-                    </div>
-                    <div className='setDivButtons'>                      
-                      <button onClick={() => setList(item => item.filter(x => x !== val.number))}>Delete</button>
-                    </div>                               
-                  </div>  
-              )
-          })}                
+          <h1>Bricklist:</h1>              
+            { listToDisplay }                           
         </div>         
 
       </div>
