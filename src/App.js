@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import JSON from './data.json'
+import { Header } from './header';
+import { MainScreen } from './mainscreen';
 import { AddButton, DeleteButton } from './setbuttons';
 import SetDetail from './setdetail';
+import { SideMenu } from './sidemenu';
+import { TitleBar } from './titlebar';
 
 /* A Set's datail from JSON:
 {
@@ -101,33 +105,40 @@ function App() {
 
        
   return (
-    <div>
-      <input
-        type='text' 
-        placeholder='Search...' 
-        onChange={(event) => {
-          setAppState({ loading : false })
-          setSearchTerm(event.target.value);
-        }} 
-      />     
+    // <div>
+    //   <input
+    //     type='text' 
+    //     placeholder='Search...' 
+    //     onChange={(event) => {
+    //       setAppState({ loading : false })
+    //       setSearchTerm(event.target.value);
+    //     }} 
+    //   />     
       
-      <div className='lists'>          
+    //   <div className='lists'>          
 
-        <div className='subLists'>  
-          <h1>Sets:</h1>       
-            { setsToDisplay }
-        </div>            
+    //     <div className='subLists'>  
+    //       <h1>Sets:</h1>       
+    //         { setsToDisplay }
+    //     </div>            
 
-        <div className='middle'></div>        
+    //     <div className='middle'></div>        
 
-        <div className='subLists'> 
-          <h1>Bricklist:</h1>              
-            { listToDisplay }                           
-        </div>         
+    //     <div className='subLists'> 
+    //       <h1>Bricklist:</h1>              
+    //         { listToDisplay }                           
+    //     </div>         
 
-      </div>
+    //   </div>
       
-    </div>     
+    // </div>     
+
+    <div className='app'>
+      <Header />
+      <SideMenu />
+      <TitleBar />
+      <MainScreen />
+    </div>
   );
 }
 
