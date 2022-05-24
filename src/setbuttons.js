@@ -1,25 +1,18 @@
 import React from 'react';
 
 //add to bricklist
-export const AddButton = ({ listState, set, setList }) => {
+export const AddButton = ({ set, handler }) => {
+    console.log("(addButton) I have a set passed in: ", set)
+    // Sorry, broke the CSS here :(
     return (
         <div className='setDivButtons'>
-            <button onClick={() => {
-                setList([...listState, 
-                    {
-                        number: set.number,
-                        name: set.name,
-                        theme: set.theme,
-                        price: set.price,
-                        img: set.img
-                    }
-                ])
-            }}>Add</button>
+            <button onClick={() => handler(set)}></button>
         </div>
     )
 }
 
 //delete from bricklist
+// TODO: update this to use pub-sub like the AddButton component
 export const DeleteButton = ({ set, setList }) => {
     return (     
         <div className='setDivButtons'>                      

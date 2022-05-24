@@ -54,6 +54,18 @@ function App() {
 
 
   /**
+   * A function that add a set to a bricklist when a user selects / clicks to add it. 
+   * 
+   * @param {*} set 
+   * @returns undefined
+   */
+  function setAddedHandler(set) {
+    debugger
+    console.log("(app.js) I have a set I am supposed to add: ", set)
+    setList([...listState, set])
+  }
+
+  /**
    * creates full set detail card w/ add button
    * 
    * @param {Set} Set :  set information to fill set detail card
@@ -63,7 +75,7 @@ function App() {
     return (
       <div key={set.number} className='setDiv'>        
         <SetDetail set={set}/>        
-        <AddButton listState={listState} set={set} setList={setList}/>
+        <AddButton set={set} handler={setAddedHandler}/>
       </div>
     );
   }
@@ -78,6 +90,7 @@ function App() {
     return (
       <div key={set.number} className='setDiv'>        
         <SetDetail set={set}/>        
+        {/* TODO: update this to use pub-sub like the AddButton component */}
         <DeleteButton listState={listState} set={set} setList={setList}/>
       </div>
     );
